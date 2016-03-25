@@ -75,7 +75,7 @@
 
 
 - (void)start {
-//    __weak __typeof(self)weakSelf = self;
+    //    __weak __typeof(self)weakSelf = self;
     //检测文件是否存在
     NSTimeInterval startTime = [[NSDate date] timeIntervalSince1970];
     OSSClient *client = [[TFUploadAssistant sharedInstanceWithConfiguration:nil] client];
@@ -94,18 +94,18 @@
     put.contentMd5 = [OSSUtil base64Md5ForData:put.uploadingData];
     put.uploadProgress = ^(int64_t bytesSent, int64_t totalByteSent, int64_t totalBytesExpectedToSend) {
         float progress = (float)totalByteSent/(float)totalBytesExpectedToSend;
-//        __typeof(&*weakSelf) strongSelf = weakSelf;
-//        if (strongSelf && strongSelf.progressHandler) {
-//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//            }];
-//            strongSelf.progressHandler(strongSelf.key,strongSelf.token,progress);
-//            
-//        }
+        //        __typeof(&*weakSelf) strongSelf = weakSelf;
+        //        if (strongSelf && strongSelf.progressHandler) {
+        //            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        //            }];
+        //            strongSelf.progressHandler(strongSelf.key,strongSelf.token,progress);
+        //            
+        //        }
         _progressHandler(_key,_token,progress);
     };
     OSSTask *putTask = [client putObject:put];
     [putTask continueWithBlock:^id(OSSTask *task) {
-//        __typeof(&*weakSelf) strongSelf = weakSelf;
+        //        __typeof(&*weakSelf) strongSelf = weakSelf;
         TFResponseInfo *info = nil;
         NSTimeInterval endTime = [[NSDate date] timeIntervalSince1970];
         if (task.error) {
@@ -116,12 +116,14 @@
         info = [[TFResponseInfo alloc] initWithStatusCode:result.httpResponseCode withDuration:endTime - startTime withBody:nil];
         if (result.httpResponseCode == 200) {
             //上传成功
-//            if (strongSelf && strongSelf.completionHandler) {
-//                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//                }];
-//                strongSelf.completionHandler(info,strongSelf.key,strongSelf.token,nil);
-//            }
-            _completionHandler(info,_key,_token,YES);
+            //            if (strongSelf && strongSelf.completionHandler) {
+            //                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            //                }];
+            //                strongSelf.completionHandler(info,strongSelf.key,strongSelf.token,nil);
+            //            }
+            if (_completionHandler) {
+                _completionHandler(info,_key,_token,YES);
+            }
         }
         TFULogDebug(@"Result - requestId: %@ ",result.requestId);
         return nil;

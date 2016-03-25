@@ -201,20 +201,12 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
                 progress:(TFUpProgressHandler)progressHandler
                 complete:(TFUpCompletionHandler)completionHandler {
     __weak __typeof(self)weakSelf = self;
-    if (!completionHandler) {
-        completionHandler = ^(TFResponseInfo *info, NSString *key, NSString * token,BOOL success) {
-            GlobalCompletionBlock(info,key,token,success,weakSelf);
-        };
-    }
-    if (!progressHandler) {
-        progressHandler = ^(NSString *key,NSString *token ,float percent) {
-            [self calculateTotalProgress:token key:key progress:percent];
-        };
-    }
     TFUpCompletionHandler checkComplete = ^(TFResponseInfo *info, NSString *key, NSString * token,BOOL success)
     {
         [file close];
-        completionHandler(info, key, token,success);
+        if (completionHandler) {
+            completionHandler(info,key,token,success);
+        }
     };
     NSData *data = [file readAll];
     //check file
@@ -222,12 +214,18 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
         TFULogDebug(@"File :%@ check error",[file path]);
         return;
     }
-    
+    if (!progressHandler) {
+        progressHandler = ^(NSString *key,NSString *token ,float percent) {
+            [self calculateTotalProgress:token key:key progress:percent];
+        };
+    }
     TFUpCompletionHandler uploadComplete = ^(TFResponseInfo *info, NSString *key, NSString *token, BOOL success){
         //remove from operations
         __typeof(&*weakSelf) strongSelf = weakSelf;
         [strongSelf removeOperationsByToken:token identifier:key];
-        completionHandler(info,key,token,success);
+        if (completionHandler) {
+            completionHandler(info,key,token,success);
+        }
         if (!success) {
             //上传失败,加入错误列表
             [strongSelf cacheFailedOperationsByToken:token objectKey:key filePath:[file path]];
