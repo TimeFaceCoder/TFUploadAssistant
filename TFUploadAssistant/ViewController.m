@@ -18,7 +18,7 @@
 #define kAliBucketHostId            @"oss-cn-hangzhou.aliyuncs.com"
 #define kAliEndPoint                @"http://oss-cn-hangzhou.aliyuncs.com"
 #define kAliBucket                  @"timeface-image01"
-#define kAliAuthSTS                 @"https://auth.timeface.cn/aliyun/sts"
+#define kAliAuthSTS                 @"http://auth.timeface.cn/aliyun/sts"
 
 @interface ViewController ()<TFImagePickerControllerDelegate,TFLibraryViewControllerDelegate,TFUploadAssistantDelegate>
 
@@ -54,13 +54,13 @@
 }
 
 - (void)onViewClick:(id)sender {
-   
+    
     
     TFLibraryViewController *vc = [[TFLibraryViewController alloc]init];
     vc.libraryControllerDelegate = self;
     vc.allowsMultipleSelection = YES;
     vc.maximumNumberOfSelection = 100;
-
+    
     
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -73,7 +73,7 @@
 
 - (void)imagePickerController:(TFImagePickerController *)picker
        didFinishPickingAssets:(NSArray<PHAsset *> *)assets {
-   
+    
 }
 
 
@@ -110,7 +110,7 @@
 - (void)uploadAssistantCompletionHandler:(TFResponseInfo *)info
                                      key:(NSString *)key
                                    token:(NSString*)token success:(BOOL)success {
-    NSLog(@"token : %@ upload over",token);
+    NSLog(@"token : %@ upload over info:%@",token,info);
 }
 
 @end

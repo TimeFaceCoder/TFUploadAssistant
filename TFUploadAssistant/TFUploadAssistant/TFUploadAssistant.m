@@ -26,14 +26,14 @@
 
 
 NSString * const kTFUploadOperationsKey      = @"kTFUploadOperationsKey";
-NSString * const kTFUploadFaildOperationsKey = @"kTFUploadFaildOperationsKey";
+NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
 
 @interface TFUploadAssistant()<NSURLSessionDelegate>
 
 @property (nonatomic ,strong) TFConfiguration     *configuration;
 @property (nonatomic ,strong) NSMutableDictionary *uploadHandlers;
 @property (nonatomic ,strong) NSMutableDictionary *uploadOperations;
-@property (nonatomic ,strong) NSMutableDictionary *faildOperations;
+@property (nonatomic ,strong) NSMutableDictionary *failedOperations;
 @property (nonatomic ,strong) NSMutableDictionary *progressHandlers;
 @property (nonatomic ,strong) NSOperationQueue    *operationQueue;
 @property (nonatomic ,assign) float               currentprogress;
@@ -53,12 +53,11 @@ NSString * const kTFUploadFaildOperationsKey = @"kTFUploadFaildOperationsKey";
         _progressHandlers = [NSMutableDictionary dictionary];
         _operationQueue = [[NSOperationQueue alloc] init];
         _uploadOperations = [NSMutableDictionary dictionary];
-        _faildOperations = [[TFFileRecorder sharedInstance] get:kTFUploadFaildOperationsKey];
-        if (!_faildOperations) {
-            _faildOperations = [NSMutableDictionary dictionary];
+        _failedOperations = [[TFFileRecorder sharedInstance] get:kTFUploadFailedOperationsKey];
+        if (!_failedOperations) {
+            _failedOperations = [NSMutableDictionary dictionary];
         }
         [self initOSSService];
-        
         [self checkTask];
     }
     return self;
@@ -80,6 +79,7 @@ NSString * const kTFUploadFaildOperationsKey = @"kTFUploadFaildOperationsKey";
                       input:(NSObject *)input
                    complete:(TFUpCompletionHandler)completionHandler {
     NSString *desc = nil;
+    TFResponseInfo *info = nil;
     if (completionHandler == nil) {
         @throw [NSException exceptionWithName:NSInvalidArgumentException
                                        reason:@"no completionHandler" userInfo:nil];
@@ -87,16 +87,21 @@ NSString * const kTFUploadFaildOperationsKey = @"kTFUploadFaildOperationsKey";
     }
     if (input == nil) {
         desc = @"no input data";
+        info = [TFResponseInfo responseInfoOfZeroData:nil];
     }
     else if (token == nil || [token isEqualToString:@""]) {
         desc = @"no token";
+        info = [TFResponseInfo responseInfoWithInvalidToken:desc];
     }
     if (desc != nil) {
-        completionHandler([TFResponseInfo responseInfoWithInvalidArgument:desc], key,token, NO);
+        completionHandler(info, key,token, NO);
+        TFULogDebug(@"check input error:%@",desc);
         return YES;
     }
     return NO;
 }
+
+#pragma mark - Public
 
 - (void) putData:(NSData *)data
              key:(NSString *)key
@@ -113,20 +118,9 @@ NSString * const kTFUploadFaildOperationsKey = @"kTFUploadFaildOperationsKey";
                                                                                  complete:completionHandler
                                                                                    config:_configuration];
     
-    __weak __typeof(self)weakSelf = self;
     dispatch_async([_pool queue], ^{
-        __typeof(&*weakSelf) strongSelf = weakSelf;
-        [strongSelf cacheOperationsByToken:token identifier:key];
         [uploadOperation start];
     });
-    
-    //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
-    //        __typeof(&*weakSelf) strongSelf = weakSelf;
-    //        [strongSelf cacheOperationsByToken:token identifier:key];
-    //        [uploadOperation start];
-    //    });
-    
-    
 }
 
 - (void) putFile:(NSString *)filePath
@@ -134,19 +128,21 @@ NSString * const kTFUploadFaildOperationsKey = @"kTFUploadFaildOperationsKey";
            token:(NSString *)token
         progress:(TFUpProgressHandler)progressHandler
       completion:(TFUpCompletionHandler)completionHandler {
-    if ([TFUploadAssistant checkAndNotifyError:key token:token input:filePath complete:completionHandler]) {
-        return;
-    }
     @autoreleasepool {
         NSError *error = nil;
         __block TFFile *file = [[TFFile alloc] init:filePath error:&error];
-        if (error) {
-            TFAsyncRunInMain( ^{
-                TFResponseInfo *info = [TFResponseInfo responseInfoWithFileError:error];
-                completionHandler(info, key, token, NO);
-            });
-            return;
-        }
+        [self putFileInternal:file key:key token:token progress:progressHandler complete:completionHandler];
+    }
+}
+
+- (void) putPHAsset:(PHAsset *)asset
+                key:(NSString *)key
+              token:(NSString *)token
+           progress:(TFUpProgressHandler)progressHandler
+         completion:(TFUpCompletionHandler)completionHandler {
+    @autoreleasepool {
+        NSError *error = nil;
+        __block TFPHAssetFile *file = [[TFPHAssetFile alloc] init:asset error:&error];
         [self putFileInternal:file key:key token:token progress:progressHandler complete:completionHandler];
     }
 }
@@ -166,43 +162,19 @@ NSString * const kTFUploadFaildOperationsKey = @"kTFUploadFaildOperationsKey";
             progress:(TFUpProgressHandler)progressHandler
           completion:(TFUpCompletionHandler)completionHandler {
     NSInteger index = 0;
-    //创建进度管理
-    NSMutableDictionary *progressDic = [_progressHandlers objectForKey:token];
-    if (!progressDic) {
-        progressDic = [NSMutableDictionary new];
-        [_progressHandlers setObject:progressDic forKey:token];
-    }
+    [self initOperations:keys token:token];
     for (PHAsset *asset in assets) {
-        //添加默认进度0
-        [progressDic setObject:[NSNumber numberWithFloat:0] forKey:[keys objectAtIndex:index]];
         [self putPHAsset:asset
                      key:[keys objectAtIndex:index]
                    token:token
                 progress:progressHandler
               completion:completionHandler];
         index ++;
+        TFULogDebug(@"put PHAsset in upload queue");
     }
     
 }
 
-- (void) putPHAsset:(PHAsset *)asset
-                key:(NSString *)key
-              token:(NSString *)token
-           progress:(TFUpProgressHandler)progressHandler
-         completion:(TFUpCompletionHandler)completionHandler {
-    @autoreleasepool {
-        NSError *error = nil;
-        __block TFPHAssetFile *file = [[TFPHAssetFile alloc] init:asset error:&error];
-        if (error) {
-            TFAsyncRunInMain( ^{
-                TFResponseInfo *info = [TFResponseInfo responseInfoWithFileError:error];
-                completionHandler(info, key, token, NO);
-            });
-            return;
-        }
-        [self putFileInternal:file key:key token:token progress:progressHandler complete:completionHandler];
-    }
-}
 
 - (void) attachListener:(id<TFUploadAssistantDelegate>)listener token:(NSString *)token {
     [self removeHandlerWithListener:listener];
@@ -221,6 +193,48 @@ NSString * const kTFUploadFaildOperationsKey = @"kTFUploadFaildOperationsKey";
 
 #pragma mark - Private
 
+#pragma mark - 文件上传内部方法
+
+- (void) putFileInternal:(id<TFFileProtocol>)file
+                     key:(NSString *)key
+                   token:(NSString *)token
+                progress:(TFUpProgressHandler)progressHandler
+                complete:(TFUpCompletionHandler)completionHandler {
+    __weak __typeof(self)weakSelf = self;
+    if (!completionHandler) {
+        completionHandler = ^(TFResponseInfo *info, NSString *key, NSString * token,BOOL success) {
+            GlobalCompletionBlock(info,key,token,success,weakSelf);
+        };
+    }
+    if (!progressHandler) {
+        progressHandler = ^(NSString *key,NSString *token ,float percent) {
+            [self calculateTotalProgress:token key:key progress:percent];
+        };
+    }
+    TFUpCompletionHandler checkComplete = ^(TFResponseInfo *info, NSString *key, NSString * token,BOOL success)
+    {
+        [file close];
+        completionHandler(info, key, token,success);
+    };
+    NSData *data = [file readAll];
+    //check file
+    if ([TFUploadAssistant checkAndNotifyError:key token:token input:data complete:checkComplete]) {
+        TFULogDebug(@"File :%@ check error",[file path]);
+        return;
+    }
+    
+    TFUpCompletionHandler uploadComplete = ^(TFResponseInfo *info, NSString *key, NSString *token, BOOL success){
+        //remove from operations
+        __typeof(&*weakSelf) strongSelf = weakSelf;
+        [strongSelf removeOperationsByToken:token identifier:key];
+        completionHandler(info,key,token,success);
+        if (!success) {
+            //上传失败,加入错误列表
+            [strongSelf cacheFailedOperationsByToken:token objectKey:key filePath:[file path]];
+        }
+    };
+    [self putData:data key:key token:token progress:progressHandler completion:uploadComplete];
+}
 
 
 #pragma mark -
@@ -258,6 +272,22 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
 };
 
 
+#pragma mark - 处理进度与任务列表
+
+- (void)initOperations:(NSArray *)keys token:(NSString *)token {
+    //创建进度管理
+    NSMutableDictionary *progressDic = [_progressHandlers objectForKey:token];
+    if (!progressDic) {
+        progressDic = [NSMutableDictionary new];
+        [_progressHandlers setObject:progressDic forKey:token];
+    }
+    //创建任务列表
+    for (NSString *objectKey in keys) {
+        [progressDic setObject:[NSNumber numberWithFloat:0] forKey:objectKey];
+        [self cacheOperationsByToken:token identifier:objectKey];
+    }
+}
+
 #pragma mark - 移除监听
 
 - (void)removeHandlerWithListener:(id)listener {
@@ -274,46 +304,6 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
 }
 
 
-- (void) putFileInternal:(id<TFFileProtocol>)file
-                     key:(NSString *)key
-                   token:(NSString *)token
-                progress:(TFUpProgressHandler)progressHandler
-                complete:(TFUpCompletionHandler)completionHandler {
-    TFUpCompletionHandler checkComplete = ^(TFResponseInfo *info, NSString *key, NSString * token,BOOL success)
-    {
-        [file close];
-        completionHandler(info, key, token,success);
-    };
-    NSData *data = [file readAll];
-    //check file
-    if ([TFUploadAssistant checkAndNotifyError:key token:token input:data complete:checkComplete]) {
-        return;
-    }
-    if ([data length] == 0) {
-        //file is nil
-        completionHandler([TFResponseInfo responseInfoOfZeroData:nil], key, token, nil);
-        return;
-    }
-    if (!progressHandler) {
-        progressHandler = ^(NSString *key,NSString *token ,float percent) {
-            [self calculateTotalProgress:token key:key progress:percent];
-        };
-    }
-    __weak __typeof(self)weakSelf = self;
-    TFUpCompletionHandler uploadComplete = ^(TFResponseInfo *info, NSString *key, NSString *token, BOOL success){
-        //remove from operations
-        __typeof(&*weakSelf) strongSelf = weakSelf;
-        [strongSelf removeOperationsByToken:token identifier:key];
-        if (completionHandler) {
-            completionHandler(info,key,token,success);
-        }
-        if (!success) {
-            //上传失败,加入错误列表
-            [strongSelf cacheFaildOperationsByToken:token objectKey:key filePath:[file path]];
-        }
-    };
-    [self putData:data key:key token:token progress:progressHandler completion:uploadComplete];
-}
 
 #pragma mark - 计算总体进度
 
@@ -341,16 +331,12 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
     if (![array containsObject:identifier]) {
         [array addObject:identifier];
     }
-    //save to disk
-    [[TFFileRecorder sharedInstance] set:kTFUploadOperationsKey object:_uploadOperations];
 }
 
 - (void)removeOperationsByToken:(NSString *)token identifier:(NSString *)identifier {
     NSMutableArray *array = [_uploadOperations objectForKey:token];
     if (array) {
         [array removeObject:identifier];
-        //save to disk
-        [[TFFileRecorder sharedInstance] set:kTFUploadOperationsKey object:_uploadOperations];
         if ([array count] == 0) {
             //all task is over in this token
             GlobalCompletionBlock(nil,nil,token,YES,self);
@@ -358,27 +344,29 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
     }
 }
 
-- (void)cacheFaildOperationsByToken:(NSString *)token objectKey:(NSString *)objectKey filePath:(NSString *)filePath {
-    NSMutableDictionary *entry = [_faildOperations objectForKey:token];
+#pragma mark - 缓存失败任务列表
+
+- (void)cacheFailedOperationsByToken:(NSString *)token objectKey:(NSString *)objectKey filePath:(NSString *)filePath {
+    NSMutableDictionary *entry = [_failedOperations objectForKey:token];
     if (!entry) {
         entry = [NSMutableDictionary dictionary];
-        [_faildOperations setObject:entry forKey:token];
+        [_failedOperations setObject:entry forKey:token];
     }
     //添加至任务列表
     [entry setObject:filePath forKey:objectKey];
     //save to disk
-    [[TFFileRecorder sharedInstance] set:kTFUploadFaildOperationsKey object:_faildOperations];
+    [[TFFileRecorder sharedInstance] set:kTFUploadFailedOperationsKey object:_failedOperations];
 }
 
-- (void)removeFaildOperationsByToken:(NSString *)token objectKey:(NSString *)objectKey {
-    NSMutableDictionary *entry = [_faildOperations objectForKey:token];
+- (void)removeFailedOperationsByToken:(NSString *)token objectKey:(NSString *)objectKey {
+    NSMutableDictionary *entry = [_failedOperations objectForKey:token];
     if (entry) {
         [entry removeObjectForKey:objectKey];
     }
     //{objectkey:filepath}
-    [_faildOperations setObject:entry forKey:token];
+    [_failedOperations setObject:entry forKey:token];
     //save to disk
-    [[TFFileRecorder sharedInstance] set:kTFUploadFaildOperationsKey object:_faildOperations];
+    [[TFFileRecorder sharedInstance] set:kTFUploadFailedOperationsKey object:_failedOperations];
 }
 #pragma mark - 检测未完成任务列表
 
@@ -387,10 +375,10 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
     TFAsyncRun(^{
         __typeof(&*weakSelf) strongSelf = weakSelf;
         @autoreleasepool {
-            NSMutableDictionary *faildOperations = [[TFFileRecorder sharedInstance] get:kTFUploadFaildOperationsKey];
-            if (faildOperations) {
-                for (NSString *token in [faildOperations allKeys]) {
-                    NSMutableDictionary *entry = [faildOperations objectForKey:token];
+            NSMutableDictionary *failedOperations = [[TFFileRecorder sharedInstance] get:kTFUploadFailedOperationsKey];
+            if (failedOperations) {
+                for (NSString *token in [failedOperations allKeys]) {
+                    NSMutableDictionary *entry = [failedOperations objectForKey:token];
                     //{objectkey:filepath}
                     if (entry) {
                         for (NSString *objectKey in entry) {
@@ -404,7 +392,7 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
                                                  token:token
                                               progress:NULL completion:^(TFResponseInfo *info, NSString *key, NSString *token, BOOL success) {
                                                   if (success) {
-                                                      [strongSelf removeFaildOperationsByToken:token objectKey:objectKey];
+                                                      [strongSelf removeFailedOperationsByToken:token objectKey:objectKey];
                                                   }
                                               }];
                             }
