@@ -444,6 +444,10 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
     }];
     OSSClientConfiguration * conf = [OSSClientConfiguration new];
     conf.maxConcurrentRequestCount = [TFConfiguration maxConcurrentRequestCount];
+    conf.enableBackgroundTransmitService = YES;
+    conf.maxRetryCount = 3;
+    conf.timeoutIntervalForRequest = 30;
+    conf.backgroundSesseionIdentifier = @"cn.timeface.upload.session";
     _client = [[OSSClient alloc] initWithEndpoint:_configuration.aliEndPoint
                                credentialProvider:credential
                               clientConfiguration:conf];
