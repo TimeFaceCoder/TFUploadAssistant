@@ -443,6 +443,7 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
         }
     }];
     OSSClientConfiguration * conf = [OSSClientConfiguration new];
+    conf.maxConcurrentRequestCount = [TFConfiguration maxConcurrentRequestCount];
     _client = [[OSSClient alloc] initWithEndpoint:_configuration.aliEndPoint
                                credentialProvider:credential
                               clientConfiguration:conf];

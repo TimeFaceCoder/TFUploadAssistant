@@ -44,6 +44,7 @@
     _config.aliBucketHostId = kAliBucketHostId;
     _config.aliEndPoint = kAliEndPoint;
     [TFConfiguration enableLog];
+    [TFConfiguration setMaxConcurrentRequestCount:8];
     
     [[TFUploadAssistant sharedInstanceWithConfiguration:_config] checkTask];
 }

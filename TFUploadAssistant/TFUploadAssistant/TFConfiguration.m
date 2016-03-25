@@ -21,4 +21,13 @@
 + (BOOL)isLogEnable {
     return isEnable;
 }
+
++ (void)setMaxConcurrentRequestCount:(uint32_t)count {
+    maxRequestCount = count;
+}
+
++ (uint32_t)maxConcurrentRequestCount {
+    return maxRequestCount;
+}
+
 @end
