@@ -38,12 +38,14 @@ PODS:
     - pop
     - SDWebImage
     - SVProgressHUD
+  - YYDispatchQueuePool (1.0)
 
 DEPENDENCIES:
   - AFNetworking
   - AliyunOSSiOS (from `https://github.com/aliyun/AliyunOSSiOS.git`)
   - EGOCache
   - TFPhotoBrowser (from `https://github.com/TimeFaceCoder/TFPhotoBrowser.git`)
+  - YYDispatchQueuePool
 
 EXTERNAL SOURCES:
   AliyunOSSiOS:
@@ -71,5 +73,6 @@ SPEC CHECKSUMS:
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SVProgressHUD: e9e7c893686a20da55a28015ed384d9425e15479
   TFPhotoBrowser: adce6b3d66ea903241e840c86c083dc4eac2fb88
+  YYDispatchQueuePool: 3dfb2274bcc74207688dde8ac6f7bdd46871dd7b
 
 COCOAPODS: 0.39.0

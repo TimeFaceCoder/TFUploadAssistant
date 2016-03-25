@@ -22,6 +22,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "TFAliUploadHandler.h"
 #import <Photos/Photos.h>
+#import <YYDispatchQueuePool/YYDispatchQueuePool.h>
 
 
 NSString * const kTFUploadOperationsKey      = @"kTFUploadOperationsKey";
@@ -36,13 +37,17 @@ NSString * const kTFUploadFaildOperationsKey = @"kTFUploadFaildOperationsKey";
 @property (nonatomic ,strong) NSMutableDictionary *progressHandlers;
 @property (nonatomic ,strong) NSOperationQueue    *operationQueue;
 @property (nonatomic ,assign) float               currentprogress;
-
+@property (nonatomic ,strong) YYDispatchQueuePool *pool;
 @end
 
 @implementation TFUploadAssistant
 
 - (instancetype)initWithConfiguration:(TFConfiguration *)config {
     if (self = [super init]) {
+        _pool = [[YYDispatchQueuePool alloc] initWithName:@"cn.timeface.upload.read"
+                                               queueCount:10
+                                                      qos:NSQualityOfServiceBackground];
+        
         _configuration = config;
         _uploadHandlers = [NSMutableDictionary dictionary];
         _progressHandlers = [NSMutableDictionary dictionary];
@@ -109,12 +114,19 @@ NSString * const kTFUploadFaildOperationsKey = @"kTFUploadFaildOperationsKey";
                                                                                    config:_configuration];
     
     __weak __typeof(self)weakSelf = self;
-    TFAsyncRun(^{
+    dispatch_async([_pool queue], ^{
         __typeof(&*weakSelf) strongSelf = weakSelf;
         [strongSelf cacheOperationsByToken:token identifier:key];
         [uploadOperation start];
     });
-
+    
+    //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+    //        __typeof(&*weakSelf) strongSelf = weakSelf;
+    //        [strongSelf cacheOperationsByToken:token identifier:key];
+    //        [uploadOperation start];
+    //    });
+    
+    
 }
 
 - (void) putFile:(NSString *)filePath
@@ -341,7 +353,7 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
         [[TFFileRecorder sharedInstance] set:kTFUploadOperationsKey object:_uploadOperations];
         if ([array count] == 0) {
             //all task is over in this token
-            GlobalCompletionBlock(nil,nil,token,nil,self);
+            GlobalCompletionBlock(nil,nil,token,YES,self);
         }
     }
 }

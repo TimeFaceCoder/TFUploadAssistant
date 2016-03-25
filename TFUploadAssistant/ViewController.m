@@ -59,7 +59,7 @@
     TFLibraryViewController *vc = [[TFLibraryViewController alloc]init];
     vc.libraryControllerDelegate = self;
     vc.allowsMultipleSelection = YES;
-    vc.maximumNumberOfSelection = 9;
+    vc.maximumNumberOfSelection = 100;
 
     
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
