@@ -8,6 +8,6 @@ Pod::Spec.new do |s|
   s.social_media_url   = "http://www.timeface.cn"
   s.ios.deployment_target = "7.1"
   s.source       = { :git => "https://github.com/TimeFaceCoder/TFUploadAssistant.git"}
-  s.source_files  = "TFHotfix/TFHotfix/**/*.{h,m,c}"
+  s.source_files  = "TFUploadAssistant/TFUploadAssistant/**/*.{h,m,c}"
   s.requires_arc = true
 end
