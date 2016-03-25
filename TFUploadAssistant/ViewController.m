@@ -88,14 +88,7 @@
     }
     [[TFUploadAssistant sharedInstanceWithConfiguration:_config] putPHAssets:array
                                                                         keys:keyArray
-                                                                       token:@"timeface"
-                                                                    progress:nil
-                                                                  completion:^(TFResponseInfo *info, NSString *key, NSString *token, BOOL success) {
-
-                                                                    }];
-    
-    [[TFUploadAssistant sharedInstanceWithConfiguration:_config] attachListener:self token:@"timeface"];
-    
+                                                                       token:@"timeface" delegate:self];
 }
 
 - (NSString *)getMD5StringFromNSString:(NSString *)string {

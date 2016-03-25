@@ -87,7 +87,7 @@ NSString * const kTFUploadFaildOperationsKey = @"kTFUploadFaildOperationsKey";
         desc = @"no token";
     }
     if (desc != nil) {
-        completionHandler([TFResponseInfo responseInfoWithInvalidArgument:desc], key,token, nil);
+        completionHandler([TFResponseInfo responseInfoWithInvalidArgument:desc], key,token, NO);
         return YES;
     }
     return NO;
