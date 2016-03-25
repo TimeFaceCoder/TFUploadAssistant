@@ -9,7 +9,6 @@
 #import "TFAliUploadOperation.h"
 #import <AliyunOSSiOS/OSSService.h>
 #import <AliyunOSSiOS/OSSCompat.h>
-#import "TFUploadOption.h"
 #import "TFConfiguration.h"
 #import "TFUploadAssistant.h"
 #import "TFResponseInfo.h"

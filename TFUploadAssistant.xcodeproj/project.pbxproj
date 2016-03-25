@@ -18,12 +18,9 @@
 		B04487671CA225C500A69650 /* TFUploadAssistantUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B04487661CA225C500A69650 /* TFUploadAssistantUITests.m */; };
 		B069E00A1CA388F000AF90E6 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B069E0091CA388F000AF90E6 /* MobileCoreServices.framework */; };
 		B07BC8C41CA2718A00589743 /* TFFile.m in Sources */ = {isa = PBXBuildFile; fileRef = B07BC8C31CA2718A00589743 /* TFFile.m */; };
-		B07BC8C71CA276D300589743 /* TFUploadOption.m in Sources */ = {isa = PBXBuildFile; fileRef = B07BC8C61CA276D300589743 /* TFUploadOption.m */; };
-		B07BC8CC1CA27C9F00589743 /* TFAliOSSUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = B07BC8CB1CA27C9F00589743 /* TFAliOSSUpload.m */; };
 		B07BC8CF1CA27F8700589743 /* NSData+TFMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = B07BC8CE1CA27F8700589743 /* NSData+TFMD5.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		B07BC8D21CA27FD500589743 /* TFAliUploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B07BC8D11CA27FD500589743 /* TFAliUploadOperation.m */; };
 		B07BC8D51CA27FEA00589743 /* TFAliUploadHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B07BC8D41CA27FEA00589743 /* TFAliUploadHandler.m */; };
-		B0807B331CA3F7DC00CC2FCC /* TFUploadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0807B321CA3F7DC00CC2FCC /* TFUploadModel.m */; };
 		B0D0F9521CA2362700E36A52 /* TFFileRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D0F9511CA2362700E36A52 /* TFFileRecorder.m */; };
 		B0D0F9591CA2372100E36A52 /* GTM_Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D0F9581CA2372100E36A52 /* GTM_Base64.m */; };
 		B0D0F95C1CA2372B00E36A52 /* TFUrlSafeBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D0F95B1CA2372B00E36A52 /* TFUrlSafeBase64.m */; };
@@ -73,18 +70,12 @@
 		B069E0091CA388F000AF90E6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		B07BC8C21CA2718A00589743 /* TFFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFFile.h; sourceTree = "<group>"; };
 		B07BC8C31CA2718A00589743 /* TFFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFFile.m; sourceTree = "<group>"; };
-		B07BC8C51CA276D300589743 /* TFUploadOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFUploadOption.h; sourceTree = "<group>"; };
-		B07BC8C61CA276D300589743 /* TFUploadOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFUploadOption.m; sourceTree = "<group>"; };
-		B07BC8CA1CA27C9F00589743 /* TFAliOSSUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFAliOSSUpload.h; sourceTree = "<group>"; };
-		B07BC8CB1CA27C9F00589743 /* TFAliOSSUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFAliOSSUpload.m; sourceTree = "<group>"; };
 		B07BC8CD1CA27F8700589743 /* NSData+TFMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+TFMD5.h"; sourceTree = "<group>"; };
 		B07BC8CE1CA27F8700589743 /* NSData+TFMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+TFMD5.m"; sourceTree = "<group>"; };
 		B07BC8D01CA27FD500589743 /* TFAliUploadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFAliUploadOperation.h; sourceTree = "<group>"; };
 		B07BC8D11CA27FD500589743 /* TFAliUploadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFAliUploadOperation.m; sourceTree = "<group>"; };
 		B07BC8D31CA27FEA00589743 /* TFAliUploadHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFAliUploadHandler.h; sourceTree = "<group>"; };
 		B07BC8D41CA27FEA00589743 /* TFAliUploadHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFAliUploadHandler.m; sourceTree = "<group>"; };
-		B0807B311CA3F7DC00CC2FCC /* TFUploadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFUploadModel.h; sourceTree = "<group>"; };
-		B0807B321CA3F7DC00CC2FCC /* TFUploadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFUploadModel.m; sourceTree = "<group>"; };
 		B0D0F9501CA2362700E36A52 /* TFFileRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFFileRecorder.h; sourceTree = "<group>"; };
 		B0D0F9511CA2362700E36A52 /* TFFileRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFFileRecorder.m; sourceTree = "<group>"; };
 		B0D0F9571CA2372100E36A52 /* GTM_Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTM_Base64.h; sourceTree = "<group>"; };
@@ -224,10 +215,6 @@
 				B0D0F95E1CA2390B00E36A52 /* TFUploadAssistant.m */,
 				B0D0F9601CA241E500E36A52 /* TFConfiguration.h */,
 				B0D0F9611CA241E500E36A52 /* TFConfiguration.m */,
-				B07BC8C51CA276D300589743 /* TFUploadOption.h */,
-				B07BC8C61CA276D300589743 /* TFUploadOption.m */,
-				B07BC8CA1CA27C9F00589743 /* TFAliOSSUpload.h */,
-				B07BC8CB1CA27C9F00589743 /* TFAliOSSUpload.m */,
 				B07BC8D01CA27FD500589743 /* TFAliUploadOperation.h */,
 				B07BC8D11CA27FD500589743 /* TFAliUploadOperation.m */,
 				B07BC8D31CA27FEA00589743 /* TFAliUploadHandler.h */,
@@ -263,8 +250,6 @@
 				B07BC8C31CA2718A00589743 /* TFFile.m */,
 				B07BC8CD1CA27F8700589743 /* NSData+TFMD5.h */,
 				B07BC8CE1CA27F8700589743 /* NSData+TFMD5.m */,
-				B0807B311CA3F7DC00CC2FCC /* TFUploadModel.h */,
-				B0807B321CA3F7DC00CC2FCC /* TFUploadModel.m */,
 			);
 			path = TFUploadCommon;
 			sourceTree = "<group>";
@@ -452,14 +437,11 @@
 			files = (
 				B04487491CA225C500A69650 /* ViewController.m in Sources */,
 				B0D0F95C1CA2372B00E36A52 /* TFUrlSafeBase64.m in Sources */,
-				B07BC8C71CA276D300589743 /* TFUploadOption.m in Sources */,
 				B0D0F95F1CA2390B00E36A52 /* TFUploadAssistant.m in Sources */,
 				B04487461CA225C400A69650 /* AppDelegate.m in Sources */,
-				B0807B331CA3F7DC00CC2FCC /* TFUploadModel.m in Sources */,
 				B0D0F9591CA2372100E36A52 /* GTM_Base64.m in Sources */,
 				B04487431CA225C400A69650 /* main.m in Sources */,
 				B07BC8D21CA27FD500589743 /* TFAliUploadOperation.m in Sources */,
-				B07BC8CC1CA27C9F00589743 /* TFAliOSSUpload.m in Sources */,
 				B0D0F9681CA2657900E36A52 /* TFPHAssetFile.m in Sources */,
 				B0D0F9621CA241E500E36A52 /* TFConfiguration.m in Sources */,
 				B07BC8CF1CA27F8700589743 /* NSData+TFMD5.m in Sources */,

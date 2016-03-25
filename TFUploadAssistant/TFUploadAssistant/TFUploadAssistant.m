@@ -13,9 +13,7 @@
 #import "TFFileProtocol.h"
 #import "TFResponseInfo.h"
 #import "TFAliUploadOperation.h"
-#import "TFAliOSSUpload.h"
 #import "TFPHAssetFile.h"
-#import "TFUploadOption.h"
 #import "TFFileRecorder.h"
 #import <AliyunOSSiOS/OSSService.h>
 #import <AliyunOSSiOS/OSSCompat.h>

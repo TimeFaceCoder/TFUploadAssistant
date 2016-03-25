@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TFUploadModel.h"
 
 @class TFResponseInfo;
 @class TFUploadOption;
