@@ -77,7 +77,7 @@
     //    __weak __typeof(self)weakSelf = self;
     //检测文件是否存在
     NSTimeInterval startTime = [[NSDate date] timeIntervalSince1970];
-    OSSClient *client = [[TFUploadAssistant sharedInstanceWithConfiguration:nil] client];
+    OSSClient *client = [[TFUploadAssistant sharedInstanceWithConfiguration:_config] client];
     BOOL objectExist = [client doesObjectExistInBucket:_config.aliBucket objectKey:_key error:nil];
     if (objectExist) {
         _progressHandler(_key,_token,1);

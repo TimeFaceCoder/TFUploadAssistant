@@ -12,11 +12,11 @@
 @interface TFAliUploadOperation : NSObject
 
 - (nonnull instancetype) initWithData:(nonnull NSData *)data
-                          key:(nonnull NSString *)key
-                        token:(nonnull NSString *)token
-                     progress:(nonnull TFUpProgressHandler)progressHandler
-                     complete:(nonnull TFUpCompletionHandler)completionHandler
-                       config:(nonnull TFConfiguration *)configuration;
+                                  key:(nonnull NSString *)key
+                                token:(nonnull NSString *)token
+                             progress:(nonnull TFUpProgressHandler)progressHandler
+                             complete:(nonnull TFUpCompletionHandler)completionHandler
+                               config:(nonnull TFConfiguration *)configuration;
 
 + (nonnull instancetype)uploadOperationWithData:(nonnull NSData *)data
                                             key:(nonnull NSString *)key

@@ -17,12 +17,12 @@
 @property (nonatomic ,weak) id<TFUploadAssistantDelegate> delegate;
 
 + (TFAliUploadHandler*) uploadHandlerWithToken:(NSString *)token
-                               progressBlock:(TFUpProgressHandler)progressHandler
-                             completionBlock:(TFUpCompletionHandler)completionHandler
-                                         tag:(NSInteger)tag;
+                                 progressBlock:(TFUpProgressHandler)progressHandler
+                               completionBlock:(TFUpCompletionHandler)completionHandler
+                                           tag:(NSInteger)tag;
 
 + (TFAliUploadHandler*) uploadHandlerWithToken:(NSString *)token
-                                    delegate:(id<TFUploadAssistantDelegate>)delegate;
+                                      delegate:(id<TFUploadAssistantDelegate>)delegate;
 
 
 @end

@@ -9,7 +9,7 @@
 #import "TFPHAssetFile.h"
 #import <Photos/Photos.h>
 #import <AVFoundation/AVFoundation.h>
-
+#import "TFConfiguration.h"
 enum {
     kAMASSETMETADATA_PENDINGREADS = 1,
     kAMASSETMETADATA_ALLFINISHED = 0

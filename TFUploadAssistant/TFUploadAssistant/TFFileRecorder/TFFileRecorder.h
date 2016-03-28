@@ -46,7 +46,7 @@
  *    @return 错误信息，成功为nil
  */
 - (NSError *)set:(NSString *)key
-            object:(id)object;
+          object:(id)object;
 
 /**
  *    取出保存的持久化信息

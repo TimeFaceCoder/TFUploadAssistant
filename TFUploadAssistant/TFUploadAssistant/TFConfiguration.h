@@ -14,7 +14,7 @@ NSLog(@"[UploadAssistant Debug]: %@", [NSString stringWithFormat:(frmt), ##__VA_
 }
 static BOOL isEnable;
 static uint32_t maxRequestCount = 5;
-
+static float compressionQuality = 1;
 @interface TFConfiguration : NSObject
 
 @property (nonatomic ,copy) NSString *aliBucketHostId;
@@ -37,4 +37,13 @@ static uint32_t maxRequestCount = 5;
  *  @return
  */
 + (uint32_t)maxConcurrentRequestCount;
+/**
+ *  设置图片压缩率
+ *
+ *  @param quality 压缩率 0 < q <= 1
+ */
++ (void)setCompressionQuality:(float)quality;
+
++ (float)compressionQuality;
+
 @end

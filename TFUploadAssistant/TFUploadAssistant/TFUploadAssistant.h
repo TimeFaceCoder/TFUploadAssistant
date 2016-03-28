@@ -77,7 +77,7 @@ typedef void (^TFUpProgressHandler)(NSString *key,NSString *token ,float percent
              key:(NSString *)key
            token:(NSString *)token
         progress:(TFUpProgressHandler)progressHandler
-        completion:(TFUpCompletionHandler)completionHandler;
+      completion:(TFUpCompletionHandler)completionHandler;
 
 /**
  *    上传PHAsset文件数组
@@ -97,7 +97,7 @@ typedef void (^TFUpProgressHandler)(NSString *key,NSString *token ,float percent
                 keys:(NSArray *)keys
                token:(NSString *)token
             progress:(TFUpProgressHandler)progressHandler
-            completion:(TFUpCompletionHandler)completionHandler;
+          completion:(TFUpCompletionHandler)completionHandler;
 /**
  *  上传PHAsset文件
  *
@@ -111,7 +111,7 @@ typedef void (^TFUpProgressHandler)(NSString *key,NSString *token ,float percent
                 key:(NSString *)key
               token:(NSString *)token
            progress:(TFUpProgressHandler)progressHandler
-           completion:(TFUpCompletionHandler)completionHandler;
+         completion:(TFUpCompletionHandler)completionHandler;
 
 /**
  *  添加上传回调监听

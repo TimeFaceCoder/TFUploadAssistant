@@ -45,6 +45,7 @@
     _config.aliEndPoint = kAliEndPoint;
     [TFConfiguration enableLog];
     [TFConfiguration setMaxConcurrentRequestCount:8];
+//    [TFConfiguration setCompressionQuality:0.8];
     
     [[TFUploadAssistant sharedInstanceWithConfiguration:_config] checkTask];
 }
@@ -85,7 +86,7 @@
     NSMutableArray *keyArray = [NSMutableArray array];
     for (TFAsset *asset in assets) {
         [array addObject:asset.phAsset];
-        [keyArray addObject:[NSString stringWithFormat:@"melvin/test3/%@.%@",asset.md5,asset.fileExtension]];
+        [keyArray addObject:[NSString stringWithFormat:@"melvin/test4/%@.%@",asset.md5,asset.fileExtension]];
     }
     [[TFUploadAssistant sharedInstanceWithConfiguration:_config] putPHAssets:array
                                                                         keys:keyArray

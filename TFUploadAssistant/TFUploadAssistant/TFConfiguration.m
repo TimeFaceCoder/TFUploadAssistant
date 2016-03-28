@@ -30,4 +30,12 @@
     return maxRequestCount;
 }
 
++ (void)setCompressionQuality:(float)quality {
+    compressionQuality = quality;
+}
+
++ (float)compressionQuality {
+    return compressionQuality;
+}
+
 @end

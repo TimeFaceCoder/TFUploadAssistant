@@ -416,7 +416,6 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
                 }
             }
         }
-        
     });
     
 }
