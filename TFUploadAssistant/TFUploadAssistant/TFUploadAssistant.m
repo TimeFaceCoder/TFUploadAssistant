@@ -282,6 +282,8 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
         [progressDic setObject:[NSNumber numberWithFloat:0] forKey:objectKey];
         [self cacheOperationsByToken:token identifier:objectKey];
     }
+    //cache task list
+    [[TFFileRecorder sharedInstance] set:kTFUploadOperationsKey object:_uploadOperations];
 }
 
 #pragma mark - 移除监听
@@ -336,6 +338,8 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
         if ([array count] == 0) {
             //all task is over in this token
             GlobalCompletionBlock(nil,nil,token,YES,self);
+            //update task list
+            [[TFFileRecorder sharedInstance] set:kTFUploadOperationsKey object:_uploadOperations];
         }
     }
 }
@@ -379,18 +383,33 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
                     if (entry) {
                         for (NSString *objectKey in entry) {
                             NSString *filePath = [entry objectForKey:objectKey];
-                            //PHAsset URL
-                            PHFetchResult *fetchResult = [PHAsset fetchAssetsWithLocalIdentifiers:@[filePath] options:nil];
-                            if ([fetchResult count] > 0) {
-                                PHAsset *asset = [fetchResult objectAtIndex:0];
-                                [strongSelf putPHAsset:asset
-                                                   key:objectKey
-                                                 token:token
-                                              progress:NULL completion:^(TFResponseInfo *info, NSString *key, NSString *token, BOOL success) {
-                                                  if (success) {
-                                                      [strongSelf removeFailedOperationsByToken:token objectKey:objectKey];
-                                                  }
-                                              }];
+                            if ([[NSURL URLWithString:filePath] isFileReferenceURL]) {
+                                //file path
+                                [strongSelf putFile:filePath
+                                                key:objectKey
+                                              token:token
+                                           progress:NULL
+                                         completion:^(TFResponseInfo *info, NSString *key, NSString *token, BOOL success) {
+                                             if (success) {
+                                                 [strongSelf removeFailedOperationsByToken:token objectKey:objectKey];
+                                             }
+                                         }];
+                            }
+                            else {
+                                //PHAsset URL
+                                PHFetchResult *fetchResult = [PHAsset fetchAssetsWithLocalIdentifiers:@[filePath] options:nil];
+                                if ([fetchResult count] > 0) {
+                                    PHAsset *asset = [fetchResult objectAtIndex:0];
+                                    [strongSelf putPHAsset:asset
+                                                       key:objectKey
+                                                     token:token
+                                                  progress:NULL
+                                                completion:^(TFResponseInfo *info, NSString *key, NSString *token, BOOL success) {
+                                                    if (success) {
+                                                        [strongSelf removeFailedOperationsByToken:token objectKey:objectKey];
+                                                    }
+                                                }];
+                                }
                             }
                         }
                     }
