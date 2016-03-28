@@ -39,13 +39,13 @@
     [self.view addSubview:button];
     
     _config = [[TFConfiguration alloc] init];
-    _config.aliBucket = kAliBucket;
-    _config.aliAuthSTS = kAliAuthSTS;
+    _config.aliBucket       = kAliBucket;
+    _config.aliAuthSTS      = kAliAuthSTS;
     _config.aliBucketHostId = kAliBucketHostId;
-    _config.aliEndPoint = kAliEndPoint;
+    _config.aliEndPoint     = kAliEndPoint;
     [TFConfiguration enableLog];
     [TFConfiguration setMaxConcurrentRequestCount:8];
-//    [TFConfiguration setCompressionQuality:0.8];
+    [TFConfiguration setCompressionQuality:0.75];
     
     [[TFUploadAssistant sharedInstanceWithConfiguration:_config] checkTask];
 }

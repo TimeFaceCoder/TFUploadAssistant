@@ -29,6 +29,8 @@ enum {
 
 @property (nonatomic, strong) NSURL *assetURL;
 
+@property (nonatomic, strong) NSDictionary *metadata;
+
 @end
 
 @implementation TFPHAssetFile
@@ -61,6 +63,10 @@ enum {
 }
 
 - (NSData *)readAll {
+    if (!self.assetData) {
+        self.assetData = [self fetchDataFromAsset:self.phAsset];
+    }
+    return self.assetData;
     return [self read:0 size:(long)_fileSize];
 }
 
@@ -159,7 +165,19 @@ enum {
                                                           options:request
                                                     resultHandler:
          ^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
-             tmpData = [NSData dataWithData:imageData];
+             
+             if ([TFConfiguration compressionQuality] >= 1) {
+                 tmpData = [NSData dataWithData:imageData];
+             }
+             else {
+                 CIImage *ciimage = [CIImage imageWithData:imageData];
+                 NSDictionary *metaData = [[NSDictionary alloc]initWithDictionary:ciimage.properties];
+                 CGImageSourceRef imageSource = CGImageSourceCreateWithData((CFDataRef)imageData,  NULL);
+                 CGImageRef imageRef = CGImageSourceCreateImageAtIndex(imageSource, 0, NULL);
+                 tmpData = [self dataFromImage:imageRef metadata:metaData mimetype:self.mimeType];
+                 CFRelease(imageRef);
+                 CFRelease(imageSource);
+             }
          }];
     }
     // Video
@@ -190,6 +208,38 @@ enum {
     }
     
     return tmpData;
+}
+
+- (NSData *)dataFromImage:(CGImageRef)imageRef metadata:(NSDictionary *)metadata mimetype:(NSString *)mimetype
+{
+    NSMutableData *imageData = [NSMutableData data];
+    
+    CFMutableDictionaryRef properties = CFDictionaryCreateMutable(nil, 0,
+                                                                  &kCFTypeDictionaryKeyCallBacks,  &kCFTypeDictionaryValueCallBacks);
+    CFDictionarySetValue(properties, kCGImageDestinationLossyCompressionQuality,
+                         (__bridge const void *)([NSNumber numberWithFloat:[TFConfiguration compressionQuality]]));
+    
+    for (NSString *key in metadata) {
+        CFDictionarySetValue(properties, (__bridge const void *)key,
+                             (__bridge const void *)[metadata objectForKey:key]);
+    }
+    CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, (__bridge CFStringRef)mimetype, NULL);
+    CGImageDestinationRef imageDestination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)imageData, uti, 1, NULL);
+    
+    if (imageDestination == NULL) {
+        NSLog(@"Failed to create image destination");
+        imageData = nil;
+    }
+    else {
+        CGImageDestinationAddImage(imageDestination, imageRef, properties);
+        if (CGImageDestinationFinalize(imageDestination) == NO) {
+            NSLog(@"Failed to finalise");
+            imageData = nil;
+        }
+        CFRelease(imageDestination);
+    }
+    CFRelease(uti);
+    return imageData;
 }
 
 @end
