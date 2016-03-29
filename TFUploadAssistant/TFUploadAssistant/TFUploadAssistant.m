@@ -226,8 +226,10 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
         }
         if (!success) {
             //上传失败,加入错误列表
+            TFULogDebug(@"update object :%@ error add failed operations",key);
             [strongSelf cacheFailedOperationsByToken:token objectKey:key filePath:[file path]];
         }
+        TFULogDebug(@"update object :%@ consume %f seconds",key,info.duration);
     };
     [self putData:data key:key token:token progress:progressHandler completion:uploadComplete];
 }

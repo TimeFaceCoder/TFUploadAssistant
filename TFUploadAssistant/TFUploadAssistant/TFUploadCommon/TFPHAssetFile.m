@@ -227,13 +227,13 @@ enum {
     CGImageDestinationRef imageDestination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)imageData, uti, 1, NULL);
     
     if (imageDestination == NULL) {
-        NSLog(@"Failed to create image destination");
+        TFULogDebug(@"Failed to create image destination");
         imageData = nil;
     }
     else {
         CGImageDestinationAddImage(imageDestination, imageRef, properties);
         if (CGImageDestinationFinalize(imageDestination) == NO) {
-            NSLog(@"Failed to finalise");
+            TFULogDebug(@"Failed to finalise");
             imageData = nil;
         }
         CFRelease(imageDestination);

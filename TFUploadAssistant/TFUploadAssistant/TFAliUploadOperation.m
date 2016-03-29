@@ -111,10 +111,13 @@
                 NSTimeInterval endTime = [[NSDate date] timeIntervalSince1970];
                 if (task.error) {
                     TFULogDebug(@"%@", task.error);
-                    info = [TFResponseInfo responseInfoWithNetError:task.error duration:endTime - startTime];
+                    info = [TFResponseInfo responseInfoWithNetError:task.error
+                                                           duration:endTime - startTime];
                 }
                 OSSPutObjectResult * result = task.result;
-                info = [[TFResponseInfo alloc] initWithStatusCode:result.httpResponseCode withDuration:endTime - startTime withBody:nil];
+                info = [[TFResponseInfo alloc] initWithStatusCode:result.httpResponseCode
+                                                     withDuration:endTime - startTime
+                                                         withBody:nil];
                 if (result.httpResponseCode == 200) {
                     //上传成功
                     //            if (strongSelf && strongSelf.completionHandler) {
