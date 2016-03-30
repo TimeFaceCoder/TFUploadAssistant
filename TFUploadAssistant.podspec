@@ -10,4 +10,5 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/TimeFaceCoder/TFUploadAssistant.git"}
   s.source_files  = "TFUploadAssistant/TFUploadAssistant/**/*.{h,m,c}"
   s.requires_arc = true
+  s.dependency 'EGOCache'
 end
