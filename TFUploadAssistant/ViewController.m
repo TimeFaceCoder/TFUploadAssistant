@@ -45,7 +45,10 @@
     _config.aliEndPoint     = kAliEndPoint;
     [TFConfiguration enableLog];
     [TFConfiguration setMaxConcurrentRequestCount:8];
-//    [TFConfiguration setCompressionQuality:0.7];
+    
+    
+    
+//    [TFConfiguration setCompressionQuality:0.6];
     
     [[TFUploadAssistant sharedInstanceWithConfiguration:_config] checkTask];
 }

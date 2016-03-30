@@ -33,8 +33,6 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
 @property (nonatomic ,strong) NSMutableDictionary *uploadOperations;
 @property (nonatomic ,strong) NSMutableDictionary *failedOperations;
 @property (nonatomic ,strong) NSMutableDictionary *progressHandlers;
-@property (nonatomic ,strong) NSOperationQueue    *operationQueue;
-@property (nonatomic ,assign) float               currentprogress;
 @property (nonatomic ,strong) YYDispatchQueuePool *pool;
 @end
 
@@ -49,7 +47,6 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
         _configuration = config;
         _uploadHandlers = [NSMutableDictionary dictionary];
         _progressHandlers = [NSMutableDictionary dictionary];
-        _operationQueue = [[NSOperationQueue alloc] init];
         _uploadOperations = [NSMutableDictionary dictionary];
         _failedOperations = [[TFFileRecorder sharedInstance] get:kTFUploadFailedOperationsKey];
         if (!_failedOperations) {
