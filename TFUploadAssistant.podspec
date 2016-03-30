@@ -11,4 +11,5 @@ Pod::Spec.new do |s|
   s.source_files  = "TFUploadAssistant/TFUploadAssistant/**/*.{h,m,c}"
   s.requires_arc = true
   s.dependency 'EGOCache'
+  s.dependency 'YYDispatchQueuePool'
 end
