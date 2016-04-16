@@ -117,4 +117,9 @@
     return _fileSize;
 }
 
+- (UIImageOrientation)orientation {
+    return UIImageOrientationUp;
+}
+
+
 @end

@@ -23,6 +23,7 @@ enum {
 
 @property (readonly) int64_t fileSize;
 
+
 @property (readonly) int64_t fileModifyTime;
 
 @property (nonatomic, strong) NSData *assetData;
@@ -30,6 +31,8 @@ enum {
 @property (nonatomic, strong) NSURL *assetURL;
 
 @property (nonatomic, strong) NSDictionary *metadata;
+
+@property (nonatomic, assign) UIImageOrientation imageOrientation;
 
 @end
 
@@ -105,6 +108,11 @@ enum {
     return _fileSize;
 }
 
+
+- (UIImageOrientation)orientation {
+    return _imageOrientation;
+}
+
 - (void)getInfo
 {
     if (!_hasGotInfo) {
@@ -120,6 +128,7 @@ enum {
             [[PHImageManager defaultManager] requestImageDataForAsset:self.phAsset
                                                               options:request
                                                         resultHandler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
+                                                            _imageOrientation = orientation;
                                                             _fileSize = imageData.length;
                                                             _assetURL = [NSURL URLWithString:self.phAsset.localIdentifier];
                                                         }

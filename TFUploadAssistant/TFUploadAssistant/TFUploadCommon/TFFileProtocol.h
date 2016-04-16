@@ -6,6 +6,7 @@
 //  Copyright © 2016 TimeFace. All rights reserved.
 //
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <CommonCrypto/CommonDigest.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
@@ -67,5 +68,7 @@
  *    @return 文件大小
  */
 - (int64_t)size;
+
+- (UIImageOrientation)orientation;
 
 @end
