@@ -175,9 +175,10 @@ enum {
                                                     resultHandler:
          ^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
              
-             if ([TFConfiguration compressionQuality] >= 1) {
+             if ([TFConfiguration compressionQuality] >= 1 && asset.pixelWidth <= 4096 * 4 && asset.pixelHeight <= 4096 * 4) {
                  tmpData = [NSData dataWithData:imageData];
              }
+
              else {
                  CIImage *ciimage = [CIImage imageWithData:imageData];
                  NSDictionary *metaData = [[NSDictionary alloc]initWithDictionary:ciimage.properties];
@@ -225,6 +226,9 @@ enum {
     
     CFMutableDictionaryRef properties = CFDictionaryCreateMutable(nil, 0,
                                                                   &kCFTypeDictionaryKeyCallBacks,  &kCFTypeDictionaryValueCallBacks);
+    CFDictionarySetValue(properties, kCGImageDestinationImageMaxPixelSize,
+                         (__bridge const void *)(@(4096 * 4)));
+    
     CFDictionarySetValue(properties, kCGImageDestinationLossyCompressionQuality,
                          (__bridge const void *)([NSNumber numberWithFloat:[TFConfiguration compressionQuality]]));
     
