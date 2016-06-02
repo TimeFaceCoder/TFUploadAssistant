@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, TFUploadType) {
+    
+    TFALIYUN = 0,
+   
+    TFUCLOUD = 1,
+    
+    TFAMAZON = 2
+};
+
+
 #define TFULogDebug(frmt, ...)\
 if ([TFConfiguration isLogEnable]) {\
 NSLog(@"[UploadAssistant Debug]: %@", [NSString stringWithFormat:(frmt), ##__VA_ARGS__]);\
@@ -22,21 +32,31 @@ static float compressionQuality = 1;
 @property (nonatomic ,copy) NSString *aliBucket;
 @property (nonatomic ,copy) NSString *aliAuthSTS;
 
+@property (nonatomic ,copy) NSString *ucloudBucketHostId;
+@property (nonatomic ,copy) NSString *ucloudBucketName;
+@property (nonatomic ,copy) NSString *ucloudPublicKey;
+@property (nonatomic ,copy) NSString *ucloudPrivateKey;
+
+@property (nonatomic ,assign) TFUploadType uploadType;
+
 + (void)enableLog;
 + (void)disableLog;
 + (BOOL)isLogEnable;
+
 /**
  *  设置最大并发数
  *
  *  @param count
  */
 + (void)setMaxConcurrentRequestCount:(uint32_t)count;
+
 /**
  *  最大并发数
  *
  *  @return
  */
 + (uint32_t)maxConcurrentRequestCount;
+
 /**
  *  设置图片压缩率
  *

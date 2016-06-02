@@ -23,7 +23,6 @@ enum {
 
 @property (readonly) int64_t fileSize;
 
-@property (readonly) int64_t fileCreatedTime;
 
 @property (readonly) int64_t fileModifyTime;
 
@@ -47,15 +46,7 @@ enum {
         if (createTime != nil) {
             t = [createTime timeIntervalSince1970];
         }
-        _fileCreatedTime = t;
-        
-        NSDate *modifyTime = phAsset.modificationDate;
-        t = 0;
-        if (modifyTime != nil) {
-            t = [modifyTime timeIntervalSince1970];
-        }
         _fileModifyTime = t;
-        
         _phAsset = phAsset;
         [self getInfo];
         
@@ -97,11 +88,6 @@ enum {
     }
     return fileExtension;
 }
-
-- (int64_t)createdTime {
-    return _fileCreatedTime;
-}
-
 - (int64_t)modifyTime {
     return _fileModifyTime;
 }
@@ -192,7 +178,7 @@ enum {
              if ([TFConfiguration compressionQuality] >= 1 && asset.pixelWidth <= 4096 * 4 && asset.pixelHeight <= 4096 * 4) {
                  tmpData = [NSData dataWithData:imageData];
              }
-             
+
              else {
                  CIImage *ciimage = [CIImage imageWithData:imageData];
                  NSDictionary *metaData = [[NSDictionary alloc]initWithDictionary:ciimage.properties];

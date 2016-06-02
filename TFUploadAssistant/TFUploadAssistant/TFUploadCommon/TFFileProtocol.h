@@ -50,13 +50,6 @@
 - (NSString *)fileExtension;
 
 /**
- *  文件创建时间
- *
- *  @return 文件创建时间
- */
-- (int64_t)createdTime;
-
-/**
  *    文件修改时间
  *
  *    @return 修改时间

@@ -7,32 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class TFResponseInfo;
-@class TFUploadOption;
-@class TFConfiguration;
-@class PHAsset;
-@class OSSClient;
-/**
- *    上传完成后的回调函数
- *
- *    @param info 上下文信息，包括状态码，错误值
- *    @param key  上传时指定的key，原样返回
- *    @param token  上传时指定的token，原样返回
- *    @param success 上传是否成功
- */
-typedef void (^TFUpCompletionHandler)(TFResponseInfo *info, NSString *key, NSString *token,BOOL success);
-
-/**
- *  上传进度
- *
- *  @param key     上传时指定的key，原样返回
- *  @param token   上传时指定的token，原样返回
- *  @param percent 上传百分比
- */
-typedef void (^TFUpProgressHandler)(NSString *key,NSString *token ,float percent);
-
-
+#import "TFUploadOperationProtocol.h"
 
 @protocol TFUploadAssistantDelegate <NSObject>
 - (void)uploadAssistantProgressHandler:(NSString *)key token:(NSString *)token percent:(float)percent;
@@ -45,11 +20,11 @@ typedef void (^TFUpProgressHandler)(NSString *key,NSString *token ,float percent
 
 + (instancetype)sharedInstanceWithConfiguration:(TFConfiguration *)config;
 
-
 /**
  *  检查上次出现问题的图片
  */
 - (void)checkTask;
+
 /**
  *    直接上传数据
  *
@@ -64,6 +39,7 @@ typedef void (^TFUpProgressHandler)(NSString *key,NSString *token ,float percent
            token:(NSString *)token
         progress:(TFUpProgressHandler)progressHandler
       completion:(TFUpCompletionHandler)completionHandler;
+
 /**
  *    上传文件
  *
@@ -98,6 +74,7 @@ typedef void (^TFUpProgressHandler)(NSString *key,NSString *token ,float percent
                token:(NSString *)token
             progress:(TFUpProgressHandler)progressHandler
           completion:(TFUpCompletionHandler)completionHandler;
+
 /**
  *  上传PHAsset文件
  *
@@ -120,6 +97,7 @@ typedef void (^TFUpProgressHandler)(NSString *key,NSString *token ,float percent
  *  @param token
  */
 - (void) attachListener:(id<TFUploadAssistantDelegate>)listener token:(NSString *)token;
+
 /**
  *  卸载回调监听
  *

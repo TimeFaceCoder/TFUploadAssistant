@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		9C8F95D465D4B6459E421C29 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDCE66CC7FE30D84E5FF86A8 /* libPods.a */; };
+		A24632051CF8351B00A76E11 /* UFileAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = A24631FF1CF8351B00A76E11 /* UFileAPI.m */; };
+		A24632061CF8351B00A76E11 /* UFileAPIUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A24632011CF8351B00A76E11 /* UFileAPIUtils.m */; };
+		A24632071CF8351B00A76E11 /* UFileHttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A24632031CF8351B00A76E11 /* UFileHttpManager.m */; };
+		A27D8B1D1CFD317A004ADF35 /* TFUcloudUploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A27D8B1C1CFD317A004ADF35 /* TFUcloudUploadOperation.m */; };
+		A27D8B291CFD5DD1004ADF35 /* UFileSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27D8B281CFD5DD1004ADF35 /* UFileSDK.swift */; };
 		B04487431CA225C400A69650 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B04487421CA225C400A69650 /* main.m */; };
 		B04487461CA225C400A69650 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B04487451CA225C400A69650 /* AppDelegate.m */; };
 		B04487491CA225C500A69650 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B04487481CA225C500A69650 /* ViewController.m */; };
@@ -20,7 +25,7 @@
 		B07BC8C41CA2718A00589743 /* TFFile.m in Sources */ = {isa = PBXBuildFile; fileRef = B07BC8C31CA2718A00589743 /* TFFile.m */; };
 		B07BC8CF1CA27F8700589743 /* NSData+TFMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = B07BC8CE1CA27F8700589743 /* NSData+TFMD5.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		B07BC8D21CA27FD500589743 /* TFAliUploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B07BC8D11CA27FD500589743 /* TFAliUploadOperation.m */; };
-		B07BC8D51CA27FEA00589743 /* TFAliUploadHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B07BC8D41CA27FEA00589743 /* TFAliUploadHandler.m */; };
+		B07BC8D51CA27FEA00589743 /* TFUploadHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B07BC8D41CA27FEA00589743 /* TFUploadHandler.m */; };
 		B0D0F9521CA2362700E36A52 /* TFFileRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D0F9511CA2362700E36A52 /* TFFileRecorder.m */; };
 		B0D0F9591CA2372100E36A52 /* GTM_Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D0F9581CA2372100E36A52 /* GTM_Base64.m */; };
 		B0D0F95C1CA2372B00E36A52 /* TFUrlSafeBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D0F95B1CA2372B00E36A52 /* TFUrlSafeBase64.m */; };
@@ -51,6 +56,18 @@
 /* Begin PBXFileReference section */
 		3F603378C43A5FC3E421DB95 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4D9A8144483DAE73B6B898F5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		A24631FE1CF8351B00A76E11 /* UFileAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UFileAPI.h; sourceTree = "<group>"; };
+		A24631FF1CF8351B00A76E11 /* UFileAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UFileAPI.m; sourceTree = "<group>"; };
+		A24632001CF8351B00A76E11 /* UFileAPIUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UFileAPIUtils.h; sourceTree = "<group>"; };
+		A24632011CF8351B00A76E11 /* UFileAPIUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UFileAPIUtils.m; sourceTree = "<group>"; };
+		A24632021CF8351B00A76E11 /* UFileHttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UFileHttpManager.h; sourceTree = "<group>"; };
+		A24632031CF8351B00A76E11 /* UFileHttpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UFileHttpManager.m; sourceTree = "<group>"; };
+		A24632041CF8351B00A76E11 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		A246320F1CF83F0F00A76E11 /* TFUploadOperationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFUploadOperationProtocol.h; sourceTree = "<group>"; };
+		A27D8B1B1CFD317A004ADF35 /* TFUcloudUploadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFUcloudUploadOperation.h; sourceTree = "<group>"; };
+		A27D8B1C1CFD317A004ADF35 /* TFUcloudUploadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFUcloudUploadOperation.m; sourceTree = "<group>"; };
+		A27D8B281CFD5DD1004ADF35 /* UFileSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UFileSDK.swift; sourceTree = "<group>"; };
+		A27D8B2B1CFD660B004ADF35 /* TFUploadAssistant-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TFUploadAssistant-Bridging-Header.h"; sourceTree = "<group>"; };
 		B044873E1CA225C400A69650 /* TFUploadAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TFUploadAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B04487421CA225C400A69650 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B04487441CA225C400A69650 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -74,8 +91,8 @@
 		B07BC8CE1CA27F8700589743 /* NSData+TFMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+TFMD5.m"; sourceTree = "<group>"; };
 		B07BC8D01CA27FD500589743 /* TFAliUploadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFAliUploadOperation.h; sourceTree = "<group>"; };
 		B07BC8D11CA27FD500589743 /* TFAliUploadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFAliUploadOperation.m; sourceTree = "<group>"; };
-		B07BC8D31CA27FEA00589743 /* TFAliUploadHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFAliUploadHandler.h; sourceTree = "<group>"; };
-		B07BC8D41CA27FEA00589743 /* TFAliUploadHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFAliUploadHandler.m; sourceTree = "<group>"; };
+		B07BC8D31CA27FEA00589743 /* TFUploadHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFUploadHandler.h; sourceTree = "<group>"; };
+		B07BC8D41CA27FEA00589743 /* TFUploadHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFUploadHandler.m; sourceTree = "<group>"; };
 		B0D0F9501CA2362700E36A52 /* TFFileRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFFileRecorder.h; sourceTree = "<group>"; };
 		B0D0F9511CA2362700E36A52 /* TFFileRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFFileRecorder.m; sourceTree = "<group>"; };
 		B0D0F9571CA2372100E36A52 /* GTM_Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTM_Base64.h; sourceTree = "<group>"; };
@@ -139,6 +156,22 @@
 				BDCE66CC7FE30D84E5FF86A8 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A24631FD1CF8351B00A76E11 /* ufilesdk */ = {
+			isa = PBXGroup;
+			children = (
+				A24631FE1CF8351B00A76E11 /* UFileAPI.h */,
+				A24631FF1CF8351B00A76E11 /* UFileAPI.m */,
+				A24632001CF8351B00A76E11 /* UFileAPIUtils.h */,
+				A24632011CF8351B00A76E11 /* UFileAPIUtils.m */,
+				A24632021CF8351B00A76E11 /* UFileHttpManager.h */,
+				A24632031CF8351B00A76E11 /* UFileHttpManager.m */,
+				A24632041CF8351B00A76E11 /* version.h */,
+				A27D8B281CFD5DD1004ADF35 /* UFileSDK.swift */,
+				A27D8B2B1CFD660B004ADF35 /* TFUploadAssistant-Bridging-Header.h */,
+			);
+			path = ufilesdk;
 			sourceTree = "<group>";
 		};
 		B04487351CA225C400A69650 = {
@@ -213,12 +246,15 @@
 				B0D0F94F1CA235F200E36A52 /* TFFileRecorder */,
 				B0D0F95D1CA2390B00E36A52 /* TFUploadAssistant.h */,
 				B0D0F95E1CA2390B00E36A52 /* TFUploadAssistant.m */,
+				A246320F1CF83F0F00A76E11 /* TFUploadOperationProtocol.h */,
 				B0D0F9601CA241E500E36A52 /* TFConfiguration.h */,
 				B0D0F9611CA241E500E36A52 /* TFConfiguration.m */,
 				B07BC8D01CA27FD500589743 /* TFAliUploadOperation.h */,
 				B07BC8D11CA27FD500589743 /* TFAliUploadOperation.m */,
-				B07BC8D31CA27FEA00589743 /* TFAliUploadHandler.h */,
-				B07BC8D41CA27FEA00589743 /* TFAliUploadHandler.m */,
+				B07BC8D31CA27FEA00589743 /* TFUploadHandler.h */,
+				B07BC8D41CA27FEA00589743 /* TFUploadHandler.m */,
+				A27D8B1B1CFD317A004ADF35 /* TFUcloudUploadOperation.h */,
+				A27D8B1C1CFD317A004ADF35 /* TFUcloudUploadOperation.m */,
 			);
 			path = TFUploadAssistant;
 			sourceTree = "<group>";
@@ -235,6 +271,7 @@
 		B0D0F9561CA2370300E36A52 /* TFUploadCommon */ = {
 			isa = PBXGroup;
 			children = (
+				A24631FD1CF8351B00A76E11 /* ufilesdk */,
 				B0D0F9571CA2372100E36A52 /* GTM_Base64.h */,
 				B0D0F9581CA2372100E36A52 /* GTM_Base64.m */,
 				B0D0F95A1CA2372B00E36A52 /* TFUrlSafeBase64.h */,
@@ -439,14 +476,19 @@
 				B0D0F95C1CA2372B00E36A52 /* TFUrlSafeBase64.m in Sources */,
 				B0D0F95F1CA2390B00E36A52 /* TFUploadAssistant.m in Sources */,
 				B04487461CA225C400A69650 /* AppDelegate.m in Sources */,
+				A24632051CF8351B00A76E11 /* UFileAPI.m in Sources */,
 				B0D0F9591CA2372100E36A52 /* GTM_Base64.m in Sources */,
+				A27D8B291CFD5DD1004ADF35 /* UFileSDK.swift in Sources */,
 				B04487431CA225C400A69650 /* main.m in Sources */,
+				A24632061CF8351B00A76E11 /* UFileAPIUtils.m in Sources */,
 				B07BC8D21CA27FD500589743 /* TFAliUploadOperation.m in Sources */,
 				B0D0F9681CA2657900E36A52 /* TFPHAssetFile.m in Sources */,
 				B0D0F9621CA241E500E36A52 /* TFConfiguration.m in Sources */,
 				B07BC8CF1CA27F8700589743 /* NSData+TFMD5.m in Sources */,
 				B0D0F9651CA245E800E36A52 /* TFAsyncRun.m in Sources */,
-				B07BC8D51CA27FEA00589743 /* TFAliUploadHandler.m in Sources */,
+				A24632071CF8351B00A76E11 /* UFileHttpManager.m in Sources */,
+				B07BC8D51CA27FEA00589743 /* TFUploadHandler.m in Sources */,
+				A27D8B1D1CFD317A004ADF35 /* TFUcloudUploadOperation.m in Sources */,
 				B07BC8C41CA2718A00589743 /* TFFile.m in Sources */,
 				B0D0F9521CA2362700E36A52 /* TFFileRecorder.m in Sources */,
 				B0D0F96C1CA26BD000E36A52 /* TFResponseInfo.m in Sources */,
@@ -591,10 +633,13 @@
 			baseConfigurationReference = 3F603378C43A5FC3E421DB95 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = TFUploadAssistant/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.timeface.base.TFUploadAssistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TFUploadAssistant/TFUploadAssistant/TFUploadCommon/ufilesdk/TFUploadAssistant-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -603,10 +648,12 @@
 			baseConfigurationReference = 4D9A8144483DAE73B6B898F5 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = TFUploadAssistant/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.timeface.base.TFUploadAssistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TFUploadAssistant/TFUploadAssistant/TFUploadCommon/ufilesdk/TFUploadAssistant-Bridging-Header.h";
 			};
 			name = Release;
 		};
