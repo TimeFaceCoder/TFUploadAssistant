@@ -13,11 +13,13 @@
 
 @property (nonatomic, readonly) NSString *filepath;
 
-@property (nonatomic) NSData *data;
+@property (nonatomic) NSData       *data;
 
-@property (readonly)  int64_t fileSize;
+@property (readonly ) int64_t      fileSize;
 
-@property (readonly)  int64_t fileModifyTime;
+@property (readonly ) int64_t      fileModifyTime;
+
+@property (readonly ) int64_t      fileCreatedTime;
 
 @property (nonatomic) NSFileHandle *file;
 
@@ -38,11 +40,19 @@
         }
         _fileSize = [fileAttr fileSize];
         NSDate *modifyTime = fileAttr[NSFileModificationDate];
+        NSDate *createdTime = fileAttr[NSFileCreationDate];
+        
         int64_t t = 0;
         if (modifyTime != nil) {
             t = [modifyTime timeIntervalSince1970];
         }
         _fileModifyTime = t;
+        
+        if (createdTime != nil) {
+            t = [createdTime timeIntervalSince1970];
+        }
+        _fileCreatedTime = t;
+        
         NSFileHandle *f = nil;
         NSData *d = nil;
         //[NSData dataWithContentsOfFile:filePath options:NSDataReadingMappedIfSafe error:&error] 不能用在大于 200M的文件上，改用filehandle
@@ -96,6 +106,10 @@
 
 - (NSString *)fileExtension {
     return [_filepath pathExtension];
+}
+
+- (int64_t)createdTime {
+    return _fileCreatedTime;
 }
 
 - (int64_t)modifyTime {
