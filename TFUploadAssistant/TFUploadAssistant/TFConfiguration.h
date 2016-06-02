@@ -10,11 +10,11 @@
 
 typedef NS_ENUM(NSUInteger, TFUploadType) {
     
-    TFALIYUN = 0,
+    TFUploadTypeAliyun = 0,
    
-    TFUCLOUD = 1,
+    TFUploadTypeUCloud = 1,
     
-    TFAMAZON = 2
+    TFUploadTypeAmazon = 2
 };
 
 
@@ -32,6 +32,7 @@ static float compressionQuality = 1;
 @property (nonatomic ,copy) NSString *aliBucket;
 @property (nonatomic ,copy) NSString *aliAuthSTS;
 
+@property (nonatomic ,copy) NSString *ucloudScheme;
 @property (nonatomic ,copy) NSString *ucloudBucketHostId;
 @property (nonatomic ,copy) NSString *ucloudBucketName;
 @property (nonatomic ,copy) NSString *ucloudPublicKey;

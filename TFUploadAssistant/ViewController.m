@@ -54,12 +54,13 @@
     
     [TFConfiguration enableLog];
     [TFConfiguration setMaxConcurrentRequestCount:8];
-    [TFConfiguration setCompressionQuality:0.6];
+    //[TFConfiguration setCompressionQuality:0.6];
     
     //[[TFUploadAssistant sharedInstanceWithConfiguration:_config] checkTask];
     
-    _config.uploadType = TFALIYUN;
+    _config.uploadType = TFUploadTypeUCloud;
 
+    _config.ucloudScheme = @"http";
     _config.ucloudBucketName = kUcloudBucketName;
     _config.ucloudBucketHostId = kUcloudBucketHostId;
     _config.ucloudPublicKey = kUcloudPublicKey;
@@ -104,7 +105,7 @@
     for (TFAsset *asset in assets) {
         [array addObject:asset.phAsset];
         //melvin/test-0602-19/%@.%@
-        [keyArray addObject:[NSString stringWithFormat:@"%@-0602-6.%@",asset.md5,asset.fileExtension]];
+        [keyArray addObject:[NSString stringWithFormat:@"%@-0602-9.%@",asset.md5,asset.fileExtension]];
     }
     
     NSLog(@"select photos count: %@", @(keyArray.count));

@@ -54,8 +54,6 @@
     return self;
 }
 
-
-
 + (nonnull instancetype)uploadOperationWithData:(nonnull NSData *)data
                                             key:(nonnull NSString *)key
                                           token:(nonnull NSString *)token

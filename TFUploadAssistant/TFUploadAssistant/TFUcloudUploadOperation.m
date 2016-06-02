@@ -91,7 +91,8 @@
             return;
         }else{
         
-            NSString* url = @"http://ufile.ucloud.cn";
+            NSString* url = [NSString stringWithFormat:@"%@://%@", _config.ucloudScheme, _config.ucloudBucketHostId];
+
             UFileAPI* uFileAPI = [[UFileAPI alloc] initWithBucket:_config.ucloudBucketName url:url];
             
             NSString* itMd5 = [UFileAPIUtils calcMD5ForData:_data];
@@ -124,7 +125,7 @@
 
 - (BOOL)objectExist:(NSString *)objectKey
     completionBlock:(void (^)(BOOL result))completionBlock {
-    NSString *url = [NSString stringWithFormat:@"http://%@.%@/%@",_config.ucloudBucketName, _config.ucloudBucketHostId,objectKey];
+    NSString *url = [NSString stringWithFormat:@"%@://%@.%@/%@",_config.ucloudScheme, _config.ucloudBucketName, _config.ucloudBucketHostId,objectKey];
     NSLog(@"%@", url);
     __block BOOL result = NO;
     NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
