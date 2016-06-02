@@ -54,7 +54,7 @@
     
     [TFConfiguration enableLog];
     [TFConfiguration setMaxConcurrentRequestCount:8];
-    [TFConfiguration setCompressionQuality:0.6];
+//    [TFConfiguration setCompressionQuality:0.6];
     
     //[[TFUploadAssistant sharedInstanceWithConfiguration:_config] checkTask];
     

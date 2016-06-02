@@ -25,6 +25,7 @@ enum {
 
 
 @property (readonly) int64_t fileModifyTime;
+@property (readonly ) int64_t      fileCreatedTime;
 
 @property (nonatomic, strong) NSData *assetData;
 
@@ -42,11 +43,19 @@ enum {
 {
     if (self = [super init]) {
         NSDate *createTime = phAsset.creationDate;
+        NSDate *modifyTime = phAsset.modificationDate;
+        
         int64_t t = 0;
         if (createTime != nil) {
             t = [createTime timeIntervalSince1970];
         }
+        _fileCreatedTime = t;
+        
+        if (modifyTime != nil) {
+            t = [modifyTime timeIntervalSince1970];
+        }
         _fileModifyTime = t;
+        
         _phAsset = phAsset;
         [self getInfo];
         
@@ -90,6 +99,10 @@ enum {
 }
 - (int64_t)modifyTime {
     return _fileModifyTime;
+}
+
+- (int64_t)createdTime {
+    return _fileCreatedTime;
 }
 
 
@@ -178,7 +191,7 @@ enum {
              if ([TFConfiguration compressionQuality] >= 1 && asset.pixelWidth <= 4096 * 4 && asset.pixelHeight <= 4096 * 4) {
                  tmpData = [NSData dataWithData:imageData];
              }
-
+             
              else {
                  CIImage *ciimage = [CIImage imageWithData:imageData];
                  NSDictionary *metaData = [[NSDictionary alloc]initWithDictionary:ciimage.properties];
