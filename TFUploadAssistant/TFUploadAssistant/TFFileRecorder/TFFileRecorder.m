@@ -34,6 +34,7 @@
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        
         sharedInstance = [TFFileRecorder fileRecorderWithFolder:nil
                                                       encodeKey:YES
                                                           error:nil];

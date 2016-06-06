@@ -15,7 +15,6 @@
 //#import "TFUcloudUploadAssistant.h"
 #import "UFileAPIUtils.h"
 #import "UFileAPI.h"
-#import "TFUploadAssistant-Swift.h"
 
 #define kAliBucketHostId            @"oss-cn-hangzhou.aliyuncs.com"
 #define kAliEndPoint                @"http://oss-cn-hangzhou.aliyuncs.com"
@@ -54,18 +53,17 @@
     
     [TFConfiguration enableLog];
     [TFConfiguration setMaxConcurrentRequestCount:8];
-
-//    [TFConfiguration setCompressionQuality:0.6];
+    //[TFConfiguration setCompressionQuality:0.6];
     
-    //[[TFUploadAssistant sharedInstanceWithConfiguration:_config] checkTask];
-    
-    _config.uploadType = TFUploadTypeUCloud;
+    _config.uploadType = TFUploadTypeAliyun;
 
     _config.ucloudScheme = @"http";
     _config.ucloudBucketName = kUcloudBucketName;
     _config.ucloudBucketHostId = kUcloudBucketHostId;
     _config.ucloudPublicKey = kUcloudPublicKey;
     _config.ucloudPrivateKey = kUcloudPrivateKey;
+    
+    //[[TFUploadAssistant sharedInstanceWithConfiguration:_config] checkTask];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -104,16 +102,17 @@
     NSMutableArray *array = [NSMutableArray array];
     NSMutableArray *keyArray = [NSMutableArray array];
     for (TFAsset *asset in assets) {
+        
         [array addObject:asset.phAsset];
         //melvin/test-0602-19/%@.%@
-        [keyArray addObject:[NSString stringWithFormat:@"%@-0602-9.%@",asset.md5,asset.fileExtension]];
+        [keyArray addObject:[NSString stringWithFormat:@"%@-0606-2.%@",asset.md5,asset.fileExtension]];
     }
     
     NSLog(@"select photos count: %@", @(keyArray.count));
     
     [[TFUploadAssistant sharedInstanceWithConfiguration:_config] putPHAssets:array
                                                                         keys:keyArray
-                                                                       token:@"timeface" delegate:self];
+                                                                       token:@"timeface-1" delegate:self];
 }
 
 - (NSString *)getMD5StringFromNSString:(NSString *)string {
@@ -137,10 +136,8 @@
                                    token:(NSString*)token
                                  success:(BOOL)success {
     //TFULogDebug
-    NSLog(@"token : %@ upload over info:%@",token,info);
-    
+    //NSLog(@"token : %@ upload over info:%@",token,info);
     NSTimeInterval endTime = [[NSDate date] timeIntervalSince1970];
-    
     NSLog(@"endTime: %@", @(endTime));
 }
 

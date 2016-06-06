@@ -13,5 +13,4 @@
 
 @interface TFUcloudUploadOperation : NSObject <TFUploadOperationProtocol>
 
-
 @end

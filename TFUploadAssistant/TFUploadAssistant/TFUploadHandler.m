@@ -10,7 +10,6 @@
 
 @implementation TFUploadHandler
 
-
 + (TFUploadHandler*) uploadHandlerWithToken:(NSString *)token
                                  progressBlock:(TFUpProgressHandler)progressHandler
                                completionBlock:(TFUpCompletionHandler)completionHandler

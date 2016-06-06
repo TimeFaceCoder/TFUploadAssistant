@@ -70,7 +70,6 @@
     return operation;
 }
 
-
 - (void)start {
     //    __weak __typeof(self)weakSelf = self;
     
@@ -98,7 +97,6 @@
                 //            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 //            }];
                 //            strongSelf.progressHandler(strongSelf.key,strongSelf.token,progress);
-                //
                 //        }
                 _progressHandler(_key,_token,progress);
             };
@@ -116,6 +114,7 @@
                 info = [[TFResponseInfo alloc] initWithStatusCode:result.httpResponseCode
                                                      withDuration:endTime - startTime
                                                          withBody:nil];
+                
                 if (result.httpResponseCode == 200) {
                     //上传成功
                     //            if (strongSelf && strongSelf.completionHandler) {
@@ -127,13 +126,18 @@
                         _completionHandler(info,_key,_token,YES);
                     }
                 }
+                else
+                {
+                    NSLog(@"%@", @(result.httpResponseCode));
+                    if (_completionHandler) {
+                        _completionHandler(info,_key,_token,NO);
+                    }
+                }
                 TFULogDebug(@"Result - requestId: %@ ",result.requestId);
                 return nil;
             }];
         }
     }];
-    
-    
 }
 
 - (BOOL)objectExist:(NSString *)objectKey

@@ -12,7 +12,7 @@
 		A24632061CF8351B00A76E11 /* UFileAPIUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A24632011CF8351B00A76E11 /* UFileAPIUtils.m */; };
 		A24632071CF8351B00A76E11 /* UFileHttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A24632031CF8351B00A76E11 /* UFileHttpManager.m */; };
 		A27D8B1D1CFD317A004ADF35 /* TFUcloudUploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A27D8B1C1CFD317A004ADF35 /* TFUcloudUploadOperation.m */; };
-		A27D8B291CFD5DD1004ADF35 /* UFileSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27D8B281CFD5DD1004ADF35 /* UFileSDK.swift */; };
+		A2AAA3E41D0550E9003ACDE5 /* UCloudFileSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AAA3E31D0550E9003ACDE5 /* UCloudFileSDK.m */; };
 		B04487431CA225C400A69650 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B04487421CA225C400A69650 /* main.m */; };
 		B04487461CA225C400A69650 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B04487451CA225C400A69650 /* AppDelegate.m */; };
 		B04487491CA225C500A69650 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B04487481CA225C500A69650 /* ViewController.m */; };
@@ -66,8 +66,8 @@
 		A246320F1CF83F0F00A76E11 /* TFUploadOperationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFUploadOperationProtocol.h; sourceTree = "<group>"; };
 		A27D8B1B1CFD317A004ADF35 /* TFUcloudUploadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFUcloudUploadOperation.h; sourceTree = "<group>"; };
 		A27D8B1C1CFD317A004ADF35 /* TFUcloudUploadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFUcloudUploadOperation.m; sourceTree = "<group>"; };
-		A27D8B281CFD5DD1004ADF35 /* UFileSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UFileSDK.swift; sourceTree = "<group>"; };
-		A27D8B2B1CFD660B004ADF35 /* TFUploadAssistant-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TFUploadAssistant-Bridging-Header.h"; sourceTree = "<group>"; };
+		A2AAA3E21D0550E9003ACDE5 /* UCloudFileSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCloudFileSDK.h; sourceTree = "<group>"; };
+		A2AAA3E31D0550E9003ACDE5 /* UCloudFileSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCloudFileSDK.m; sourceTree = "<group>"; };
 		B044873E1CA225C400A69650 /* TFUploadAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TFUploadAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B04487421CA225C400A69650 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B04487441CA225C400A69650 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -168,8 +168,8 @@
 				A24632021CF8351B00A76E11 /* UFileHttpManager.h */,
 				A24632031CF8351B00A76E11 /* UFileHttpManager.m */,
 				A24632041CF8351B00A76E11 /* version.h */,
-				A27D8B281CFD5DD1004ADF35 /* UFileSDK.swift */,
-				A27D8B2B1CFD660B004ADF35 /* TFUploadAssistant-Bridging-Header.h */,
+				A2AAA3E21D0550E9003ACDE5 /* UCloudFileSDK.h */,
+				A2AAA3E31D0550E9003ACDE5 /* UCloudFileSDK.m */,
 			);
 			path = ufilesdk;
 			sourceTree = "<group>";
@@ -478,12 +478,12 @@
 				B04487461CA225C400A69650 /* AppDelegate.m in Sources */,
 				A24632051CF8351B00A76E11 /* UFileAPI.m in Sources */,
 				B0D0F9591CA2372100E36A52 /* GTM_Base64.m in Sources */,
-				A27D8B291CFD5DD1004ADF35 /* UFileSDK.swift in Sources */,
 				B04487431CA225C400A69650 /* main.m in Sources */,
 				A24632061CF8351B00A76E11 /* UFileAPIUtils.m in Sources */,
 				B07BC8D21CA27FD500589743 /* TFAliUploadOperation.m in Sources */,
 				B0D0F9681CA2657900E36A52 /* TFPHAssetFile.m in Sources */,
 				B0D0F9621CA241E500E36A52 /* TFConfiguration.m in Sources */,
+				A2AAA3E41D0550E9003ACDE5 /* UCloudFileSDK.m in Sources */,
 				B07BC8CF1CA27F8700589743 /* NSData+TFMD5.m in Sources */,
 				B0D0F9651CA245E800E36A52 /* TFAsyncRun.m in Sources */,
 				A24632071CF8351B00A76E11 /* UFileHttpManager.m in Sources */,

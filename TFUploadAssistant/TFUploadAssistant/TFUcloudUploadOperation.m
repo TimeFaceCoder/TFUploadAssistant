@@ -8,8 +8,8 @@
 
 #import "TFUcloudUploadOperation.h"
 #import "TFConfiguration.h"
-#import "TFUploadAssistant-Swift.h"
 #import "UFileAPIUtils.h"
+#import "UCloudFileSDK.h"
 
 @interface TFUcloudUploadOperation ()
 
@@ -22,7 +22,7 @@
 @property (nonatomic, copy) TFUpProgressHandler progressHandler;
 @property (nonatomic, copy) TFUpCompletionHandler completionHandler;
 
-@property (nonatomic ,strong) UFileSDK* uFileSDK;
+@property (nonatomic ,strong) UCloudFileSDK* uFileSDK;
 
 @end
 
@@ -70,13 +70,13 @@
     return operation;
 }
 
--(UFileSDK*)uFileSDK
+-(UCloudFileSDK*)uFileSDK
 {
     if(!_uFileSDK)
     {
-        _uFileSDK = [[UFileSDK alloc] initFromKeys:_config.ucloudPublicKey
-                                        privateKey:_config.ucloudPrivateKey
-                                            bucket:_config.ucloudBucketName];
+        _uFileSDK = [[UCloudFileSDK alloc] initFromKeys:_config.ucloudPublicKey
+                                             privateKey:_config.ucloudPrivateKey
+                                                 bucket:_config.ucloudBucketName];
     }
     return _uFileSDK;
 }
@@ -90,7 +90,7 @@
             NSLog(@"object :%@ exist",_key);
             return;
         }else{
-        
+    
             NSString* url = [NSString stringWithFormat:@"%@://%@", _config.ucloudScheme, _config.ucloudBucketHostId];
 
             UFileAPI* uFileAPI = [[UFileAPI alloc] initWithBucket:_config.ucloudBucketName url:url];
@@ -102,12 +102,14 @@
                                                   contentMd5:itMd5
                                                  contentType:@"image/jpeg"];
             
+            NSLog(@"%@", authorization);
+            
             [uFileAPI putFile:_key
                 authorization:authorization
                        option:option
                          data:_data
                      progress:^(NSProgress * process){
-                         _progressHandler(_key, _token, process.fractionCompleted);
+                         _progressHandler(_key, _token, (float)process.fractionCompleted);
                       }
                       success:^(NSDictionary* _Nonnull response){
                           

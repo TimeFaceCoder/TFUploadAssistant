@@ -53,7 +53,7 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
             _failedOperations = [NSMutableDictionary dictionary];
         }
         [self initOSSService];
-        [self checkTask];
+        //[self checkTask];
     }
     return self;
 }
@@ -107,7 +107,6 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
         return;
     }
   
-    
     id<TFUploadOperationProtocol> uploadOperation = nil;
     
     if(_configuration.uploadType == TFUploadTypeAliyun)
@@ -240,7 +239,7 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
             TFULogDebug(@"update object :%@ error add failed operations",key);
             [strongSelf cacheFailedOperationsByToken:token objectKey:key filePath:[file path]];
         }
-        TFULogDebug(@"update object :%@ consume %f seconds",key,info.duration);
+        //TFULogDebug(@"update object :%@ consume %f seconds",key,info.duration);
     };
     [self putData:data key:key token:token progress:progressHandler completion:uploadComplete];
 }
@@ -295,6 +294,9 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
         [progressDic setObject:[NSNumber numberWithFloat:0] forKey:objectKey];
         [self cacheOperationsByToken:token identifier:objectKey];
     }
+    
+    NSLog(@"%@", @(_uploadOperations.allKeys.count));
+    
     //cache task list
     [[TFFileRecorder sharedInstance] set:kTFUploadOperationsKey object:_uploadOperations];
 }
@@ -313,8 +315,6 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
         }
     }
 }
-
-
 
 #pragma mark - 计算总体进度
 
@@ -388,6 +388,25 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
     TFAsyncRun(^{
         __typeof(&*weakSelf) strongSelf = weakSelf;
         @autoreleasepool {
+            
+            //存在正在上传的图片
+//            NSMutableDictionary *uploadOperations = [[TFFileRecorder sharedInstance] get:kTFUploadOperationsKey];
+//            if(uploadOperations)
+//            {
+//                for (NSString *token in [uploadOperations allKeys]) {
+//                    NSMutableDictionary *entry = [uploadOperations objectForKey:token];
+//                    //{objectkey:filepath}
+//                    if (entry) {
+//                        for (NSString *objectKey in entry) {
+//                            
+//                            NSLog(@"%@", objectKey);
+//                            
+//                        }
+//                    }
+//                }
+//            }
+            
+            //不一定有上传失败的图片
             NSMutableDictionary *failedOperations = [[TFFileRecorder sharedInstance] get:kTFUploadFailedOperationsKey];
             if (failedOperations) {
                 for (NSString *token in [failedOperations allKeys]) {
@@ -430,7 +449,6 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
             }
         }
     });
-    
 }
 
 #pragma mark - 初始化阿里云服务
