@@ -12,4 +12,5 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.dependency 'EGOCache'
   s.dependency 'YYDispatchQueuePool'
+  s.dependency 'TFUCloudFileSDK'
 end

@@ -38,6 +38,7 @@ PODS:
     - pop
     - SDWebImage
     - SVProgressHUD
+  - TFUCloudFileSDK (0.0.1)
   - YYDispatchQueuePool (1.0)
 
 DEPENDENCIES:
@@ -45,6 +46,7 @@ DEPENDENCIES:
   - AliyunOSSiOS (from `https://github.com/aliyun/AliyunOSSiOS.git`)
   - EGOCache
   - TFPhotoBrowser (from `https://github.com/TimeFaceCoder/TFPhotoBrowser.git`)
+  - TFUCloudFileSDK (from `http://code2.v5time.net/iOS/TFUCloudFileSDK.git`)
   - YYDispatchQueuePool
 
 EXTERNAL SOURCES:
@@ -52,6 +54,8 @@ EXTERNAL SOURCES:
     :git: https://github.com/aliyun/AliyunOSSiOS.git
   TFPhotoBrowser:
     :git: https://github.com/TimeFaceCoder/TFPhotoBrowser.git
+  TFUCloudFileSDK:
+    :git: http://code2.v5time.net/iOS/TFUCloudFileSDK.git
 
 CHECKOUT OPTIONS:
   AliyunOSSiOS:
@@ -60,6 +64,9 @@ CHECKOUT OPTIONS:
   TFPhotoBrowser:
     :commit: 949a06f00744b2808ff398b16a8abd1d940eb8cb
     :git: https://github.com/TimeFaceCoder/TFPhotoBrowser.git
+  TFUCloudFileSDK:
+    :commit: f1ebbc7836c7b03ff0bd421b2f2cb77da23ba899
+    :git: http://code2.v5time.net/iOS/TFUCloudFileSDK.git
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
@@ -73,6 +80,7 @@ SPEC CHECKSUMS:
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SVProgressHUD: e9e7c893686a20da55a28015ed384d9425e15479
   TFPhotoBrowser: adce6b3d66ea903241e840c86c083dc4eac2fb88
+  TFUCloudFileSDK: 4b5323b176deb8b3abe800a230119a79619433ba
   YYDispatchQueuePool: 3dfb2274bcc74207688dde8ac6f7bdd46871dd7b
 
 COCOAPODS: 0.39.0

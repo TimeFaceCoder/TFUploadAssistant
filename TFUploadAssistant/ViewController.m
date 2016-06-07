@@ -55,7 +55,7 @@
     [TFConfiguration setMaxConcurrentRequestCount:8];
     //[TFConfiguration setCompressionQuality:0.6];
     
-    _config.uploadType = TFUploadTypeAliyun;
+    _config.uploadType = TFUploadTypeUCloud;
 
     _config.ucloudScheme = @"http";
     _config.ucloudBucketName = kUcloudBucketName;
