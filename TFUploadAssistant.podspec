@@ -12,5 +12,5 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.dependency 'EGOCache'
   s.dependency 'YYDispatchQueuePool'
-  s.dependency 'TFUCloudFileSDK', :git => 'https://github.com/TimeFaceCoder/TFUCloudFileSDK.git'
+  s.dependency = 'TFUCloudFileSDK', :git => 'https://github.com/TimeFaceCoder/TFUCloudFileSDK.git'
 end
