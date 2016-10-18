@@ -21,7 +21,6 @@
 #import "TFUploadHandler.h"
 #import <Photos/Photos.h>
 #import <YYDispatchQueuePool/YYDispatchQueuePool.h>
-#import "TFUcloudUploadOperation.h"
 
 NSString * const kTFUploadOperationsKey      = @"kTFUploadOperationsKey";
 NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
@@ -120,12 +119,12 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
     }
     else
     {
-        uploadOperation = [TFUcloudUploadOperation uploadOperationWithData:data
-                                                                       key:key
-                                                                     token:token
-                                                                  progress:progressHandler
-                                                                  complete:completionHandler
-                                                                    config:_configuration];
+//        uploadOperation = [TFUcloudUploadOperation uploadOperationWithData:data
+//                                                                       key:key
+//                                                                     token:token
+//                                                                  progress:progressHandler
+//                                                                  complete:completionHandler
+//                                                                    config:_configuration];
     }
     
     dispatch_async([_pool queue], ^{

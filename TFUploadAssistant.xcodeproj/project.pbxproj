@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9C8F95D465D4B6459E421C29 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDCE66CC7FE30D84E5FF86A8 /* libPods.a */; };
-		A27D8B1D1CFD317A004ADF35 /* TFUcloudUploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A27D8B1C1CFD317A004ADF35 /* TFUcloudUploadOperation.m */; };
 		B04487431CA225C400A69650 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B04487421CA225C400A69650 /* main.m */; };
 		B04487461CA225C400A69650 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B04487451CA225C400A69650 /* AppDelegate.m */; };
 		B04487491CA225C500A69650 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B04487481CA225C500A69650 /* ViewController.m */; };
@@ -53,8 +52,6 @@
 		3F603378C43A5FC3E421DB95 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4D9A8144483DAE73B6B898F5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A246320F1CF83F0F00A76E11 /* TFUploadOperationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFUploadOperationProtocol.h; sourceTree = "<group>"; };
-		A27D8B1B1CFD317A004ADF35 /* TFUcloudUploadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFUcloudUploadOperation.h; sourceTree = "<group>"; };
-		A27D8B1C1CFD317A004ADF35 /* TFUcloudUploadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFUcloudUploadOperation.m; sourceTree = "<group>"; };
 		B044873E1CA225C400A69650 /* TFUploadAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TFUploadAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B04487421CA225C400A69650 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B04487441CA225C400A69650 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -224,8 +221,6 @@
 				B07BC8D11CA27FD500589743 /* TFAliUploadOperation.m */,
 				B07BC8D31CA27FEA00589743 /* TFUploadHandler.h */,
 				B07BC8D41CA27FEA00589743 /* TFUploadHandler.m */,
-				A27D8B1B1CFD317A004ADF35 /* TFUcloudUploadOperation.h */,
-				A27D8B1C1CFD317A004ADF35 /* TFUcloudUploadOperation.m */,
 			);
 			path = TFUploadAssistant;
 			sourceTree = "<group>";
@@ -331,6 +326,7 @@
 				TargetAttributes = {
 					B044873D1CA225C400A69650 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = N7HPU2D4KX;
 					};
 					B04487561CA225C500A69650 = {
 						CreatedOnToolsVersion = 7.3;
@@ -454,7 +450,6 @@
 				B07BC8CF1CA27F8700589743 /* NSData+TFMD5.m in Sources */,
 				B0D0F9651CA245E800E36A52 /* TFAsyncRun.m in Sources */,
 				B07BC8D51CA27FEA00589743 /* TFUploadHandler.m in Sources */,
-				A27D8B1D1CFD317A004ADF35 /* TFUcloudUploadOperation.m in Sources */,
 				B07BC8C41CA2718A00589743 /* TFFile.m in Sources */,
 				B0D0F9521CA2362700E36A52 /* TFFileRecorder.m in Sources */,
 				B0D0F96C1CA26BD000E36A52 /* TFResponseInfo.m in Sources */,
@@ -600,6 +595,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = N7HPU2D4KX;
 				INFOPLIST_FILE = TFUploadAssistant/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.timeface.base.TFUploadAssistant;
@@ -615,6 +611,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = N7HPU2D4KX;
 				INFOPLIST_FILE = TFUploadAssistant/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.timeface.base.TFUploadAssistant;
