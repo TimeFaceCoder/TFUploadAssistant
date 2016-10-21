@@ -13,4 +13,5 @@ Pod::Spec.new do |s|
   s.dependency 'EGOCache'
   s.dependency 'YYDispatchQueuePool'
   s.dependency 'AliyunOSSiOS'
+  s.dependency 'TFNetwork'
 end
