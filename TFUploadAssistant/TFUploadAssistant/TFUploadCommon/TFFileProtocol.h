@@ -7,7 +7,6 @@
 //
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <CommonCrypto/CommonDigest.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
 @protocol TFFileProtocol <NSObject>
