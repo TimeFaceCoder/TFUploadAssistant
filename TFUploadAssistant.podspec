@@ -9,6 +9,10 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = "7.1"
   s.source       = { :git => "https://github.com/TimeFaceCoder/TFUploadAssistant.git"}
   s.source_files  = "TFUploadAssistant/TFUploadAssistant/**/*.{h,m,c}"
+    s.public_header_files = [
+   'TFUploadAssistant/TFUploadAssistant/**/*.h'
+    ]
+  
   s.requires_arc = true
   s.dependency 'EGOCache'
   s.dependency 'YYDispatchQueuePool'
