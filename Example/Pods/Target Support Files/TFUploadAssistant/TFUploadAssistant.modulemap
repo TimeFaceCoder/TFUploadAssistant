@@ -1,0 +1,6 @@
+framework module TFUploadAssistant {
+  umbrella header "TFUploadAssistant-umbrella.h"
+
+  export *
+  module * { export * }
+}

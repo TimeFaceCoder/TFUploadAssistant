@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'TFUploadAssistant_Example' do
+  pod 'TFUploadAssistant', :path => '../'
+
+  target 'TFUploadAssistant_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
