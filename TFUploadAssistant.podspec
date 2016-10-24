@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TFUploadAssistant'
-  s.version          = '0.1.0'
+  s.version          = '0.1.2'
   s.summary          = '时光流影文件上传辅助工具'
 
 # This description is used to generate tags and improve search results.
@@ -24,7 +24,7 @@ TODO: Add long description of the pod here.
   s.homepage         = 'https://github.com/TimeFaceCoder/TFUploadAssistant'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Melvin' => 'yangmin@timeface.cn' }
-  s.source           = { :git => 'https://github.com/TimeFaceCoder/TFUploadAssistant.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/TimeFaceCoder/TFUploadAssistant.git', :branch => 'lib_demo' }
   s.social_media_url = 'https://twitter.com/melvin0204'
 
   s.ios.deployment_target = '8.0'
@@ -32,13 +32,15 @@ TODO: Add long description of the pod here.
   s.platform     = :ios, '8.0'
 
   s.source_files = 'TFUploadAssistant/Classes/**/*'
-  
+
   # s.resource_bundles = {
   #   'TFUploadAssistant' => ['TFUploadAssistant/Assets/*.png']
   # }
 
   s.public_header_files = [
     'TFUploadAssistant/Classes/TFUploadAssistant.h',
+    'TFUploadAssistant/Classes/TFUploadCommon/TFFileProtocol.h',
+    'TFUploadAssistant/Classes/TFUploadCommon/TFPHAssetFile.h',
     'TFUploadAssistant/Classes/TFConfiguration.h',
     'TFUploadAssistant/Classes/TFUploadOperationProtocol.h'
   ]
