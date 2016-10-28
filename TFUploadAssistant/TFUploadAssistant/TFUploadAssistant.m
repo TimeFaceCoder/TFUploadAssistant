@@ -40,22 +40,19 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
 
 - (instancetype)initWithConfiguration:(TFConfiguration *)config {
     if (self = [super init]) {
-        _pool = [[YYDispatchQueuePool alloc] initWithName:@"cn.timeface.upload.read"
-                                               queueCount:10
-                                                      qos:NSQualityOfServiceBackground];
-        
-        _configuration = config;
-        _uploadHandlers = [NSMutableDictionary dictionary];
-        _progressHandlers = [NSMutableDictionary dictionary];
-        _uploadOperations = [NSMutableDictionary dictionary];
-        _failedOperations = [[TFFileRecorder sharedInstance] get:kTFUploadFailedOperationsKey];
-        if (!_failedOperations) {
-            _failedOperations = [NSMutableDictionary dictionary];
-        }
-        [self initOSSService];
+        [self setDefaultConfig:config];
         //[self checkTask];
     }
     return self;
+}
+
++ (instancetype)sharedInstance {
+    static TFUploadAssistant *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
 }
 
 + (instancetype)sharedInstanceWithConfiguration:(TFConfiguration *)config {
@@ -67,6 +64,22 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
     });
     
     return sharedInstance;
+}
+
+- (void)setDefaultConfig:(TFConfiguration *)config {
+    _pool = [[YYDispatchQueuePool alloc] initWithName:@"cn.timeface.upload.read"
+                                           queueCount:10
+                                                  qos:NSQualityOfServiceBackground];
+    
+    _configuration = config;
+    _uploadHandlers = [NSMutableDictionary dictionary];
+    _progressHandlers = [NSMutableDictionary dictionary];
+    _uploadOperations = [NSMutableDictionary dictionary];
+    _failedOperations = [[TFFileRecorder sharedInstance] get:kTFUploadFailedOperationsKey];
+    if (!_failedOperations) {
+        _failedOperations = [NSMutableDictionary dictionary];
+    }
+    [self initOSSService];
 }
 
 + (BOOL)checkAndNotifyError:(NSString *)key
