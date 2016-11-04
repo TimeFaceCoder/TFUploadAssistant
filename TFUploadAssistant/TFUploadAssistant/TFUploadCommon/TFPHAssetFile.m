@@ -136,6 +136,7 @@ enum {
             request.version = PHImageRequestOptionsVersionCurrent;
             request.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
             request.resizeMode = PHImageRequestOptionsResizeModeNone;
+            request.networkAccessAllowed = YES;
             request.synchronous = YES;
             
             [[PHImageManager defaultManager] requestImageDataForAsset:self.phAsset
