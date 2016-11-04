@@ -20,6 +20,10 @@
 
 + (instancetype)sharedInstanceWithConfiguration:(TFConfiguration *)config;
 
++ (instancetype)sharedInstance;
+
+- (void)setDefaultConfig:(TFConfiguration *)config;
+
 /**
  *  检查上次出现问题的图片
  */
