@@ -104,7 +104,7 @@
         
         [array addObject:asset.phAsset];
         //melvin/test-0602-19/%@.%@
-        NSString* key = [NSString stringWithFormat:@"%@-1024-001.%@",asset.md5,asset.fileExtension];
+        NSString* key = [NSString stringWithFormat:@"%@-1104-001.%@",asset.md5,asset.fileExtension];
         [keyArray addObject:key];
     }
     
