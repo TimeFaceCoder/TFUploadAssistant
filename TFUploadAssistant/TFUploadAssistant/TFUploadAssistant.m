@@ -30,7 +30,9 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
 
 @property (nonatomic ,strong) TFConfiguration     *configuration;
 @property (nonatomic ,strong) NSMutableDictionary *uploadHandlers;
+//一张图片是一个operation 一条时光是一个key(token)，对应operation数组
 @property (nonatomic ,strong) NSMutableDictionary *uploadOperations;
+//一张图片是一个operation(key:objectKey value:path) 一条时光是一个key(token)，对应operation数组
 @property (nonatomic ,strong) NSMutableDictionary *failedOperations;
 @property (nonatomic ,strong) NSMutableDictionary *progressHandlers;
 @property (nonatomic ,strong) YYDispatchQueuePool *pool;
@@ -224,20 +226,51 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
     }
     if (!progressHandler) {
         progressHandler = ^(NSString *key,NSString *token ,float percent) {
-            [self calculateTotalProgress:token key:key progress:percent];
+            @synchronized(self)
+            {
+                [self calculateTotalProgress:token key:key progress:percent];
+            }
         };
     }
+    
+    __block TFUpCompletionHandler blockCompletionHandler = completionHandler;
+    
     TFUpCompletionHandler uploadComplete = ^(TFResponseInfo *info, NSString *key, NSString *token, BOOL success){
         //remove from operations
         __typeof(&*weakSelf) strongSelf = weakSelf;
         [strongSelf removeOperationsByToken:token identifier:key];
-        if (completionHandler) {
-            completionHandler(info,key,token,success);
-        }
+        
+//        if (!blockCompletionHandler) {
+//            blockCompletionHandler = ^(TFResponseInfo * _Nullable info, NSString * _Nullable key, NSString * _Nullable token,BOOL success)
+//            {
+//                if (!success) {
+//                    //上传失败,加入错误列表
+//                    TFULogDebug(@"update object :%@ error add failed operations",key);
+//                    @synchronized(self)
+//                    {
+//                        [strongSelf cacheFailedOperationsByToken:token objectKey:key filePath:[file path]];
+//                    }
+//                }
+//                else
+//                {
+//                
+//                    
+//                    
+//                    
+//                    
+//                }
+//            };
+//        }
+//        
+//        blockCompletionHandler(info,key,token,success);
+        
         if (!success) {
             //上传失败,加入错误列表
             TFULogDebug(@"update object :%@ error add failed operations",key);
-            [strongSelf cacheFailedOperationsByToken:token objectKey:key filePath:[file path]];
+            @synchronized(self)
+            {
+                [strongSelf cacheFailedOperationsByToken:token objectKey:key filePath:[file path]];
+            }
         }
         //TFULogDebug(@"update object :%@ consume %f seconds",key,info.duration);
     };
@@ -298,7 +331,10 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
     NSLog(@"%@", @(_uploadOperations.allKeys.count));
     
     //cache task list
-    [[TFFileRecorder sharedInstance] set:kTFUploadOperationsKey object:_uploadOperations];
+    @synchronized(self)
+    {
+        [[TFFileRecorder sharedInstance] set:kTFUploadOperationsKey object:_uploadOperations];
+    }
 }
 
 #pragma mark - 移除监听
@@ -352,7 +388,10 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
             //all task is over in this token
             GlobalCompletionBlock(nil,nil,token,YES,self);
             //update task list
-            [[TFFileRecorder sharedInstance] set:kTFUploadOperationsKey object:_uploadOperations];
+            @synchronized(self)
+            {
+                [[TFFileRecorder sharedInstance] set:kTFUploadOperationsKey object:_uploadOperations];
+            }
         }
     }
 }
@@ -368,7 +407,10 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
     //添加至任务列表
     [entry setObject:filePath forKey:objectKey];
     //save to disk
-    [[TFFileRecorder sharedInstance] set:kTFUploadFailedOperationsKey object:_failedOperations];
+    @synchronized(self)
+    {
+        [[TFFileRecorder sharedInstance] set:kTFUploadFailedOperationsKey object:_failedOperations];
+    }
 }
 
 - (void)removeFailedOperationsByToken:(NSString *)token objectKey:(NSString *)objectKey {
@@ -379,8 +421,12 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
     //{objectkey:filepath}
     [_failedOperations setObject:entry forKey:token];
     //save to disk
-    [[TFFileRecorder sharedInstance] set:kTFUploadFailedOperationsKey object:_failedOperations];
+    @synchronized(self)
+    {
+        [[TFFileRecorder sharedInstance] set:kTFUploadFailedOperationsKey object:_failedOperations];
+    }
 }
+
 #pragma mark - 检测未完成任务列表
 
 - (void)checkTask {
@@ -411,9 +457,10 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
             if (failedOperations) {
                 for (NSString *token in [failedOperations allKeys]) {
                     NSMutableDictionary *entry = [failedOperations objectForKey:token];
+                    NSArray* allKeys = [entry allKeys];
                     //{objectkey:filepath}
-                    if (entry) {
-                        for (NSString *objectKey in entry) {
+                    if (allKeys) {
+                        for (NSString *objectKey in allKeys) {
                             NSString *filePath = [entry objectForKey:objectKey];
                             if ([[NSURL URLWithString:filePath] isFileReferenceURL]) {
                                 //file path
@@ -423,7 +470,10 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
                                            progress:NULL
                                          completion:^(TFResponseInfo *info, NSString *key, NSString *token, BOOL success) {
                                              if (success) {
-                                                 [strongSelf removeFailedOperationsByToken:token objectKey:objectKey];
+                                                 @synchronized(strongSelf)
+                                                 {
+                                                     [strongSelf removeFailedOperationsByToken:token objectKey:objectKey];
+                                                 }
                                              }
                                          }];
                             }
@@ -438,7 +488,10 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
                                                   progress:NULL
                                                 completion:^(TFResponseInfo *info, NSString *key, NSString *token, BOOL success) {
                                                     if (success) {
-                                                        [strongSelf removeFailedOperationsByToken:token objectKey:objectKey];
+                                                        @synchronized(strongSelf)
+                                                        {
+                                                            [strongSelf removeFailedOperationsByToken:token objectKey:objectKey];
+                                                        }
                                                     }
                                                 }];
                                 }

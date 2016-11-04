@@ -55,14 +55,13 @@
     [TFConfiguration setMaxConcurrentRequestCount:8];
     //[TFConfiguration setCompressionQuality:0.6];
     
-    _config.uploadType = TFUploadTypeUCloud;
+    _config.uploadType = TFUploadTypeAliyun;
 
-    _config.ucloudScheme = @"http";
-    _config.ucloudBucketName = kUcloudBucketName;
-    _config.ucloudBucketHostId = kUcloudBucketHostId;
-    _config.ucloudPublicKey = kUcloudPublicKey;
-    _config.ucloudPrivateKey = kUcloudPrivateKey;
-    
+//    _config.ucloudScheme = @"http";
+//    _config.ucloudBucketName = kUcloudBucketName;
+//    _config.ucloudBucketHostId = kUcloudBucketHostId;
+//    _config.ucloudPublicKey = kUcloudPublicKey;
+//    _config.ucloudPrivateKey = kUcloudPrivateKey;
     //[[TFUploadAssistant sharedInstanceWithConfiguration:_config] checkTask];
 }
 
@@ -105,7 +104,8 @@
         
         [array addObject:asset.phAsset];
         //melvin/test-0602-19/%@.%@
-        [keyArray addObject:[NSString stringWithFormat:@"%@-0606-2.%@",asset.md5,asset.fileExtension]];
+        NSString* key = [NSString stringWithFormat:@"%@-1024-001.%@",asset.md5,asset.fileExtension];
+        [keyArray addObject:key];
     }
     
     NSLog(@"select photos count: %@", @(keyArray.count));
@@ -128,7 +128,7 @@
 
 #pragma mark - TFUploadAssistantDelegate
 - (void)uploadAssistantProgressHandler:(NSString *)key token:(NSString *)token percent:(float)percent {
-    NSLog(@"token:%@ progress:%f",token,percent);
+    NSLog(@"key:%@ token:%@ progress:%f", key, token,percent);
 }
 
 - (void)uploadAssistantCompletionHandler:(TFResponseInfo *)info
@@ -136,6 +136,9 @@
                                    token:(NSString*)token
                                  success:(BOOL)success {
     //TFULogDebug
+    NSLog(@"%@", key);
+    
+    
     //NSLog(@"token : %@ upload over info:%@",token,info);
     NSTimeInterval endTime = [[NSDate date] timeIntervalSince1970];
     NSLog(@"endTime: %@", @(endTime));

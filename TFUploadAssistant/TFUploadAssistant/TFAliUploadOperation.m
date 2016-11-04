@@ -130,7 +130,7 @@
                 {
                     NSLog(@"%@", @(result.httpResponseCode));
                     if (_completionHandler) {
-                        _completionHandler(info,_key,_token,NO);
+                        _completionHandler(info, _key, _token, NO);
                     }
                 }
                 TFULogDebug(@"Result - requestId: %@ ",result.requestId);

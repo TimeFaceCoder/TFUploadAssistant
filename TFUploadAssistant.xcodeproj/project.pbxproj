@@ -331,6 +331,7 @@
 				TargetAttributes = {
 					B044873D1CA225C400A69650 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = AA34382B49;
 					};
 					B04487561CA225C500A69650 = {
 						CreatedOnToolsVersion = 7.3;
@@ -600,7 +601,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = AA34382B49;
 				INFOPLIST_FILE = TFUploadAssistant/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.timeface.base.TFUploadAssistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -615,7 +618,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = AA34382B49;
 				INFOPLIST_FILE = TFUploadAssistant/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.timeface.base.TFUploadAssistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
