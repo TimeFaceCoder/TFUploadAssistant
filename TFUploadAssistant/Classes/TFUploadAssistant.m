@@ -42,7 +42,7 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
         _pool = [[YYDispatchQueuePool alloc] initWithName:@"cn.timeface.upload.read"
                                                queueCount:10
                                                       qos:NSQualityOfServiceBackground];
-        
+
         _configuration = config;
         _uploadHandlers = [NSMutableDictionary dictionary];
         _progressHandlers = [NSMutableDictionary dictionary];
@@ -59,12 +59,12 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
 
 + (instancetype)sharedInstanceWithConfiguration:(TFConfiguration *)config {
     static TFUploadAssistant *sharedInstance = nil;
-    
+
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[self alloc] initWithConfiguration:config];
     });
-    
+
     return sharedInstance;
 }
 
@@ -105,9 +105,9 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
     if ([TFUploadAssistant checkAndNotifyError:key token:token input:data complete:completionHandler]) {
         return;
     }
-  
+
     id<TFUploadOperationProtocol> uploadOperation = nil;
-    
+
     if(_configuration.uploadType == TFUploadTypeAliyun)
     {
         uploadOperation = [TFAliUploadOperation uploadOperationWithData:data
@@ -126,7 +126,7 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
 //                                                                  complete:completionHandler
 //                                                                    config:_configuration];
     }
-    
+
     dispatch_async([_pool queue], ^{
         [uploadOperation start];
     });
@@ -223,20 +223,33 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
     }
     if (!progressHandler) {
         progressHandler = ^(NSString *key,NSString *token ,float percent) {
-            [self calculateTotalProgress:token key:key progress:percent];
+            @synchronized(weakSelf)
+            {
+                TFAsyncRunInMain(^{
+                    [self calculateTotalProgress:token key:key progress:percent];
+                });
+            }
         };
     }
     TFUpCompletionHandler uploadComplete = ^(TFResponseInfo *info, NSString *key, NSString *token, BOOL success){
         //remove from operations
         __typeof(&*weakSelf) strongSelf = weakSelf;
-        [strongSelf removeOperationsByToken:token identifier:key];
-        if (completionHandler) {
-            completionHandler(info,key,token,success);
-        }
-        if (!success) {
-            //上传失败,加入错误列表
-            TFULogDebug(@"update object :%@ error add failed operations",key);
-            [strongSelf cacheFailedOperationsByToken:token objectKey:key filePath:[file path]];
+        @synchronized(strongSelf)
+        {
+            [strongSelf removeOperationsByToken:token identifier:key];
+            if (completionHandler) {
+                completionHandler(info,key,token,success);
+            }
+            
+            if (!success) {
+                //上传失败,加入错误列表
+                //            TFULogDebug(@"update object :%@ error add failed operations",key);
+                [strongSelf cacheFailedOperationsByToken:token objectKey:key filePath:[file path]];
+            }
+            else
+            {
+                [strongSelf removeFailedOperationsByToken:token objectKey:key];
+            }
         }
         //TFULogDebug(@"update object :%@ consume %f seconds",key,info.duration);
     };
@@ -293,9 +306,9 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
         [progressDic setObject:[NSNumber numberWithFloat:0] forKey:objectKey];
         [self cacheOperationsByToken:token identifier:objectKey];
     }
-    
+
     NSLog(@"%@", @(_uploadOperations.allKeys.count));
-    
+
     //cache task list
     [[TFFileRecorder sharedInstance] set:kTFUploadOperationsKey object:_uploadOperations];
 }
@@ -372,14 +385,29 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
 
 - (void)removeFailedOperationsByToken:(NSString *)token objectKey:(NSString *)objectKey {
     NSMutableDictionary *entry = [_failedOperations objectForKey:token];
-    if (entry) {
-        [entry removeObjectForKey:objectKey];
+    if(!entry)
+    {
+        return;
     }
-    //{objectkey:filepath}
-    [_failedOperations setObject:entry forKey:token];
-    //save to disk
-    [[TFFileRecorder sharedInstance] set:kTFUploadFailedOperationsKey object:_failedOperations];
+    NSArray* allkeys = [entry allKeys];
+    BOOL isExist = NO;
+    for(NSString* key in allkeys)
+    {
+        if([key isEqualToString:objectKey])
+        {
+            isExist = YES;
+            break;
+        }
+    }
+    if (isExist && entry) {
+        [entry removeObjectForKey:objectKey];
+        //{objectkey:filepath}
+        [_failedOperations setObject:entry forKey:token];
+        //save to disk
+        [[TFFileRecorder sharedInstance] set:kTFUploadFailedOperationsKey object:_failedOperations];
+    }
 }
+
 #pragma mark - 检测未完成任务列表
 
 - (void)checkTask {
@@ -387,7 +415,7 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
     TFAsyncRun(^{
         __typeof(&*weakSelf) strongSelf = weakSelf;
         @autoreleasepool {
-            
+
             //存在正在上传的图片
 //            NSMutableDictionary *uploadOperations = [[TFFileRecorder sharedInstance] get:kTFUploadOperationsKey];
 //            if(uploadOperations)
@@ -397,14 +425,14 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
 //                    //{objectkey:filepath}
 //                    if (entry) {
 //                        for (NSString *objectKey in entry) {
-//                            
+//
 //                            NSLog(@"%@", objectKey);
-//                            
+//
 //                        }
 //                    }
 //                }
 //            }
-            
+
             //不一定有上传失败的图片
             NSMutableDictionary *failedOperations = [[TFFileRecorder sharedInstance] get:kTFUploadFailedOperationsKey];
             if (failedOperations) {
@@ -421,9 +449,12 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
                                               token:token
                                            progress:NULL
                                          completion:^(TFResponseInfo *info, NSString *key, NSString *token, BOOL success) {
-                                             if (success) {
-                                                 [strongSelf removeFailedOperationsByToken:token objectKey:objectKey];
-                                             }
+                                              if (success) {
+                                                  @synchronized(strongSelf)
+                                                  {
+                                                    [strongSelf removeFailedOperationsByToken:token objectKey:objectKey];
+                                                  }
+                                              }
                                          }];
                             }
                             else {
@@ -437,7 +468,10 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
                                                   progress:NULL
                                                 completion:^(TFResponseInfo *info, NSString *key, NSString *token, BOOL success) {
                                                     if (success) {
-                                                        [strongSelf removeFailedOperationsByToken:token objectKey:objectKey];
+                                                        @synchronized(strongSelf)
+                                                        {
+                                                            [strongSelf removeFailedOperationsByToken:token objectKey:objectKey];
+                                                        }
                                                     }
                                                 }];
                                 }
