@@ -252,10 +252,7 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
         __typeof(&*weakSelf) strongSelf = weakSelf;
         @synchronized(strongSelf)
         {
-            [strongSelf removeOperationsByToken:token identifier:key];
-            if (completionHandler) {
-                completionHandler(info,key,token,success);
-            }
+            
             
             if (!success) {
                 //上传失败,加入错误列表
@@ -265,6 +262,10 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
             else
             {
                 [strongSelf removeFailedOperationsByToken:token objectKey:key];
+            
+            [strongSelf removeOperationsByToken:token identifier:key];
+            if (completionHandler) {
+                completionHandler(info,key,token,success);
             }
         }
         //TFULogDebug(@"update object :%@ consume %f seconds",key,info.duration);
