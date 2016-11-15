@@ -262,7 +262,7 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
             else
             {
                 [strongSelf removeFailedOperationsByToken:token objectKey:key];
-            
+            }
             [strongSelf removeOperationsByToken:token identifier:key];
             if (completionHandler) {
                 completionHandler(info,key,token,success);
