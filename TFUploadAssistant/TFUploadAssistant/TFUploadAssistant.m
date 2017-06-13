@@ -228,7 +228,8 @@ NSString * const kTFALIPhotoStatus = @"kTFALIPhotoStatus";
         progressHandler = ^(NSString *key,NSString *token ,float percent) {
             @synchronized(weakSelf)
             {
-                TFAsyncRunInMain(^{
+                
+                dispatch_async(dispatch_get_main_queue(), ^(void) {
                     [self calculateTotalProgress:token key:key progress:percent];
                 });
             }
@@ -239,10 +240,7 @@ NSString * const kTFALIPhotoStatus = @"kTFALIPhotoStatus";
         __typeof(&*weakSelf) strongSelf = weakSelf;
         @synchronized(strongSelf)
         {
-            [strongSelf removeOperationsByToken:token identifier:key];
-            if (completionHandler) {
-                completionHandler(info,key,token,success);
-            }
+            
             
             if (!success) {
                 //上传失败,加入错误列表
@@ -269,6 +267,10 @@ NSString * const kTFALIPhotoStatus = @"kTFALIPhotoStatus";
                 
                 [strongSelf removeFailedOperationsByToken:token objectKey:key];
             }
+            [strongSelf removeOperationsByToken:token identifier:key];
+            if (completionHandler) {
+                completionHandler(info,key,token,success);
+            }
         }
         //TFULogDebug(@"update object :%@ consume %f seconds",key,info.duration);
     };
@@ -289,8 +291,9 @@ void (^GlobalProgressBlock)(NSString *key,NSString *token ,float percent ,TFUplo
             handler.progressHandler(key, token, percent);
         }
         if([handler.delegate respondsToSelector:@selector(uploadAssistantProgressHandler:token:percent:)]) {
-            TFAsyncRunInMain(^{
-                [handler.delegate uploadAssistantProgressHandler:key token:token percent:percent];
+            
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                 [handler.delegate uploadAssistantProgressHandler:key token:token percent:percent];
             });
         }
     }];
@@ -426,7 +429,7 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
 
 - (void)checkTask {
     __weak __typeof(self)weakSelf = self;
-    TFAsyncRun(^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
         __typeof(&*weakSelf) strongSelf = weakSelf;
         @autoreleasepool {
             
@@ -496,6 +499,7 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
             }
         }
     });
+    
 }
 
 #pragma mark - 初始化阿里云服务
