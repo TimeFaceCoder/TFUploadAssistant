@@ -11,7 +11,7 @@
 typedef NS_ENUM(NSUInteger, TFUploadType) {
     
     TFUploadTypeAliyun = 0,
-   
+    
     TFUploadTypeUCloud = 1,
     
     TFUploadTypeAmazon = 2
@@ -24,7 +24,16 @@ NSLog(@"[UploadAssistant Debug]: %@", [NSString stringWithFormat:(frmt), ##__VA_
 }
 static BOOL isEnable;
 static uint32_t maxRequestCount = 5;
+
+//图片压缩比例
 static float compressionQuality = 1;
+
+//启用压缩的阈值
+static float imageDataThreshold = 2;
+
+//是否使用WebP
+static BOOL isUseWebP = NO;
+
 @interface TFConfiguration : NSObject
 
 @property (nonatomic ,copy) NSString *aliBucketHostId;
@@ -66,5 +75,23 @@ static float compressionQuality = 1;
 + (void)setCompressionQuality:(float)quality;
 
 + (float)compressionQuality;
+
+/**
+ *  启用压缩的阈值
+ *
+ *  @param 比如大于1M 压缩
+ */
++ (void)setImageDataThreshold:(float)threshold;
+
++ (float)imageDataThreshold;
+
+/**
+ *  是否使用WebP
+ *
+ *  @param 是否使用WebP 可设定
+ */
++ (void)setIsUseWebP:(BOOL)useWebP;
+
++ (BOOL)isUseWebP;
 
 @end

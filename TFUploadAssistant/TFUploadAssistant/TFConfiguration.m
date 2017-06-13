@@ -38,4 +38,23 @@
     return compressionQuality;
 }
 
++ (void)setImageDataThreshold:(float)threshold
+{
+    imageDataThreshold = threshold;
+}
+
++ (float)imageDataThreshold {
+    return imageDataThreshold;
+}
+
++ (void)setIsUseWebP:(BOOL)useWebP
+{
+    isUseWebP = useWebP;
+}
+
++ (BOOL)isUseWebP
+{
+    return isUseWebP;
+}
+
 @end

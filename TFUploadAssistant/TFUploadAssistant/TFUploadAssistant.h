@@ -20,10 +20,6 @@
 
 + (instancetype)sharedInstanceWithConfiguration:(TFConfiguration *)config;
 
-+ (instancetype)sharedInstance;
-
-- (void)setDefaultConfig:(TFConfiguration *)config;
-
 /**
  *  检查上次出现问题的图片
  */
@@ -105,7 +101,7 @@
 /**
  *  卸载回调监听
  *
- *  @param listener 
+ *  @param listener
  */
 - (void) detachListener:(id<TFUploadAssistantDelegate>)listener;
 

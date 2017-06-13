@@ -25,6 +25,7 @@
 
 NSString * const kTFUploadOperationsKey      = @"kTFUploadOperationsKey";
 NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
+NSString * const kTFALIPhotoStatus = @"kTFALIPhotoStatus";
 
 @interface TFUploadAssistant()<NSURLSessionDelegate>
 
@@ -34,41 +35,27 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
 @property (nonatomic ,strong) NSMutableDictionary *failedOperations;
 @property (nonatomic ,strong) NSMutableDictionary *progressHandlers;
 @property (nonatomic ,strong) YYDispatchQueuePool *pool;
+
 @end
 
 @implementation TFUploadAssistant
 
 - (instancetype)initWithConfiguration:(TFConfiguration *)config {
     if (self = [super init]) {
-        [self setDefaultConfig:config];
+        _pool = [[YYDispatchQueuePool alloc] initWithName:@"cn.timeface.upload.read"
+                                               queueCount:8
+                                                      qos:NSQualityOfServiceBackground];
+        
+        _configuration = config;
+        _uploadHandlers = [NSMutableDictionary dictionary];
+        _progressHandlers = [NSMutableDictionary dictionary];
+        _uploadOperations = [NSMutableDictionary dictionary];
+        _failedOperations = [NSMutableDictionary dictionary];
+        [[TFFileRecorder sharedInstance] set:kTFUploadFailedOperationsKey object:_failedOperations];
+        [self initOSSService];
         //[self checkTask];
     }
     return self;
-}
-
-+ (instancetype)sharedInstance {
-    static TFUploadAssistant *sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[self alloc] init];
-    });
-    return sharedInstance;
-}
-
-- (void)setDefaultConfig:(TFConfiguration *)config {
-    _pool = [[YYDispatchQueuePool alloc] initWithName:@"cn.timeface.upload.read"
-                                           queueCount:10
-                                                  qos:NSQualityOfServiceBackground];
-    
-    _configuration = config;
-    _uploadHandlers = [NSMutableDictionary dictionary];
-    _progressHandlers = [NSMutableDictionary dictionary];
-    _uploadOperations = [NSMutableDictionary dictionary];
-    _failedOperations = [[TFFileRecorder sharedInstance] get:kTFUploadFailedOperationsKey];
-    if (!_failedOperations) {
-        _failedOperations = [NSMutableDictionary dictionary];
-    }
-    [self initOSSService];
 }
 
 + (instancetype)sharedInstanceWithConfiguration:(TFConfiguration *)config {
@@ -203,6 +190,7 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
     if (!handlers) {
         handlers = [NSMutableArray array];
     }
+    //一个token对应一个uploadHandler handlers数组只有一个对象，可以不定义为数组
     TFUploadHandler *handler = [TFUploadHandler uploadHandlerWithToken:token delegate:listener];
     [handlers addObject:handler];
     [self.uploadHandlers setObject:handlers forKey:token];
@@ -229,12 +217,11 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
             completionHandler(info,key,token,success);
         }
     };
-    //UIImage* image = [UIImage imageNamed:@"test.jpg"];
-    //NSData *data = UIImageJPEGRepresentation(image, 1);
+    
     NSData *data = [file readAll];
     //check file
     if ([TFUploadAssistant checkAndNotifyError:key token:token input:data complete:checkComplete]) {
-        //        TFULogDebug(@"File :%@ check error",[file path]);
+        //TFULogDebug(@"File :%@ check error",[file path]);
         return;
     }
     if (!progressHandler) {
@@ -259,11 +246,27 @@ NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
             
             if (!success) {
                 //上传失败,加入错误列表
-                //            TFULogDebug(@"update object :%@ error add failed operations",key);
+                //TFULogDebug(@"update object :%@ error add failed operations",key);
                 [strongSelf cacheFailedOperationsByToken:token objectKey:key filePath:[file path]];
             }
             else
             {
+                //把上传成功的objectKey缓存下来，作为下次判断是否是正确图片的成功的标示
+                NSMutableArray* correctAliKeyArray = [[TFFileRecorder sharedInstance] get:kTFALIPhotoStatus];
+                if(correctAliKeyArray)
+                {
+                    if(![correctAliKeyArray containsObject:key])
+                    {
+                        [correctAliKeyArray addObject:key];
+                        [[TFFileRecorder sharedInstance] set:kTFALIPhotoStatus object:correctAliKeyArray];
+                    }
+                }
+                else
+                {
+                    correctAliKeyArray = [NSMutableArray arrayWithObject:key];
+                    [[TFFileRecorder sharedInstance] set:kTFALIPhotoStatus object:correctAliKeyArray];
+                }
+                
                 [strongSelf removeFailedOperationsByToken:token objectKey:key];
             }
         }
@@ -283,7 +286,7 @@ void (^GlobalProgressBlock)(NSString *key,NSString *token ,float percent ,TFUplo
     //Inform the handlers
     [handlers enumerateObjectsUsingBlock:^(TFUploadHandler *handler, NSUInteger idx, BOOL *stop) {
         if(handler.progressHandler) {
-            handler.progressHandler(key, token,percent);
+            handler.progressHandler(key, token, percent);
         }
         if([handler.delegate respondsToSelector:@selector(uploadAssistantProgressHandler:token:percent:)]) {
             TFAsyncRunInMain(^{
@@ -313,28 +316,29 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
 #pragma mark - 处理进度与任务列表
 
 - (void)initOperations:(NSArray *)keys token:(NSString *)token {
-    //创建进度管理
-    NSMutableDictionary *progressDic = [_progressHandlers objectForKey:token];
-    if (!progressDic) {
-        progressDic = [NSMutableDictionary new];
-        [_progressHandlers setObject:progressDic forKey:token];
+    @synchronized(self)
+    {
+        //创建进度管理
+        NSMutableDictionary *progressDic = [_progressHandlers objectForKey:token];
+        if (!progressDic) {
+            progressDic = [NSMutableDictionary new];
+            [_progressHandlers setObject:progressDic forKey:token];
+        }
+        //创建任务列表
+        for (NSString *objectKey in keys) {
+            [progressDic setObject:[NSNumber numberWithFloat:0] forKey:objectKey];
+            [self cacheOperationsByToken:token identifier:objectKey];
+        }
+        
+        //cache task list
+        [[TFFileRecorder sharedInstance] set:kTFUploadOperationsKey object:_uploadOperations];
     }
-    //创建任务列表
-    for (NSString *objectKey in keys) {
-        [progressDic setObject:[NSNumber numberWithFloat:0] forKey:objectKey];
-        [self cacheOperationsByToken:token identifier:objectKey];
-    }
-    
-    //    NSLog(@"%@", @(_uploadOperations.allKeys.count));
-    
-    //cache task list
-    [[TFFileRecorder sharedInstance] set:kTFUploadOperationsKey object:_uploadOperations];
 }
 
 #pragma mark - 移除监听
 
 - (void)removeHandlerWithListener:(id)listener {
-    for (NSInteger i = self.uploadHandlers.allKeys.count - 1; i >= 0; i-- ) {
+    for (NSInteger i = self.uploadHandlers.allKeys.count - 1; i >= 0; i--) {
         id key = self.uploadHandlers.allKeys[i];
         NSMutableArray *array = [self.uploadHandlers objectForKey:key];
         for (NSInteger j = array.count - 1; j >= 0; j-- ) {
@@ -408,15 +412,7 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
         return;
     }
     NSArray* allkeys = [entry allKeys];
-    BOOL isExist = NO;
-    for(NSString* key in allkeys)
-    {
-        if([key isEqualToString:objectKey])
-        {
-            isExist = YES;
-            break;
-        }
-    }
+    BOOL isExist = [allkeys containsObject:objectKey];
     if (isExist && entry) {
         [entry removeObjectForKey:objectKey];
         //{objectkey:filepath}
@@ -425,6 +421,7 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
         [[TFFileRecorder sharedInstance] set:kTFUploadFailedOperationsKey object:_failedOperations];
     }
 }
+
 #pragma mark - 检测未完成任务列表
 
 - (void)checkTask {
