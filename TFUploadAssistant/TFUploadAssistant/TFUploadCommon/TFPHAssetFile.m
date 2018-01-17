@@ -10,6 +10,7 @@
 #import <Photos/Photos.h>
 #import <AVFoundation/AVFoundation.h>
 #import "TFConfiguration.h"
+
 enum {
     kAMASSETMETADATA_PENDINGREADS = 1,
     kAMASSETMETADATA_ALLFINISHED = 0
@@ -182,26 +183,66 @@ enum {
         request.version = PHImageRequestOptionsVersionCurrent;
         request.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
         request.resizeMode = PHImageRequestOptionsResizeModeNone;
+        request.networkAccessAllowed = YES;
         request.synchronous = YES;
+        
         
         [[PHImageManager defaultManager] requestImageDataForAsset:asset
                                                           options:request
                                                     resultHandler:
          ^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
              
-             if ([TFConfiguration compressionQuality] >= 1 && asset.pixelWidth <= 4096 * 4 && asset.pixelHeight <= 4096 * 4) {
-                 tmpData = [NSData dataWithData:imageData];
+             
+             NSString *filename = [[asset valueForKey:@"filename"] lowercaseString];
+             
+             //BOOL isHEIF = [dataUTI isEqualToString:@"public.heic"] || [dataUTI isEqualToString:@"public.heif"];
+             
+             BOOL isHEIF = [filename containsString:@"heic"] || [filename containsString:@"heif"];
+             
+             // 将heic格式转成jpg
+             CIImage *ciImage = [CIImage imageWithData:imageData];
+             
+             if (isHEIF) {
+                 CIContext *context = [CIContext context];
+                 tmpData = [context JPEGRepresentationOfImage:ciImage colorSpace:ciImage.colorSpace options:@{}];
+             }
+             else
+             {
+                 //CIImage *ciimage = [CIImage imageWithData:imageData];
+                 NSDictionary *metaData = [[NSDictionary alloc] initWithDictionary:ciImage.properties];
+                 
+                 BOOL shotFromIphone = [self _isShotFromIphone:metaData];
+                 
+                 if (asset.pixelWidth <= 4096 * 4 &&
+                     asset.pixelHeight <= 4096 * 4 &&
+                     imageData.length <= 1024 * 1024 * [TFConfiguration imageDataThreshold]) {
+                     
+                     if(shotFromIphone)
+                     {
+                         tmpData = [self enhanceImage:imageData orientation:orientation phasset:asset];
+                     }
+                     else
+                     {
+                         tmpData = imageData;
+                     }
+                 }
+                 else {
+                     
+                     @autoreleasepool {
+                         
+                         if(shotFromIphone)
+                         {
+                             //tmpData = [self enhanceAndCompress:imageData orientation:orientation phasset:asset];
+                             tmpData = [self compressAndEnhance:imageData orientation:orientation phasset:asset];
+                         }
+                         else
+                         {
+                             tmpData = [self compressImage:imageData orientation:orientation phasset:asset];
+                         }
+                     };
+                 }
              }
              
-             else {
-                 CIImage *ciimage = [CIImage imageWithData:imageData];
-                 NSDictionary *metaData = [[NSDictionary alloc]initWithDictionary:ciimage.properties];
-                 CGImageSourceRef imageSource = CGImageSourceCreateWithData((CFDataRef)imageData,  NULL);
-                 CGImageRef imageRef = CGImageSourceCreateImageAtIndex(imageSource, 0, NULL);
-                 tmpData = [self dataFromImage:imageRef metadata:metaData mimetype:self.mimeType];
-                 CFRelease(imageRef);
-                 CFRelease(imageSource);
-             }
          }];
     }
     // Video
@@ -234,39 +275,247 @@ enum {
     return tmpData;
 }
 
-- (NSData *)dataFromImage:(CGImageRef)imageRef metadata:(NSDictionary *)metadata mimetype:(NSString *)mimetype
+/**
+ *  判断图片是否是iphone手机拍摄  没有经过处理
+ *
+ *  @param metaData 元数据
+ *
+ *  @return BOOL
+ */
+- (BOOL)_isShotFromIphone:(NSDictionary *)metaData
 {
-    NSMutableData *imageData = [NSMutableData data];
+    NSArray* keyArray = [metaData allKeys];
+    NSDictionary* tiff = [metaData objectForKey:@"{TIFF}"];
+    NSString* make = [tiff objectForKey:@"Make"];
+    NSString* model = [tiff objectForKey:@"Model"];
     
-    CFMutableDictionaryRef properties = CFDictionaryCreateMutable(nil, 0,
-                                                                  &kCFTypeDictionaryKeyCallBacks,  &kCFTypeDictionaryValueCallBacks);
-    CFDictionarySetValue(properties, kCGImageDestinationImageMaxPixelSize,
-                         (__bridge const void *)(@(4096 * 4)));
-    
-    CFDictionarySetValue(properties, kCGImageDestinationLossyCompressionQuality,
-                         (__bridge const void *)([NSNumber numberWithFloat:[TFConfiguration compressionQuality]]));
-    
-    for (NSString *key in metadata) {
-        CFDictionarySetValue(properties, (__bridge const void *)key,
-                             (__bridge const void *)[metadata objectForKey:key]);
+    if([make isEqualToString:@"Apple"] || [model containsString:@"iPhone"])
+    {
+        return YES;
     }
-    CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, (__bridge CFStringRef)mimetype, NULL);
-    CGImageDestinationRef imageDestination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)imageData, uti, 1, NULL);
     
-    if (imageDestination == NULL) {
-        TFULogDebug(@"Failed to create image destination");
-        imageData = nil;
+    return NO;
+}
+
+/**
+ *  先压缩
+ *
+ *  @param imageData
+ *  @param orientation
+ *  @param asset
+ *
+ *  @return NSData
+ */
+- (NSData *)compressImage:(NSData *)imageData orientation:(UIImageOrientation)orientation phasset:(PHAsset *)asset
+{
+    //压缩
+    CIImage *ciimage = [CIImage imageWithData:imageData];
+    
+    NSDictionary *metaData = [[NSDictionary alloc] initWithDictionary:ciimage.properties];
+    CGImageSourceRef imageSource = CGImageSourceCreateWithData((CFDataRef)imageData,  NULL);
+    CGImageRef imageRef = CGImageSourceCreateImageAtIndex(imageSource, 0, NULL);
+    NSData* tmpData = [self dataFromImage:imageRef
+                                 metadata:metaData
+                                 mimetype:self.mimeType
+                                  phAsset:asset
+                                 compress:YES];
+    CFRelease(imageRef);
+    CFRelease(imageSource);
+    
+    return tmpData;
+}
+
+/**
+ *  小于1M的图片 只增强
+ *
+ *  @param data
+ *  @param orientation
+ *  @param asset
+ *
+ *  @return NSData
+ */
+- (NSData *)enhanceImage:(NSData *)data orientation:(UIImageOrientation)orientation phasset:(PHAsset *)asset
+{
+    
+    NSData* tmpData = data;
+    
+    CIImage *enhanceImage = [CIImage imageWithData:tmpData];
+    NSDictionary *metaData = [[NSDictionary alloc] initWithDictionary:enhanceImage.properties];
+    
+    NSDictionary *options = @{ CIDetectorImageOrientation : @([self CGImagePropertyOrientation:orientation])};
+    NSArray *adjustments = [enhanceImage autoAdjustmentFiltersWithOptions:options];
+    for (CIFilter *filter in adjustments) {
+        [filter setValue:enhanceImage forKey:kCIInputImageKey];
+        enhanceImage = filter.outputImage;
     }
-    else {
-        CGImageDestinationAddImage(imageDestination, imageRef, properties);
-        if (CGImageDestinationFinalize(imageDestination) == NO) {
-            TFULogDebug(@"Failed to finalise");
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CGImageRef cgImage = [context createCGImage:enhanceImage fromRect:enhanceImage.extent];
+    
+    //这里主要是从CGImageRef获取NSData
+    tmpData = [self dataFromImage:cgImage
+                         metadata:metaData
+                         mimetype:self.mimeType
+                          phAsset:asset
+                         compress:NO];
+    
+    CGImageRelease(cgImage);
+    
+    return tmpData;
+}
+
+/**
+ *  先增强再压缩
+ *
+ *  @param imageData
+ *  @param orientation
+ *  @param asset
+ *
+ *  @return NSData
+ */
+- (NSData *)enhanceAndCompress:(NSData *)imageData orientation:(UIImageOrientation)orientation phasset:(PHAsset *)asset
+{
+    CIImage *ciimage = [CIImage imageWithData:imageData];
+    
+    NSDictionary *options = @{ CIDetectorImageOrientation : @([self CGImagePropertyOrientation:orientation])};;
+    NSArray *adjustments = [ciimage autoAdjustmentFiltersWithOptions:options];
+    for (CIFilter *filter in adjustments) {
+        [filter setValue:ciimage forKey:kCIInputImageKey];
+        ciimage = filter.outputImage;
+    }
+    
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CGImageRef cgImage = [context createCGImage:ciimage fromRect:ciimage.extent];
+    
+    NSDictionary *metaData = [[NSDictionary alloc] initWithDictionary:ciimage.properties];
+    NSData* tmpData = [self dataFromImage:cgImage metadata:metaData mimetype:self.mimeType phAsset:asset compress:YES];
+    CFRelease(cgImage);
+    
+    return tmpData;
+}
+
+/**
+ *  先压缩再增强
+ *
+ *  @param imageData
+ *  @param orientation
+ *  @param asset
+ *
+ *  @return NSData
+ */
+- (NSData *)compressAndEnhance:(NSData *)imageData orientation:(UIImageOrientation)orientation phasset:(PHAsset *)asset
+{
+    //压缩
+    CIImage *ciimage = [CIImage imageWithData:imageData];
+    
+    NSDictionary *metaData = [[NSDictionary alloc] initWithDictionary:ciimage.properties];
+    CGImageSourceRef imageSource = CGImageSourceCreateWithData((CFDataRef)imageData,  NULL);
+    CGImageRef imageRef = CGImageSourceCreateImageAtIndex(imageSource, 0, NULL);
+    NSData* tmpData = [self dataFromImage:imageRef
+                                 metadata:metaData
+                                 mimetype:self.mimeType
+                                  phAsset:asset
+                                 compress:YES];
+    CFRelease(imageRef);
+    CFRelease(imageSource);
+    
+    //增强
+    CIImage *enhanceImage = [CIImage imageWithData:tmpData];
+    NSDictionary *options = @{ CIDetectorImageOrientation : @([self CGImagePropertyOrientation:orientation])};
+    NSArray *adjustments = [enhanceImage autoAdjustmentFiltersWithOptions:options];
+    for (CIFilter *filter in adjustments) {
+        [filter setValue:enhanceImage forKey:kCIInputImageKey];
+        enhanceImage = filter.outputImage;
+    }
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CGImageRef cgImage = [context createCGImage:enhanceImage fromRect:enhanceImage.extent];
+    
+    //这里主要是从CGImageRef获取NSData
+    tmpData = [self dataFromImage:cgImage
+                         metadata:metaData
+                         mimetype:self.mimeType
+                          phAsset:asset
+                         compress:NO];
+    
+    CGImageRelease(cgImage);
+    
+    return tmpData;
+}
+
+- (CGImagePropertyOrientation)CGImagePropertyOrientation:(UIImageOrientation)imageOrientation
+{
+    switch (imageOrientation) {
+        case UIImageOrientationUp:
+            return kCGImagePropertyOrientationUp;
+        case UIImageOrientationUpMirrored:
+            return kCGImagePropertyOrientationUpMirrored;
+        case UIImageOrientationDown:
+            return kCGImagePropertyOrientationDown;
+        case UIImageOrientationDownMirrored:
+            return kCGImagePropertyOrientationDownMirrored;
+        case UIImageOrientationLeftMirrored:
+            return kCGImagePropertyOrientationLeftMirrored;
+        case UIImageOrientationRight:
+            return kCGImagePropertyOrientationRight;
+        case UIImageOrientationRightMirrored:
+            return kCGImagePropertyOrientationRightMirrored;
+        case UIImageOrientationLeft:
+            return kCGImagePropertyOrientationLeft;
+    }
+}
+
+- (NSData *)dataFromImage:(CGImageRef)imageRef
+                 metadata:(NSDictionary *)metadata
+                 mimetype:(NSString *)mimetype
+                  phAsset:(PHAsset *)asset
+                 compress:(BOOL)compress
+{
+    @autoreleasepool {
+        
+        NSMutableData *imageData = [NSMutableData data];
+        
+        CFMutableDictionaryRef properties = CFDictionaryCreateMutable(nil, 0,
+                                                                      &kCFTypeDictionaryKeyCallBacks,  &kCFTypeDictionaryValueCallBacks);
+        
+        
+        
+        for (NSString *key in metadata) {
+            CFDictionarySetValue(properties, (__bridge const void *)key,
+                                 (__bridge const void *)[metadata objectForKey:key]);
+        }
+        
+        if(asset.pixelWidth > 4096 * 4 || asset.pixelHeight > 4096 * 4)
+        {
+            CFDictionarySetValue(properties, kCGImageDestinationImageMaxPixelSize,
+                                 (__bridge const void *)(@(4096 * 4)));
+        }
+        
+        if(compress)
+        {
+            CFDictionarySetValue(properties, kCGImageDestinationLossyCompressionQuality,
+                                 (__bridge const void *)([NSNumber numberWithFloat:[TFConfiguration compressionQuality]]));
+        }
+        
+        
+        CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, (__bridge CFStringRef)mimetype, NULL);
+        CGImageDestinationRef imageDestination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)imageData, uti, 1, NULL);
+        
+        if (imageDestination == NULL) {
+            TFULogDebug(@"Failed to create image destination");
             imageData = nil;
         }
+        else {
+            CGImageDestinationAddImage(imageDestination, imageRef, properties);
+            if (CGImageDestinationFinalize(imageDestination) == NO) {
+                TFULogDebug(@"Failed to finalise");
+                imageData = nil;
+            }
+        }
+        CFRelease(properties);
         CFRelease(imageDestination);
-    }
-    CFRelease(uti);
-    return imageData;
+        CFRelease(uti);
+        return imageData;
+    };
 }
 
 @end
+
