@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "TFUCloudFileSDK.h"
 #import "UCloudFileSDK.h"
 #import "UFileAPI.h"
 #import "UFileAPIUtils.h"
