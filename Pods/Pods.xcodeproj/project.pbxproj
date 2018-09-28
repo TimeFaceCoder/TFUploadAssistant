@@ -20,11 +20,10 @@
 		0E8ABAAA9CAD624A518E167AF2FBBE4E /* OSSGetSymlinkRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = F2BCCC6E9A522A4EF9A4A676449E3351 /* OSSGetSymlinkRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F6C9C217A549307815A342F8A021EB3 /* OSSTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 41F2C811345432004D5A271E0F2E587E /* OSSTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0FF24CDD60240C916A94EF7414A82EC6 /* OSSCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF3C580BD2DDEEFCFF310F0ACBB7E99 /* OSSCompat.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		1302941EA41AF98C89D5CFE465DE7B80 /* UFileAPIUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 6813AA45C77D1A136FFF58E31EB42307 /* UFileAPIUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		13AEBF219F3339D30B1B3ED5B9FD0FC0 /* AFNetworking-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A9CE23C146C6C1F8758EAB4774CFF8AA /* AFNetworking-dummy.m */; };
-		13E0BAC4576177773C92797EF4EDA051 /* UFileHttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FD6BFACF52B4034D52C6DAD9AD2A26 /* UFileHttpManager.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		15F6265FCE0955CDB4967F7306407D67 /* UIWebView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 14AC0A8F0DC958BE1916928D9E292C1B /* UIWebView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1619A23BDCCBE5C7F6035D72B6179E39 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A75B716DA0079C1D43C67AF5BCFCD90 /* AFNetworkActivityIndicatorManager.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		1746E098801A92D74C82CAA1A75B10EB /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = DB61ECFF0703FDF8E02B5FBB72F6A2FB /* version.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1863A3B7589CF300161718F52BFBC1A9 /* OSSUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 147E6E510394B83F0855A7E8CCA78D28 /* OSSUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		19150FBF1E7ED2FEBEE3BA2C10C8894D /* OSSHttpResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C382960FCCF2E8F0E82808933DEEF69 /* OSSHttpResponseParser.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		1B168BC734D62756552C77358E754716 /* OSSURLRequestRetryHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DF9442CB16B2AFC2ABC4ACCEB5E4655E /* OSSURLRequestRetryHandler.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -32,22 +31,24 @@
 		1C43E9A84EB78F7460A3CC71D8FFB09B /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC3D81CEE7733166F13B15767DD2314 /* AFURLRequestSerialization.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		1DA5545AB85DE1533F6B84AF72921B85 /* EGOCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 197F6A7655A7784385CD2D9B9B161F11 /* EGOCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1F56E9FEAE14A885DC3D0D9FBA8A82C7 /* OSSRestoreObjectRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C163B652A1E98A0E9824FDB69E9830 /* OSSRestoreObjectRequest.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		205295F8623895B7C1F235BF0579E90F /* TFUCloudFileSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D822B9AC0FD11A88534ACE4BF826BE91 /* TFUCloudFileSDK-dummy.m */; };
+		205295F8623895B7C1F235BF0579E90F /* TFUCloudFileSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CED282E90E2EF82F02AF9B2C07AB95F0 /* TFUCloudFileSDK-dummy.m */; };
 		219CD9F7D490A8415DC512B8D6AC3906 /* OSSInputStreamHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D172835FDEC96F310D5DE50CF2A1FBE /* OSSInputStreamHelper.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		234D39B441BAFF5E72A5563A69BDEDA1 /* OSSExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F643B770F4A8FCBE8A62842EFDB0B9 /* OSSExecutor.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		23B7FA0D8667A617EC1C11D50A971CB0 /* OSSIPv6PrefixResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C3EFF91D14AC3EFC87D1AB81AB084B9 /* OSSIPv6PrefixResolver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		23E3B20CFA8215AA059224AAEE68798B /* NSMutableDictionary+OSS.h in Headers */ = {isa = PBXBuildFile; fileRef = A83514DC4A194AAD992019FC3225140F /* NSMutableDictionary+OSS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		262D21EF10E9BB27355E1BC6D2864AA9 /* TFUCloudFileSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 8738794E9FD3C80C4EF814281F982FA0 /* TFUCloudFileSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27F59382494FBEF721F042019F57EC00 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 97DE6932713277ABED1A961DC1793BA9 /* AFHTTPSessionManager.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		29341C2824907D5CB1D10814D2D189F2 /* YYDispatchQueuePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A83243D9B14B7B387127A9FEEDDBD50 /* YYDispatchQueuePool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2ADF1F871C88DF2CEF26D40E6FC6B823 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617B2ECC6E60059CC5AA4A54EECA996E /* Foundation.framework */; };
+		2C2181638B7364C027EB5EAE49F49DF8 /* UCloudFileSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D84FAEA66E5678D77198E98C158C6F /* UCloudFileSDK.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		2CBCDE47F8EC59E35FE1A3DF70D588C7 /* OSSModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F8DD96D3BE73B0817F40A52B11D0580 /* OSSModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2DE27F0503A41C5641B7E6CE69186BBA /* UFileAPIUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7BF0730C710D52782B736C2B8D4BBF /* UFileAPIUtils.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		2FB523C74BA9D05E19023D8D8C2431DF /* aos_crc64.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5FA327C97E7F8874FACDE81A49A63B /* aos_crc64.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3048B97C9D9DAA6909546D2A58271AA9 /* OSSLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A2B83BD04AACC7A8EF4C8F308AF8DBD /* OSSLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		332DB2F91BD420E378070FF135673EE6 /* OSSReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 72922E8CC68EF413468D44CFBDE1E965 /* OSSReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		33D17BF3EA47F3D43E84F9B52F8A4775 /* OSSPutSymlinkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3BC75FC614C07570FD406313082B9E /* OSSPutSymlinkRequest.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		34451C830F46F8D978DB14BE5BFAF71E /* NSMutableDictionary+OSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D5EDC4DEF0C301F058AAD6C79FBE05 /* NSMutableDictionary+OSS.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		36B8396A987805E00575D16D94602817 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617B2ECC6E60059CC5AA4A54EECA996E /* Foundation.framework */; };
+		3725860C9731E427D2E1E7137F13132D /* UFileHttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC416C5E58DF55332E9C04FE94FA0F6D /* UFileHttpManager.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		39FA723169429768C10172E76C98D00C /* OSSFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0780841FEC3750CB00C79B95C82CDC /* OSSFileLogger.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		3DDB894364CEC991E61B04E9036D6D54 /* AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = D75BB9121668AF338510E7CAEADDD8EE /* AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F23D6737FF37F047124ECD3BD2859BF /* OSSHttpdns.m in Sources */ = {isa = PBXBuildFile; fileRef = 019C6912D4D4F9404D606FE4AC7D8F0E /* OSSHttpdns.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -67,9 +68,8 @@
 		50B25C19C0F87D1FD63ABE740FEC1A2F /* OSSClient.h in Headers */ = {isa = PBXBuildFile; fileRef = FB01841EB84B061487A9AA719CBD67B7 /* OSSClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		515165DAE203F6AD5FFF3A7666D46797 /* OSSGetBucketInfoRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 878051753D9BE1226E7E57F5C9F71220 /* OSSGetBucketInfoRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		516EE45BABBA91A148342108185CDB6A /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACA35AF93BFF4AFBCA50669628E9BDA /* UIProgressView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		517308983D9558F3DC0BB24AA99FBDA5 /* TFUCloudFileSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F9C1C0A7554813745867D52AE7E10F5B /* TFUCloudFileSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		517308983D9558F3DC0BB24AA99FBDA5 /* TFUCloudFileSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C9E5F7408E708EA65BB7427874A90560 /* TFUCloudFileSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		52A0DAA9DDB5AD48D5DDB92F1F042D29 /* OSSReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D2734EF42515A16C1CF8D1F1244984 /* OSSReachability.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		586658FBEBFA7E873C32F59270FDC59C /* TFUCloudFileSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 98CD9E45EB9C214177D4199B49F487A9 /* TFUCloudFileSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5A1C697E9E5FF291145894182B130B66 /* OSSNetworkingRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 265A07572D0BD1B592F2B83EFC1CEF44 /* OSSNetworkingRequestDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B27CA90BA35F9297F7BCE2624B90FFC /* OSSDeleteMultipleObjectsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F316CE524B4E342F815A56714761666B /* OSSDeleteMultipleObjectsRequest.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		5BFE1CC79F693B6218B419AE50B2070E /* AFNetworking-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D362A9E8DEB98F08CA7C9DF7A0206C /* AFNetworking-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -77,7 +77,6 @@
 		60698476E4FA12AC45E766E92CFDCCD7 /* OSSRestoreObjectResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 0688B6E65F43504DC4EF604FB34D641B /* OSSRestoreObjectResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60BA3848C1DB4ECDECE35019F8E9314B /* OSSCocoaLumberjack.h in Headers */ = {isa = PBXBuildFile; fileRef = E307FAE7F0ADA144272C34C1A84E174D /* OSSCocoaLumberjack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61C83224C02B5B9DEBD5A065226E69C3 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4EF217CEC1CAB91E02EBC3EB8AF412E /* AFNetworkReachabilityManager.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		629CB9C83FB457A2D51B7C88E43FFF3C /* UFileAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ECD895D1141F137D4B7AD93BDE96F3C /* UFileAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		63BA6FBA10304F4828DE97C0FA63ED9D /* UIProgressView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CD20BF9BE6B092ED1CE95E7B76642EB /* UIProgressView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		63F7A4E31C91CC30D2E960BC52E04F1E /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = D494862EA06A6A2651E15AF9080C238B /* UIWebView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		654CCA382A5822D3BBC415112E18B2B6 /* OSSCancellationTokenRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EDF50040224D38769EF3D4AC5C271AB /* OSSCancellationTokenRegistration.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -99,15 +98,14 @@
 		7B152873FB5185EBE609118F624F4744 /* OSSHttpResponseParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0797D8DC5D101879488DC1F8E4A1E71C /* OSSHttpResponseParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7B809A484A5C2F36ED05E689E3548847 /* OSSDeleteMultipleObjectsResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21A29E3AC8B6068BE8915BE029CDEE /* OSSDeleteMultipleObjectsResult.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		7E1423634FE54DEA052BFAACAD3D4E1D /* AliyunOSSiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 543B4D246A844E955A545780FA209846 /* AliyunOSSiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		837EF32CC14CAABC9163842F24F1B261 /* UCloudFileSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = F97810891405AD4B0C3B286D506232EA /* UCloudFileSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		86EA527BA1862E06A8E19E0960C66E7E /* UIRefreshControl+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EC0E002E8A33BB7D50B224C3A415D55 /* UIRefreshControl+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		872A8A79D061A5B85405F5DE384C7752 /* OSSHttpdns.h in Headers */ = {isa = PBXBuildFile; fileRef = E07814C23FD489FDF4AF431808FDB31D /* OSSHttpdns.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		885DF5ACA0BA0DF80CBB3505761C3BBD /* OSSInputStreamHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 53160F04FD9C798E0420F2BE2CADA854 /* OSSInputStreamHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8CE9A95B5F8D564B9740EC7F04AE2DA4 /* UFileHttpManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 449D16C84C101495A02D3108B387E619 /* UFileHttpManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8D9636C74777C684BDF312EE66F8A585 /* AFNetworkReachabilityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F3F00466D4E0065F3D08D984B82A3CE /* AFNetworkReachabilityManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8DF3C65D992509B7827B1AEAECF180DA /* OSSCompat.h in Headers */ = {isa = PBXBuildFile; fileRef = B7119ABB8C5E2C262F2959E0C1B924AE /* OSSCompat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		900F1610ECB7DA8E08F3F25052CEA533 /* OSSUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 595A0B1552D68A62C3C0AC6D86189087 /* OSSUtil.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		91256E9D42F2B7DB08D6AC96A132DFFD /* OSSDDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 95CB2811045BAEFDE670FA24BF6E57AF /* OSSDDLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		95C93E11A6F9831DED76F8798896C7D1 /* UCloudFileSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 95CD32656BDD85A460C54A37FB91194C /* UCloudFileSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9816A834BC2988083C94CBADD5D576A3 /* OSSTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 7348D7B1AEE237D201575CC04DB849D6 /* OSSTask.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		9898B13B5771AC304E096319E72F8098 /* AFCompatibilityMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 5407B73CBD9D0BD55AFC8E0095617A9F /* AFCompatibilityMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9AC1064802A4D107353A87F2B4A963B0 /* AFNetworkActivityIndicatorManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000FCA9712A95FF79222F8924896D3E /* AFNetworkActivityIndicatorManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -119,6 +117,7 @@
 		A22A9FC4366685A3265443ECD5684C05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617B2ECC6E60059CC5AA4A54EECA996E /* Foundation.framework */; };
 		A5B069CA1170E03891AC5648DE5CF87D /* UIImageView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 691A3D13BFA037564F928A4EFB5DB607 /* UIImageView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A5E52C6A906495FBD07C3D0D00E67ED3 /* OSSReachabilityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FED1F313FE6844CC000B21C11C4AD33E /* OSSReachabilityManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A7352461D6E9AB477E3FDFA343B4E65A /* UFileAPIUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3A23419674489D2DBBE9C35D3F020 /* UFileAPIUtils.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		A8ABD8EEFD79F7D7ED1979E681C9DE5C /* OSSIPv6PrefixResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E97D66A59F2FB68B77E0F4B4819475 /* OSSIPv6PrefixResolver.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		A98E83ACC8D4C4C5258233747C75711F /* OSSFileLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A77911EEE551CB7FB255E449D707258 /* OSSFileLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB6044A5320F29D9A4461D98F7B78CDF /* UIActivityIndicatorView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1D91A6AD830BBA24215C7CC31343F3 /* UIActivityIndicatorView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -127,7 +126,6 @@
 		AD868043328B2125E27A5DC14D11958F /* UIActivityIndicatorView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CA1E3508147EFCFF42FE13976C04AD2 /* UIActivityIndicatorView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADD011E9ABBD96D70AAA32A4B9ACBD02 /* UIKit+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 134F14DD7866196E370D989B2AC2C2AA /* UIKit+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AE72871CE01D74C9D0885A858A6639E4 /* OSSBolts.h in Headers */ = {isa = PBXBuildFile; fileRef = CF8D87EEC62E16CFD449804B6250EB83 /* OSSBolts.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AE909807C91B5F77B133173181573269 /* UCloudFileSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A45A02D2E7D52C654EAE5448B11E808 /* UCloudFileSDK.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		B086C8017A694E281B3F30DCCE8FA588 /* AFHTTPSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D7EA1D6D4B4EA070228913FA948BD273 /* AFHTTPSessionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B0AF4ECB68FB9587B0C6CDF0175A740F /* OSSIPv6Adapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB914621F4DFC4C4D3D80E8C1E825D2 /* OSSIPv6Adapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B33A0D8FF0C7AE22D833E30E49B6EFCE /* aos_crc64.c in Sources */ = {isa = PBXBuildFile; fileRef = 19C803665134352F5344D449ABC28D77 /* aos_crc64.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -137,7 +135,6 @@
 		B968F7B287803A54643F45CA185F0F19 /* AliyunOSSiOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 03519F7C705F910AC5D3A6B2A40BA9C8 /* AliyunOSSiOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B98E89731E794A55280767AE398EA676 /* OSSAllRequestNeededMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F406A2B23D4B04BD1E17BE352524C77 /* OSSAllRequestNeededMessage.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		BF639859DEEB8823D25A315ABC26DF21 /* YYDispatchQueuePool-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 28870758943B4DA1C7FF4DA937B2F361 /* YYDispatchQueuePool-dummy.m */; };
-		C0C7BF21D26322F213528FA7D8BAA185 /* UFileAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F86345D6FBD9470BD3D64D5EC9F4F1 /* UFileAPI.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		C12BAA822391D670C53FF0C2299654AD /* AFURLSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B4840C9BCE6BFEFE340C65CBF14F40 /* AFURLSessionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C1D8AE0EF03D81A5091740E542232A77 /* AFImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 65757603ED36E8D3061C6A9942774A45 /* AFImageDownloader.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		C40394F6CA54DD1A37FCBB8FC9E09B04 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CEB5E838CEABD09B4198F199EB101F6 /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -163,13 +160,15 @@
 		E245711081B07F3ED04DD5BBE793935E /* OSSLogMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = BFA6904CB6D2973E74B306597A16BC04 /* OSSLogMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E2F6CCDE99A2958640D816C14AA84384 /* OSSXMLDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = E86068FE96376F0ABA2C64CDE37A98BB /* OSSXMLDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E30075DF03F2AD724B8ED7999D7A16CD /* OSSGetSymlinkResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 0236854723F47CC19964E0C9BA3C32AF /* OSSGetSymlinkResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E47B223DC1E70ABA3D4200A2FA95ED6B /* UFileAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 77F4C56D1D9A40ACDB6CFF7DC1CDCB7E /* UFileAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E4B13531B68EB8DC7142C0E7DA7D8B6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617B2ECC6E60059CC5AA4A54EECA996E /* Foundation.framework */; };
 		E6FAF11182F2A6BFCC7FD911B51EE2EF /* OSSCancellationToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 41EB7B802DEF793401FA9945F31276A2 /* OSSCancellationToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E76F83B3E138FE329629491AC200ACE1 /* OSSLog.m in Sources */ = {isa = PBXBuildFile; fileRef = CF07BF59928D2FB5A00889C83C8B72F3 /* OSSLog.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		EA2D0B0DD4C5708BF81F0F65F11EDE53 /* UFileAPIUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A94532B44DA67F703B77F231D8761DC /* UFileAPIUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EB030A111AFCF935636047CEEF834AFF /* OSSPutSymlinkResult.m in Sources */ = {isa = PBXBuildFile; fileRef = BD4EE618C3693B923E8D5A9E2F48F3EC /* OSSPutSymlinkResult.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		EDBA16215FF3F3B061F912747F281769 /* OSSNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = F815EB394B78D17D81AF34C5612BBDD0 /* OSSNetworking.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		EEA2E091318A5B362CB7C0BC6739F621 /* UFileAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAD472BF3BC22B8AA84D70ED41B3872 /* UFileAPI.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		F1199E40BF416FC1ACA2DDCD7B2E23A1 /* UIImage+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = C45BD76537070629A52C822B031D4D0D /* UIImage+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F21D5561B0B1B9FD4B133590B8D2E81A /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = 2ECB417526C6774F7E7BA13ACDEA4CA9 /* version.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F26CD9A1DF452688BF3C98BBA9090F92 /* AFURLRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 8DC59C7D4C94ADB6A15F18C3E3A19A52 /* AFURLRequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F41BDE1353B9A3471BA4AF3FDD6CCDC3 /* AliyunOSSiOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E4AD0C440BC6651A949B25F3F0E279 /* AliyunOSSiOS-dummy.m */; };
 		F54879EEAE223E90AC9674197E6B1ADE /* AFImageDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = E60CD212B68D5E5D006AE4CAF44717E4 /* AFImageDownloader.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -177,6 +176,7 @@
 		F7A4481EE93692D3D85F96D05F4CF561 /* OSSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA977BA3E19EC81CF3FFDA996C0EE0D /* OSSRequest.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		FC51C6167D28EE90ECEB1CD4464804A4 /* YYDispatchQueuePool-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 439CCA6F23A0F9B61CAE9F00828D2095 /* YYDispatchQueuePool-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FE0EF24A5B5BC49B6BDCC09BEF9C9584 /* OSSDeleteMultipleObjectsRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CA7B5D682658CA8483D3CC923FF1989 /* OSSDeleteMultipleObjectsRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FFFC1F004D6F1B3CFCAC61D1F76F8D08 /* UFileHttpManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 87AF419F30F8443DDF7F714A430144FF /* UFileHttpManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -223,12 +223,13 @@
 		0214A540ECBC968E55C83188575326AC /* EGOCache-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EGOCache-umbrella.h"; sourceTree = "<group>"; };
 		0236854723F47CC19964E0C9BA3C32AF /* OSSGetSymlinkResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSGetSymlinkResult.h; path = AliyunOSSSDK/OSSGetSymlinkResult.h; sourceTree = "<group>"; };
 		03519F7C705F910AC5D3A6B2A40BA9C8 /* AliyunOSSiOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AliyunOSSiOS-umbrella.h"; sourceTree = "<group>"; };
-		03F86345D6FBD9470BD3D64D5EC9F4F1 /* UFileAPI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = UFileAPI.m; path = TFUCloudFileSDK/TFUCloudFileSDK/UFileAPI.m; sourceTree = "<group>"; };
 		0688B6E65F43504DC4EF604FB34D641B /* OSSRestoreObjectResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSRestoreObjectResult.h; path = AliyunOSSSDK/OSSRestoreObjectResult.h; sourceTree = "<group>"; };
+		068DD291138DB6A21BE3E8092EC86BF3 /* TFUCloudFileSDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TFUCloudFileSDK.xcconfig; sourceTree = "<group>"; };
 		0797D8DC5D101879488DC1F8E4A1E71C /* OSSHttpResponseParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSHttpResponseParser.h; path = AliyunOSSSDK/OSSHttpResponseParser.h; sourceTree = "<group>"; };
 		07B4840C9BCE6BFEFE340C65CBF14F40 /* AFURLSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLSessionManager.h; path = AFNetworking/AFURLSessionManager.h; sourceTree = "<group>"; };
 		07E09794A414EE8A3118273AC01F5FD4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		0842780083E32C70B6383E5F0A274444 /* OSSConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSConstants.m; path = AliyunOSSSDK/OSSConstants.m; sourceTree = "<group>"; };
+		0AC3A23419674489D2DBBE9C35D3F020 /* UFileAPIUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = UFileAPIUtils.m; path = TFUCloudFileSDK/Classes/UFileAPIUtils.m; sourceTree = "<group>"; };
 		0B21A29E3AC8B6068BE8915BE029CDEE /* OSSDeleteMultipleObjectsResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSDeleteMultipleObjectsResult.m; path = AliyunOSSSDK/OSSDeleteMultipleObjectsResult.m; sourceTree = "<group>"; };
 		0D172835FDEC96F310D5DE50CF2A1FBE /* OSSInputStreamHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSInputStreamHelper.m; path = AliyunOSSSDK/OSSInputStreamHelper.m; sourceTree = "<group>"; };
 		0DCE5E57A258171900B9C4ED063D1AE1 /* YYDispatchQueuePool-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YYDispatchQueuePool-prefix.pch"; sourceTree = "<group>"; };
@@ -237,6 +238,7 @@
 		0FFF18D641B3B23E7C266363E46600C3 /* OSSNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSNetworking.h; path = AliyunOSSSDK/OSSNetworking.h; sourceTree = "<group>"; };
 		10B4C901045952D01F91533568692D90 /* OSSCancellationToken.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSCancellationToken.m; path = AliyunOSSSDK/OSSTask/OSSCancellationToken.m; sourceTree = "<group>"; };
 		1187C2728A21DC094877DBBCDE4D8AB0 /* OSSGetObjectACLResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSGetObjectACLResult.m; path = AliyunOSSSDK/OSSGetObjectACLResult.m; sourceTree = "<group>"; };
+		119497E99AF777643C8C37ED62B585B6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		134F14DD7866196E370D989B2AC2C2AA /* UIKit+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIKit+AFNetworking.h"; path = "UIKit+AFNetworking/UIKit+AFNetworking.h"; sourceTree = "<group>"; };
 		144AF588568D995AD27D35686CB581A4 /* OSSGetBucketInfoResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSGetBucketInfoResult.h; path = AliyunOSSSDK/OSSGetBucketInfoResult.h; sourceTree = "<group>"; };
 		147E6E510394B83F0855A7E8CCA78D28 /* OSSUtil.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSUtil.h; path = AliyunOSSSDK/OSSUtil.h; sourceTree = "<group>"; };
@@ -258,32 +260,26 @@
 		265A07572D0BD1B592F2B83EFC1CEF44 /* OSSNetworkingRequestDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSNetworkingRequestDelegate.h; path = AliyunOSSSDK/OSSNetworkingRequestDelegate.h; sourceTree = "<group>"; };
 		28870758943B4DA1C7FF4DA937B2F361 /* YYDispatchQueuePool-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YYDispatchQueuePool-dummy.m"; sourceTree = "<group>"; };
 		28DE75B2153CE092639A906318652E30 /* EGOCache.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = EGOCache.modulemap; sourceTree = "<group>"; };
-		28FD6BFACF52B4034D52C6DAD9AD2A26 /* UFileHttpManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = UFileHttpManager.m; path = TFUCloudFileSDK/TFUCloudFileSDK/UFileHttpManager.m; sourceTree = "<group>"; };
-		2A889E4A0318F4D8E86E34CA51428B26 /* TFUCloudFileSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TFUCloudFileSDK-prefix.pch"; sourceTree = "<group>"; };
+		2ECB417526C6774F7E7BA13ACDEA4CA9 /* version.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = version.h; path = TFUCloudFileSDK/Classes/version.h; sourceTree = "<group>"; };
 		2EE9FEE2B746D783311E914BDEC7F9F7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F71991E0A394A1A81C670C639D2AAD9 /* OSSTaskCompletionSource.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSTaskCompletionSource.m; path = AliyunOSSSDK/OSSTask/OSSTaskCompletionSource.m; sourceTree = "<group>"; };
 		30E4AD0C440BC6651A949B25F3F0E279 /* AliyunOSSiOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AliyunOSSiOS-dummy.m"; sourceTree = "<group>"; };
 		31751F5B72AC9F0BC0EC67C3EE085D9B /* OSSNSLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSNSLogger.m; path = AliyunOSSSDK/OSSFileLog/OSSNSLogger.m; sourceTree = "<group>"; };
 		345C5CE1B3ECAAE52B0B6EA2BD1049B7 /* OSSGetObjectACLResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSGetObjectACLResult.h; path = AliyunOSSSDK/OSSGetObjectACLResult.h; sourceTree = "<group>"; };
 		38D4F93C232997FB3AF1210829BE0812 /* Pods-TFUploadAssistant-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TFUploadAssistant-frameworks.sh"; sourceTree = "<group>"; };
-		3A45A02D2E7D52C654EAE5448B11E808 /* UCloudFileSDK.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = UCloudFileSDK.m; path = TFUCloudFileSDK/TFUCloudFileSDK/UCloudFileSDK.m; sourceTree = "<group>"; };
 		3A6081CB63DD74C6F2273253A387A57A /* OSSCancellationTokenRegistration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSCancellationTokenRegistration.m; path = AliyunOSSSDK/OSSTask/OSSCancellationTokenRegistration.m; sourceTree = "<group>"; };
 		3A83CFA954262FC419C69A48BE7B7FAE /* NSDate+OSS.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDate+OSS.m"; path = "AliyunOSSSDK/NSDate+OSS.m"; sourceTree = "<group>"; };
-		3A94532B44DA67F703B77F231D8761DC /* UFileAPIUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UFileAPIUtils.h; path = TFUCloudFileSDK/TFUCloudFileSDK/UFileAPIUtils.h; sourceTree = "<group>"; };
 		3BAFF1EC96198BAAB00CA2914797D5CC /* Pods-TFUploadAssistant-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TFUploadAssistant-resources.sh"; sourceTree = "<group>"; };
 		3CA7B5D682658CA8483D3CC923FF1989 /* OSSDeleteMultipleObjectsRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSDeleteMultipleObjectsRequest.h; path = AliyunOSSSDK/OSSDeleteMultipleObjectsRequest.h; sourceTree = "<group>"; };
 		3DB914621F4DFC4C4D3D80E8C1E825D2 /* OSSIPv6Adapter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSIPv6Adapter.h; path = AliyunOSSSDK/OSSIPv6/OSSIPv6Adapter.h; sourceTree = "<group>"; };
-		3ECD895D1141F137D4B7AD93BDE96F3C /* UFileAPI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UFileAPI.h; path = TFUCloudFileSDK/TFUCloudFileSDK/UFileAPI.h; sourceTree = "<group>"; };
 		41EB7B802DEF793401FA9945F31276A2 /* OSSCancellationToken.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSCancellationToken.h; path = AliyunOSSSDK/OSSTask/OSSCancellationToken.h; sourceTree = "<group>"; };
 		41F2C811345432004D5A271E0F2E587E /* OSSTask.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSTask.h; path = AliyunOSSSDK/OSSTask/OSSTask.h; sourceTree = "<group>"; };
 		439CCA6F23A0F9B61CAE9F00828D2095 /* YYDispatchQueuePool-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YYDispatchQueuePool-umbrella.h"; sourceTree = "<group>"; };
-		449D16C84C101495A02D3108B387E619 /* UFileHttpManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UFileHttpManager.h; path = TFUCloudFileSDK/TFUCloudFileSDK/UFileHttpManager.h; sourceTree = "<group>"; };
 		4DC3D81CEE7733166F13B15767DD2314 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLRequestSerialization.m; path = AFNetworking/AFURLRequestSerialization.m; sourceTree = "<group>"; };
 		4E0780841FEC3750CB00C79B95C82CDC /* OSSFileLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSFileLogger.m; path = AliyunOSSSDK/OSSFileLog/OSSFileLogger.m; sourceTree = "<group>"; };
 		53160F04FD9C798E0420F2BE2CADA854 /* OSSInputStreamHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSInputStreamHelper.h; path = AliyunOSSSDK/OSSInputStreamHelper.h; sourceTree = "<group>"; };
 		5407B73CBD9D0BD55AFC8E0095617A9F /* AFCompatibilityMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFCompatibilityMacros.h; path = AFNetworking/AFCompatibilityMacros.h; sourceTree = "<group>"; };
 		543B4D246A844E955A545780FA209846 /* AliyunOSSiOS.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AliyunOSSiOS.h; path = "Supporting Files/AliyunOSSiOS.h"; sourceTree = "<group>"; };
-		56243F1ABA124935B5A2151839213D67 /* TFUCloudFileSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = TFUCloudFileSDK.modulemap; sourceTree = "<group>"; };
 		5941C5B139AB28BAC7A3685F57ADA230 /* NSMutableData+OSS_CRC.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableData+OSS_CRC.m"; path = "AliyunOSSSDK/NSMutableData+OSS_CRC.m"; sourceTree = "<group>"; };
 		595A0B1552D68A62C3C0AC6D86189087 /* OSSUtil.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSUtil.m; path = AliyunOSSSDK/OSSUtil.m; sourceTree = "<group>"; };
 		5A2B83BD04AACC7A8EF4C8F308AF8DBD /* OSSLog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSLog.h; path = AliyunOSSSDK/OSSLog.h; sourceTree = "<group>"; };
@@ -304,18 +300,17 @@
 		66269A285130E766939E63E1950D6606 /* OSSNetworkingRequestDelegate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSNetworkingRequestDelegate.m; path = AliyunOSSSDK/OSSNetworkingRequestDelegate.m; sourceTree = "<group>"; };
 		67071FAE69F432D22BE0D5EA2CA731A3 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLResponseSerialization.m; path = AFNetworking/AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		67D02F663238DC43B9B6164AB7CBA980 /* OSSRestoreObjectRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSRestoreObjectRequest.h; path = AliyunOSSSDK/OSSRestoreObjectRequest.h; sourceTree = "<group>"; };
+		6813AA45C77D1A136FFF58E31EB42307 /* UFileAPIUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UFileAPIUtils.h; path = TFUCloudFileSDK/Classes/UFileAPIUtils.h; sourceTree = "<group>"; };
 		6827B1C65DD92C1EE5EA150D08D72347 /* AliyunOSSiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AliyunOSSiOS.framework; path = AliyunOSSiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		691A3D13BFA037564F928A4EFB5DB607 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+AFNetworking.h"; path = "UIKit+AFNetworking/UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		698C3A37FE85D00EB0141CB2C3B09991 /* Pods-TFUploadAssistant-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TFUploadAssistant-acknowledgements.plist"; sourceTree = "<group>"; };
 		6A75B716DA0079C1D43C67AF5BCFCD90 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFNetworkActivityIndicatorManager.m; path = "UIKit+AFNetworking/AFNetworkActivityIndicatorManager.m"; sourceTree = "<group>"; };
-		6A9174D87301A1518B1CE5B464638462 /* TFUCloudFileSDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TFUCloudFileSDK.xcconfig; sourceTree = "<group>"; };
 		6ACA35AF93BFF4AFBCA50669628E9BDA /* UIProgressView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIProgressView+AFNetworking.m"; path = "UIKit+AFNetworking/UIProgressView+AFNetworking.m"; sourceTree = "<group>"; };
 		6CA1E3508147EFCFF42FE13976C04AD2 /* UIActivityIndicatorView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIActivityIndicatorView+AFNetworking.h"; path = "UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.h"; sourceTree = "<group>"; };
 		6CA71A17653D1E0ECCEE78DF6699E902 /* Pods-TFUploadAssistant-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TFUploadAssistant-umbrella.h"; sourceTree = "<group>"; };
 		6CD20BF9BE6B092ED1CE95E7B76642EB /* UIProgressView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIProgressView+AFNetworking.h"; path = "UIKit+AFNetworking/UIProgressView+AFNetworking.h"; sourceTree = "<group>"; };
 		6E05BB9A334AC32A4A1C66F203F4E1E1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		6E2C76FC56691FCB291378EF9C0D86C8 /* OSSClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSClient.m; path = AliyunOSSSDK/OSSClient.m; sourceTree = "<group>"; };
-		6E7BF0730C710D52782B736C2B8D4BBF /* UFileAPIUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = UFileAPIUtils.m; path = TFUCloudFileSDK/TFUCloudFileSDK/UFileAPIUtils.m; sourceTree = "<group>"; };
 		6EC0E002E8A33BB7D50B224C3A415D55 /* UIRefreshControl+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIRefreshControl+AFNetworking.h"; path = "UIKit+AFNetworking/UIRefreshControl+AFNetworking.h"; sourceTree = "<group>"; };
 		6F1D91A6AD830BBA24215C7CC31343F3 /* UIActivityIndicatorView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIActivityIndicatorView+AFNetworking.m"; path = "UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.m"; sourceTree = "<group>"; };
 		6F5016589E8C533BBFE8C4FE7FD622DB /* UIButton+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+AFNetworking.m"; path = "UIKit+AFNetworking/UIButton+AFNetworking.m"; sourceTree = "<group>"; };
@@ -325,6 +320,7 @@
 		731D5431F01B3C0ECDA9BE7819E5F8FA /* OSSResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSResult.m; path = AliyunOSSSDK/OSSResult.m; sourceTree = "<group>"; };
 		7348D7B1AEE237D201575CC04DB849D6 /* OSSTask.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSTask.m; path = AliyunOSSSDK/OSSTask/OSSTask.m; sourceTree = "<group>"; };
 		7781498C364996CE7574AC4D436D07AE /* AFNetworking-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AFNetworking-prefix.pch"; sourceTree = "<group>"; };
+		77F4C56D1D9A40ACDB6CFF7DC1CDCB7E /* UFileAPI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UFileAPI.h; path = TFUCloudFileSDK/Classes/UFileAPI.h; sourceTree = "<group>"; };
 		7A5FA327C97E7F8874FACDE81A49A63B /* aos_crc64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = aos_crc64.h; path = AliyunOSSSDK/aos_crc64.h; sourceTree = "<group>"; };
 		7A83243D9B14B7B387127A9FEEDDBD50 /* YYDispatchQueuePool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYDispatchQueuePool.h; path = YYDispatchQueuePool/YYDispatchQueuePool.h; sourceTree = "<group>"; };
 		7C04A8577A9AFE59CABEEE1BCDE24F09 /* OSSGetSymlinkRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSGetSymlinkRequest.m; path = AliyunOSSSDK/OSSGetSymlinkRequest.m; sourceTree = "<group>"; };
@@ -335,10 +331,13 @@
 		7F9DD6530352DD43203F406FD11ED610 /* AFNetworking.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AFNetworking.modulemap; sourceTree = "<group>"; };
 		7FA9BF417BDA7D48AB759DBE695B98B4 /* OSSRestoreObjectResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSRestoreObjectResult.m; path = AliyunOSSSDK/OSSRestoreObjectResult.m; sourceTree = "<group>"; };
 		80A089B23AF1C1AC9522DB0DF445DE0D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		81D84FAEA66E5678D77198E98C158C6F /* UCloudFileSDK.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = UCloudFileSDK.m; path = TFUCloudFileSDK/Classes/UCloudFileSDK.m; sourceTree = "<group>"; };
 		82E81F3F3C4EA5B63B2DCBD696B9FACA /* AFAutoPurgingImageCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFAutoPurgingImageCache.m; path = "UIKit+AFNetworking/AFAutoPurgingImageCache.m"; sourceTree = "<group>"; };
 		858F3A4C3E12B3AFA096EB8FD216213F /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLResponseSerialization.h; path = AFNetworking/AFURLResponseSerialization.h; sourceTree = "<group>"; };
 		8594F22CEE60EF534239F00711D20EA8 /* AliyunOSSiOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AliyunOSSiOS.xcconfig; sourceTree = "<group>"; };
+		8738794E9FD3C80C4EF814281F982FA0 /* TFUCloudFileSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TFUCloudFileSDK.h; path = TFUCloudFileSDK/Classes/TFUCloudFileSDK.h; sourceTree = "<group>"; };
 		878051753D9BE1226E7E57F5C9F71220 /* OSSGetBucketInfoRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSGetBucketInfoRequest.h; path = AliyunOSSSDK/OSSGetBucketInfoRequest.h; sourceTree = "<group>"; };
+		87AF419F30F8443DDF7F714A430144FF /* UFileHttpManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UFileHttpManager.h; path = TFUCloudFileSDK/Classes/UFileHttpManager.h; sourceTree = "<group>"; };
 		87CA15EED13229CCD2059E75C5571C6B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC59C7D4C94ADB6A15F18C3E3A19A52 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLRequestSerialization.h; path = AFNetworking/AFURLRequestSerialization.h; sourceTree = "<group>"; };
 		8DD2BE06F5F78482AB7A31193F5E2300 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
@@ -347,12 +346,10 @@
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93E97D66A59F2FB68B77E0F4B4819475 /* OSSIPv6PrefixResolver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSIPv6PrefixResolver.m; path = AliyunOSSSDK/OSSIPv6/OSSIPv6PrefixResolver.m; sourceTree = "<group>"; };
 		95CB2811045BAEFDE670FA24BF6E57AF /* OSSDDLog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSDDLog.h; path = AliyunOSSSDK/OSSFileLog/OSSDDLog.h; sourceTree = "<group>"; };
-		95CD32656BDD85A460C54A37FB91194C /* UCloudFileSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UCloudFileSDK.h; path = TFUCloudFileSDK/TFUCloudFileSDK/UCloudFileSDK.h; sourceTree = "<group>"; };
 		95D5EDC4DEF0C301F058AAD6C79FBE05 /* NSMutableDictionary+OSS.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableDictionary+OSS.m"; path = "AliyunOSSSDK/NSMutableDictionary+OSS.m"; sourceTree = "<group>"; };
 		97DE6932713277ABED1A961DC1793BA9 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFHTTPSessionManager.m; path = AFNetworking/AFHTTPSessionManager.m; sourceTree = "<group>"; };
-		986696841C5E880A9B8F4AC063A1B59F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		98CD9E45EB9C214177D4199B49F487A9 /* TFUCloudFileSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TFUCloudFileSDK.h; path = TFUCloudFileSDK/TFUCloudFileSDK/TFUCloudFileSDK.h; sourceTree = "<group>"; };
 		99A3041A32C3FF9BAD898B441A93276C /* OSSNSLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSNSLogger.h; path = AliyunOSSSDK/OSSFileLog/OSSNSLogger.h; sourceTree = "<group>"; };
+		9B204F9C47CABA25F49E7CA7999D8392 /* TFUCloudFileSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TFUCloudFileSDK-prefix.pch"; sourceTree = "<group>"; };
 		9C3BC75FC614C07570FD406313082B9E /* OSSPutSymlinkRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSPutSymlinkRequest.m; path = AliyunOSSSDK/OSSPutSymlinkRequest.m; sourceTree = "<group>"; };
 		9CEB5E838CEABD09B4198F199EB101F6 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+AFNetworking.m"; path = "UIKit+AFNetworking/UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		A07D8DBD5D76DE28E6C9860F2995E1FE /* OSSService.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSService.h; path = AliyunOSSSDK/OSSService.h; sourceTree = "<group>"; };
@@ -367,6 +364,8 @@
 		B3BC373589CEEA1343DB173388A660B9 /* OSSExecutor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSExecutor.h; path = AliyunOSSSDK/OSSTask/OSSExecutor.h; sourceTree = "<group>"; };
 		B60F339A5AA1233C96F3AD30AF1AC163 /* OSSConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSConstants.h; path = AliyunOSSSDK/OSSConstants.h; sourceTree = "<group>"; };
 		B7119ABB8C5E2C262F2959E0C1B924AE /* OSSCompat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSCompat.h; path = AliyunOSSSDK/OSSCompat.h; sourceTree = "<group>"; };
+		BB9114EC989A16DC5EC32968F7EFB4ED /* TFUCloudFileSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = TFUCloudFileSDK.modulemap; sourceTree = "<group>"; };
+		BC416C5E58DF55332E9C04FE94FA0F6D /* UFileHttpManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = UFileHttpManager.m; path = TFUCloudFileSDK/Classes/UFileHttpManager.m; sourceTree = "<group>"; };
 		BD4EE618C3693B923E8D5A9E2F48F3EC /* OSSPutSymlinkResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSPutSymlinkResult.m; path = AliyunOSSSDK/OSSPutSymlinkResult.m; sourceTree = "<group>"; };
 		BD6E5DD752FFC8112D71AE9D691CE86D /* OSSReachabilityManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSReachabilityManager.m; path = AliyunOSSSDK/OSSIPv6/OSSReachabilityManager.m; sourceTree = "<group>"; };
 		BE5CC8BA1083996B7D1A5DEDCBCDB11D /* AFURLSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLSessionManager.m; path = AFNetworking/AFURLSessionManager.m; sourceTree = "<group>"; };
@@ -379,7 +378,9 @@
 		C45BD76537070629A52C822B031D4D0D /* UIImage+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+AFNetworking.h"; path = "UIKit+AFNetworking/UIImage+AFNetworking.h"; sourceTree = "<group>"; };
 		C4EF217CEC1CAB91E02EBC3EB8AF412E /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFNetworkReachabilityManager.m; path = AFNetworking/AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
 		C6DA5F24A8E61B7677D879CF121557C1 /* NSMutableData+OSS_CRC.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableData+OSS_CRC.h"; path = "AliyunOSSSDK/NSMutableData+OSS_CRC.h"; sourceTree = "<group>"; };
+		C9E5F7408E708EA65BB7427874A90560 /* TFUCloudFileSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TFUCloudFileSDK-umbrella.h"; sourceTree = "<group>"; };
 		C9F643B770F4A8FCBE8A62842EFDB0B9 /* OSSExecutor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSExecutor.m; path = AliyunOSSSDK/OSSTask/OSSExecutor.m; sourceTree = "<group>"; };
+		CED282E90E2EF82F02AF9B2C07AB95F0 /* TFUCloudFileSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TFUCloudFileSDK-dummy.m"; sourceTree = "<group>"; };
 		CF07BF59928D2FB5A00889C83C8B72F3 /* OSSLog.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSLog.m; path = AliyunOSSSDK/OSSLog.m; sourceTree = "<group>"; };
 		CF8D87EEC62E16CFD449804B6250EB83 /* OSSBolts.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSBolts.h; path = AliyunOSSSDK/OSSTask/OSSBolts.h; sourceTree = "<group>"; };
 		D02CBEB94DBF355FD87DD117180FCFD5 /* AFNetworking.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AFNetworking.xcconfig; sourceTree = "<group>"; };
@@ -388,8 +389,7 @@
 		D5129FCD15273EB9CD48189B083A79BE /* OSSDDLog.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSDDLog.m; path = AliyunOSSSDK/OSSFileLog/OSSDDLog.m; sourceTree = "<group>"; };
 		D75BB9121668AF338510E7CAEADDD8EE /* AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworking.h; path = AFNetworking/AFNetworking.h; sourceTree = "<group>"; };
 		D7EA1D6D4B4EA070228913FA948BD273 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFHTTPSessionManager.h; path = AFNetworking/AFHTTPSessionManager.h; sourceTree = "<group>"; };
-		D822B9AC0FD11A88534ACE4BF826BE91 /* TFUCloudFileSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TFUCloudFileSDK-dummy.m"; sourceTree = "<group>"; };
-		DB61ECFF0703FDF8E02B5FBB72F6A2FB /* version.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = version.h; path = TFUCloudFileSDK/TFUCloudFileSDK/version.h; sourceTree = "<group>"; };
+		DAAD472BF3BC22B8AA84D70ED41B3872 /* UFileAPI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = UFileAPI.m; path = TFUCloudFileSDK/Classes/UFileAPI.m; sourceTree = "<group>"; };
 		DE2195A3742F1A496317939519EAC9AF /* OSSGetBucketInfoResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSGetBucketInfoResult.m; path = AliyunOSSSDK/OSSGetBucketInfoResult.m; sourceTree = "<group>"; };
 		DE7EA64657C25E3366C229E89443A787 /* UIButton+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+AFNetworking.h"; path = "UIKit+AFNetworking/UIButton+AFNetworking.h"; sourceTree = "<group>"; };
 		DF9442CB16B2AFC2ABC4ACCEB5E4655E /* OSSURLRequestRetryHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSURLRequestRetryHandler.m; path = AliyunOSSSDK/OSSURLRequestRetryHandler.m; sourceTree = "<group>"; };
@@ -410,8 +410,8 @@
 		F316CE524B4E342F815A56714761666B /* OSSDeleteMultipleObjectsRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSDeleteMultipleObjectsRequest.m; path = AliyunOSSSDK/OSSDeleteMultipleObjectsRequest.m; sourceTree = "<group>"; };
 		F7A142863AE5DEACE6442AA3432FD24E /* EGOCache-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EGOCache-dummy.m"; sourceTree = "<group>"; };
 		F815EB394B78D17D81AF34C5612BBDD0 /* OSSNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSNetworking.m; path = AliyunOSSSDK/OSSNetworking.m; sourceTree = "<group>"; };
+		F97810891405AD4B0C3B286D506232EA /* UCloudFileSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UCloudFileSDK.h; path = TFUCloudFileSDK/Classes/UCloudFileSDK.h; sourceTree = "<group>"; };
 		F9C0181F55FD4EDE51FB5A93CD9EFFBE /* OSSBolts.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSSBolts.m; path = AliyunOSSSDK/OSSTask/OSSBolts.m; sourceTree = "<group>"; };
-		F9C1C0A7554813745867D52AE7E10F5B /* TFUCloudFileSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TFUCloudFileSDK-umbrella.h"; sourceTree = "<group>"; };
 		FB01841EB84B061487A9AA719CBD67B7 /* OSSClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSClient.h; path = AliyunOSSSDK/OSSClient.h; sourceTree = "<group>"; };
 		FB7602A491FD817ECD69123D1B2B59BF /* AFAutoPurgingImageCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFAutoPurgingImageCache.h; path = "UIKit+AFNetworking/AFAutoPurgingImageCache.h"; sourceTree = "<group>"; };
 		FE64A98D65895D2064EC55D55AD39D7F /* OSSDeleteMultipleObjectsResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSSDeleteMultipleObjectsResult.h; path = AliyunOSSSDK/OSSDeleteMultipleObjectsResult.h; sourceTree = "<group>"; };
@@ -478,18 +478,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		11E7C407B1FF22C1B8DA807380593E59 /* Support Files */ = {
+		080BF3DDC069B3286E3A300A347F08B6 /* TFUCloudFileSDK */ = {
 			isa = PBXGroup;
 			children = (
-				986696841C5E880A9B8F4AC063A1B59F /* Info.plist */,
-				56243F1ABA124935B5A2151839213D67 /* TFUCloudFileSDK.modulemap */,
-				6A9174D87301A1518B1CE5B464638462 /* TFUCloudFileSDK.xcconfig */,
-				D822B9AC0FD11A88534ACE4BF826BE91 /* TFUCloudFileSDK-dummy.m */,
-				2A889E4A0318F4D8E86E34CA51428B26 /* TFUCloudFileSDK-prefix.pch */,
-				F9C1C0A7554813745867D52AE7E10F5B /* TFUCloudFileSDK-umbrella.h */,
+				8738794E9FD3C80C4EF814281F982FA0 /* TFUCloudFileSDK.h */,
+				F97810891405AD4B0C3B286D506232EA /* UCloudFileSDK.h */,
+				81D84FAEA66E5678D77198E98C158C6F /* UCloudFileSDK.m */,
+				77F4C56D1D9A40ACDB6CFF7DC1CDCB7E /* UFileAPI.h */,
+				DAAD472BF3BC22B8AA84D70ED41B3872 /* UFileAPI.m */,
+				6813AA45C77D1A136FFF58E31EB42307 /* UFileAPIUtils.h */,
+				0AC3A23419674489D2DBBE9C35D3F020 /* UFileAPIUtils.m */,
+				87AF419F30F8443DDF7F714A430144FF /* UFileHttpManager.h */,
+				BC416C5E58DF55332E9C04FE94FA0F6D /* UFileHttpManager.m */,
+				2ECB417526C6774F7E7BA13ACDEA4CA9 /* version.h */,
+				52FF75FA2568EA1D521A2A13E411B4F9 /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/TFUCloudFileSDK";
+			name = TFUCloudFileSDK;
+			path = TFUCloudFileSDK;
 			sourceTree = "<group>";
 		};
 		2A3E1853E6198CF878B42BF417483BC6 /* Reachability */ = {
@@ -549,6 +554,20 @@
 				198163930E8778A5ACFEA32C430BA5ED /* YYDispatchQueuePool.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		52FF75FA2568EA1D521A2A13E411B4F9 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				119497E99AF777643C8C37ED62B585B6 /* Info.plist */,
+				BB9114EC989A16DC5EC32968F7EFB4ED /* TFUCloudFileSDK.modulemap */,
+				068DD291138DB6A21BE3E8092EC86BF3 /* TFUCloudFileSDK.xcconfig */,
+				CED282E90E2EF82F02AF9B2C07AB95F0 /* TFUCloudFileSDK-dummy.m */,
+				9B204F9C47CABA25F49E7CA7999D8392 /* TFUCloudFileSDK-prefix.pch */,
+				C9E5F7408E708EA65BB7427874A90560 /* TFUCloudFileSDK-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/TFUCloudFileSDK";
 			sourceTree = "<group>";
 		};
 		72200E3F9A4A924E634581B78EA089F8 /* Serialization */ = {
@@ -642,25 +661,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/EGOCache";
-			sourceTree = "<group>";
-		};
-		8555A0D260181F5D9E0FA6D3025AC22F /* TFUCloudFileSDK */ = {
-			isa = PBXGroup;
-			children = (
-				98CD9E45EB9C214177D4199B49F487A9 /* TFUCloudFileSDK.h */,
-				95CD32656BDD85A460C54A37FB91194C /* UCloudFileSDK.h */,
-				3A45A02D2E7D52C654EAE5448B11E808 /* UCloudFileSDK.m */,
-				3ECD895D1141F137D4B7AD93BDE96F3C /* UFileAPI.h */,
-				03F86345D6FBD9470BD3D64D5EC9F4F1 /* UFileAPI.m */,
-				3A94532B44DA67F703B77F231D8761DC /* UFileAPIUtils.h */,
-				6E7BF0730C710D52782B736C2B8D4BBF /* UFileAPIUtils.m */,
-				449D16C84C101495A02D3108B387E619 /* UFileHttpManager.h */,
-				28FD6BFACF52B4034D52C6DAD9AD2A26 /* UFileHttpManager.m */,
-				DB61ECFF0703FDF8E02B5FBB72F6A2FB /* version.h */,
-				11E7C407B1FF22C1B8DA807380593E59 /* Support Files */,
-			);
-			name = TFUCloudFileSDK;
-			path = TFUCloudFileSDK;
 			sourceTree = "<group>";
 		};
 		88A3E332D55F60710C497D6F5C2BEE6A /* YYDispatchQueuePool */ = {
@@ -820,7 +820,7 @@
 				2F7DF2BF61C31928A8FBF3E3D4D18640 /* AFNetworking */,
 				B97F079787F4027F6A2B90E2C770F2C8 /* AliyunOSSiOS */,
 				A03D3EF0C6EE73D5780DEEC86DE7DFC6 /* EGOCache */,
-				8555A0D260181F5D9E0FA6D3025AC22F /* TFUCloudFileSDK */,
+				080BF3DDC069B3286E3A300A347F08B6 /* TFUCloudFileSDK */,
 				88A3E332D55F60710C497D6F5C2BEE6A /* YYDispatchQueuePool */,
 			);
 			name = Pods;
@@ -906,12 +906,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				517308983D9558F3DC0BB24AA99FBDA5 /* TFUCloudFileSDK-umbrella.h in Headers */,
-				586658FBEBFA7E873C32F59270FDC59C /* TFUCloudFileSDK.h in Headers */,
-				95C93E11A6F9831DED76F8798896C7D1 /* UCloudFileSDK.h in Headers */,
-				629CB9C83FB457A2D51B7C88E43FFF3C /* UFileAPI.h in Headers */,
-				EA2D0B0DD4C5708BF81F0F65F11EDE53 /* UFileAPIUtils.h in Headers */,
-				8CE9A95B5F8D564B9740EC7F04AE2DA4 /* UFileHttpManager.h in Headers */,
-				1746E098801A92D74C82CAA1A75B10EB /* version.h in Headers */,
+				262D21EF10E9BB27355E1BC6D2864AA9 /* TFUCloudFileSDK.h in Headers */,
+				837EF32CC14CAABC9163842F24F1B261 /* UCloudFileSDK.h in Headers */,
+				E47B223DC1E70ABA3D4200A2FA95ED6B /* UFileAPI.h in Headers */,
+				1302941EA41AF98C89D5CFE465DE7B80 /* UFileAPIUtils.h in Headers */,
+				FFFC1F004D6F1B3CFCAC61D1F76F8D08 /* UFileHttpManager.h in Headers */,
+				F21D5561B0B1B9FD4B133590B8D2E81A /* version.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1241,10 +1241,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				205295F8623895B7C1F235BF0579E90F /* TFUCloudFileSDK-dummy.m in Sources */,
-				AE909807C91B5F77B133173181573269 /* UCloudFileSDK.m in Sources */,
-				C0C7BF21D26322F213528FA7D8BAA185 /* UFileAPI.m in Sources */,
-				2DE27F0503A41C5641B7E6CE69186BBA /* UFileAPIUtils.m in Sources */,
-				13E0BAC4576177773C92797EF4EDA051 /* UFileHttpManager.m in Sources */,
+				2C2181638B7364C027EB5EAE49F49DF8 /* UCloudFileSDK.m in Sources */,
+				EEA2E091318A5B362CB7C0BC6739F621 /* UFileAPI.m in Sources */,
+				A7352461D6E9AB477E3FDFA343B4E65A /* UFileAPIUtils.m in Sources */,
+				3725860C9731E427D2E1E7137F13132D /* UFileHttpManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1315,9 +1315,9 @@
 			};
 			name = Release;
 		};
-		09C3BBA4D78E0DE740116100BA96E913 /* Debug */ = {
+		14A6D0CE8097E1040859B0C0BAEA48AB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A9174D87301A1518B1CE5B464638462 /* TFUCloudFileSDK.xcconfig */;
+			baseConfigurationReference = 068DD291138DB6A21BE3E8092EC86BF3 /* TFUCloudFileSDK.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1331,7 +1331,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/TFUCloudFileSDK/TFUCloudFileSDK-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/TFUCloudFileSDK/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/TFUCloudFileSDK/TFUCloudFileSDK.modulemap";
 				PRODUCT_MODULE_NAME = TFUCloudFileSDK;
@@ -1340,10 +1340,11 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		199D972A13F2B4C56847F7A89CCA83BC /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1468,9 +1469,9 @@
 			};
 			name = Debug;
 		};
-		45D03407E02F4468B7B9B8B6D0E0234E /* Release */ = {
+		55B25CA0A200211947F53E03F4BD1D69 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A9174D87301A1518B1CE5B464638462 /* TFUCloudFileSDK.xcconfig */;
+			baseConfigurationReference = 068DD291138DB6A21BE3E8092EC86BF3 /* TFUCloudFileSDK.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1484,7 +1485,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/TFUCloudFileSDK/TFUCloudFileSDK-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/TFUCloudFileSDK/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/TFUCloudFileSDK/TFUCloudFileSDK.modulemap";
 				PRODUCT_MODULE_NAME = TFUCloudFileSDK;
@@ -1493,11 +1494,10 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		5DDD343646B8CB5B58018A4EFF826C9B /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1828,8 +1828,8 @@
 		96341F2F51FE35D73405851C276EFFD2 /* Build configuration list for PBXNativeTarget "TFUCloudFileSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				09C3BBA4D78E0DE740116100BA96E913 /* Debug */,
-				45D03407E02F4468B7B9B8B6D0E0234E /* Release */,
+				55B25CA0A200211947F53E03F4BD1D69 /* Debug */,
+				14A6D0CE8097E1040859B0C0BAEA48AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

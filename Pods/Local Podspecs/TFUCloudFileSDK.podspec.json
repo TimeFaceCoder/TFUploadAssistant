@@ -1,19 +1,21 @@
 {
   "name": "TFUCloudFileSDK",
-  "version": "0.0.2",
-  "summary": "时光流影iOS UCloud上传工具",
-  "homepage": "http://code2.v5time.net/iOS/TFUCloudFileSDK.git",
-  "license": "Copyright (C) 2016 TimeFace, Inc.  All rights reserved.",
-  "authors": {
-    "baozhenhua": "baozhenhua@timeface.cn"
+  "version": "0.2.0",
+  "summary": "A short description of TFUCloudFileSDK.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "http://code2.v5time.net/iOS/TFUCloudFileSDK",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
   },
-  "social_media_url": "http://www.timeface.cn",
-  "platforms": {
-    "ios": "7.1"
+  "authors": {
+    "melvin7": "yangmin@timeface.cn"
   },
   "source": {
-    "git": "http://code2.v5time.net/iOS/TFUCloudFileSDK.git"
+    "git": "http://code2.v5time.net/iOS/TFUCloudFileSDK"
   },
-  "source_files": "TFUCloudFileSDK/TFUCloudFileSDK/**/*.{h,m,c}",
-  "requires_arc": true
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "TFUCloudFileSDK/Classes/**/*"
 }

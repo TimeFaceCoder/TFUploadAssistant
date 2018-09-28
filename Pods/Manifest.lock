@@ -16,7 +16,7 @@ PODS:
     - AFNetworking/NSURLSession
   - AliyunOSSiOS (2.10.7)
   - EGOCache (2.2.0)
-  - TFUCloudFileSDK (0.0.2)
+  - TFUCloudFileSDK (0.2.0)
   - YYDispatchQueuePool (1.0)
 
 DEPENDENCIES:
@@ -39,14 +39,14 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   TFUCloudFileSDK:
-    :commit: 591a4ee3d682ff1ef357b66f5f9096b2c57277d6
+    :commit: 64af3b328233e1317bd082b5bcf0238cb845895b
     :git: http://code2.v5time.net/iOS/TFUCloudFileSDK.git
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   AliyunOSSiOS: 602b6a4e70e62a5f0a6431c20496343141d7e66f
   EGOCache: 191fd213da6804d487b49b1a91772ba904f3e324
-  TFUCloudFileSDK: 3fa935fd73155badda2c0e091afa6c07c38b8ff8
+  TFUCloudFileSDK: 40602116d881be75be176a292f8df6fe6239094e
   YYDispatchQueuePool: 3dfb2274bcc74207688dde8ac6f7bdd46871dd7b
 
 PODFILE CHECKSUM: aab6aa39ff06fe1a723e998b550c56b964fa32d9
