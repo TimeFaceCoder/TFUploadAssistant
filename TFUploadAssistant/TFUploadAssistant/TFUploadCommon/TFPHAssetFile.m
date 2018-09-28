@@ -143,9 +143,9 @@ enum {
             [[PHImageManager defaultManager] requestImageDataForAsset:self.phAsset
                                                               options:request
                                                         resultHandler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
-                                                            _imageOrientation = orientation;
-                                                            _fileSize = imageData.length;
-                                                            _assetURL = [NSURL URLWithString:self.phAsset.localIdentifier];
+                                                            self->_imageOrientation = orientation;
+                                                            self->_fileSize = imageData.length;
+                                                            self->_assetURL = [NSURL URLWithString:self.phAsset.localIdentifier];
                                                         }
              ];
         }
@@ -159,8 +159,8 @@ enum {
                 AVURLAsset *urlAsset = (AVURLAsset *)playerItem.asset;
                 NSNumber *fileSize = nil;
                 [urlAsset.URL getResourceValue:&fileSize forKey:NSURLFileSizeKey error:nil];
-                _fileSize = [fileSize unsignedLongLongValue];
-                _assetURL = urlAsset.URL;
+                self->_fileSize = [fileSize unsignedLongLongValue];
+                self->_assetURL = urlAsset.URL;
                 
                 [assetReadLock lock];
                 [assetReadLock unlockWithCondition:kAMASSETMETADATA_ALLFINISHED];

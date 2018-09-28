@@ -578,7 +578,7 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
 
 - (void)initOSSService {
     id<OSSCredentialProvider> credential = [[OSSFederationCredentialProvider alloc] initWithFederationTokenGetter:^OSSFederationToken * {
-        NSURL * url = [NSURL URLWithString:_configuration.aliAuthSTS];
+        NSURL * url = [NSURL URLWithString:self->_configuration.aliAuthSTS];
         NSURLRequest * request = [NSURLRequest requestWithURL:url];
         OSSTaskCompletionSource * tcs = [OSSTaskCompletionSource taskCompletionSource];
         NSURLSessionConfiguration  *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];

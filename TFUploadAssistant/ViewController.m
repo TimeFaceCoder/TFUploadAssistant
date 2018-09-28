@@ -7,8 +7,6 @@
 //
 
 #import "ViewController.h"
-#import <TFPhotoBrowser/TFImagePickerController.h>
-#import <TFPhotoBrowser/TFLibraryViewController.h>
 #import "TFUploadAssistant.h"
 #import "TFConfiguration.h"
 #import <CommonCrypto/CommonDigest.h>
@@ -26,7 +24,7 @@
 #define kUcloudPublicKey            @"10V/wm8ru7aHMy8f+TyEKzXlV+LlbPNR+LYj4Md5IUOtlSzjmH0pRw=="
 #define kUcloudPrivateKey           @"3f9f52222498a8b9a7015fd49a063c5a1cf54feb"
 
-@interface ViewController ()<TFImagePickerControllerDelegate,TFLibraryViewControllerDelegate,TFUploadAssistantDelegate>
+@interface ViewController ()<TFUploadAssistantDelegate>
 
 @property (nonatomic ,strong) TFConfiguration *config;
 
@@ -72,48 +70,9 @@
 
 - (void)onViewClick:(id)sender {
     
-    TFLibraryViewController *vc = [[TFLibraryViewController alloc]init];
-    vc.libraryControllerDelegate = self;
-    vc.allowsMultipleSelection = YES;
-    vc.maximumNumberOfSelection = 100;
-
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    nc.toolbarHidden = NO;
-    [self presentViewController:nc animated:YES completion:nil];
+ 
 }
 
-#pragma mark - TFImagePickerControllerDelegate
-
-- (void)imagePickerController:(TFImagePickerController *)picker
-       didFinishPickingAssets:(NSArray<PHAsset *> *)assets {
-    
-}
-
-- (void)didSelectPHAssets:(NSArray<TFAsset *> *)assets
-               removeList:(NSArray<TFAsset *> *)removeList
-                    infos:(NSMutableArray *)infos {
-    
-    NSTimeInterval startTime = [[NSDate date] timeIntervalSince1970];
-    
-    NSLog(@"startTime: %@", @(startTime));
-    
-    NSMutableArray *array = [NSMutableArray array];
-    NSMutableArray *keyArray = [NSMutableArray array];
-    for (TFAsset *asset in assets) {
-        
-        [array addObject:asset.phAsset];
-        //melvin/test-0602-19/%@.%@
-        NSString* key = [NSString stringWithFormat:@"%@-1104-001.%@",asset.md5,asset.fileExtension];
-        [keyArray addObject:key];
-    }
-    
-    NSLog(@"select photos count: %@", @(keyArray.count));
-    
-    [[TFUploadAssistant sharedInstanceWithConfiguration:_config] putPHAssets:array
-                                                                        keys:keyArray
-                                                                       token:@"timeface-1" delegate:self];
-}
 
 - (NSString *)getMD5StringFromNSString:(NSString *)string {
     NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];

@@ -1,0 +1,6 @@
+framework module TFUCloudFileSDK {
+  umbrella header "TFUCloudFileSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}

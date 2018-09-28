@@ -124,7 +124,7 @@
     put.contentMd5 = [OSSUtil base64Md5ForData:put.uploadingData];
     put.uploadProgress = ^(int64_t bytesSent, int64_t totalByteSent, int64_t totalBytesExpectedToSend) {
         float progress = (float)totalByteSent/(float)totalBytesExpectedToSend;
-        _progressHandler(_key,_token,progress);
+        self->_progressHandler(self->_key,self->_token,progress);
     };
     
     OSSClient *client = [[TFUploadAssistant sharedInstanceWithConfiguration:_config] client];
@@ -156,8 +156,8 @@
         }
         else
         {
-            if (_completionHandler) {
-                _completionHandler(info,_key,_token,NO);
+            if (self->_completionHandler) {
+                self->_completionHandler(info,self->_key,self->_token,NO);
             }
         }
         TFULogDebug(@"Result - requestId: %@ ",result.requestId);
@@ -192,7 +192,7 @@
                 }
                 else
                 {
-                    if(![strongSelf.correctImageKeyArray containsObject:_key])
+                    if(![strongSelf.correctImageKeyArray containsObject:self->_key])
                     {
                         [strongSelf _checkDataError];
                     }
@@ -264,8 +264,8 @@
                 NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
                 if(dict)
                 {
-                    _progressHandler(_key,_token,1);
-                    _completionHandler(nil,_key,_token,YES);
+                    self->_progressHandler(self->_key,self->_token,1);
+                    self->_completionHandler(nil,self->_key,self->_token,YES);
                 }
                 else
                 {
