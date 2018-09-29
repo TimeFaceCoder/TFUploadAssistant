@@ -101,8 +101,15 @@
 /**
  *  卸载回调监听
  *
- *  @param listener
+ *  @param listener 
  */
 - (void) detachListener:(id<TFUploadAssistantDelegate>)listener;
+
+/**
+ *  清除全部监听
+ *
+ *  @param listener
+ */
+- (void) clearAllListener;
 
 @end

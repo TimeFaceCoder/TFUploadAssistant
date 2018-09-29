@@ -22,7 +22,7 @@
                                            tag:(NSInteger)tag;
 
 + (TFUploadHandler*) uploadHandlerWithToken:(NSString *)token
-                                      delegate:(id<TFUploadAssistantDelegate>)delegate;
+                                   delegate:(id<TFUploadAssistantDelegate>)delegate;
 
 
 @end

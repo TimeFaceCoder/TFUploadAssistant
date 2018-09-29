@@ -23,9 +23,9 @@
 #import <YYDispatchQueuePool/YYDispatchQueuePool.h>
 #import "TFUcloudUploadOperation.h"
 
-NSString * const kTFUploadOperationsKey      = @"kTFUploadOperationsKey";
+NSString * const kTFUploadOperationsKey       = @"kTFUploadOperationsKey";
 NSString * const kTFUploadFailedOperationsKey = @"kTFUploadFailedOperationsKey";
-NSString * const kTFALIPhotoStatus = @"kTFALIPhotoStatus";
+NSString * const kTFALIPhotoStatus            = @"kTFALIPhotoStatus";
 
 @interface TFUploadAssistant()<NSURLSessionDelegate>
 
@@ -214,7 +214,7 @@ NSString * const kTFALIPhotoStatus = @"kTFALIPhotoStatus";
         NSMutableArray *array = [self.uploadHandlers objectForKey:key];
         for (NSInteger j = array.count - 1; j >= 0; j-- ) {
             TFUploadHandler *handler = array[j];
-            
+    
             if (handler.delegate == listener) {
                 [array removeObject:handler];
             }
@@ -231,10 +231,10 @@ NSString * const kTFALIPhotoStatus = @"kTFALIPhotoStatus";
         NSMutableArray *array = [self.uploadHandlers objectForKey:key];
         for (NSInteger j = array.count - 1; j >= 0; j-- ) {
             TFUploadHandler *handler = array[j];
-            
+
             NSString* classDelegate = NSStringFromClass([handler.delegate class]);
             NSString* classListener = NSStringFromClass([listener class]);
-            
+
             if([classDelegate isEqualToString:classListener])
             {
                 NSLog(@"-----------NO---------------");
@@ -247,7 +247,7 @@ NSString * const kTFALIPhotoStatus = @"kTFALIPhotoStatus";
     return YES;
 }
 
-- (void) attachListener:(id<TFUploadAssistantDelegate>)listener token:(NSString *)token {
+- (void)attachListener:(id<TFUploadAssistantDelegate>)listener token:(NSString *)token {
     
     if([self checkAttachListener:listener])
     {
@@ -337,7 +337,7 @@ NSString * const kTFALIPhotoStatus = @"kTFALIPhotoStatus";
     
     NSMutableArray *handlers = [self.uploadHandlers objectForKey:token];
     
-    //单张图片上传
+    //单张图片上传，没有handlers 有两处self.uploadHandlers setObject，一种是设置代理，一种是设置进度属性，比如多图上传的时候
     if(!handlers.count)
     {
         [self putData:data key:key token:token progress:progressHandler completion:completionHandler];
@@ -501,84 +501,85 @@ void (^GlobalCompletionBlock)(TFResponseInfo *info, NSString *key, NSString *tok
 #pragma mark - 检测未完成任务列表
 
 - (void)checkTask {
-//    __weak __typeof(self)weakSelf = self;
-//    TFAsyncRun(^{
-//        __typeof(&*weakSelf) strongSelf = weakSelf;
-//        @autoreleasepool {
-//
-//            //存在正在上传的图片
-//            //            NSMutableDictionary *uploadOperations = [[TFFileRecorder sharedInstance] get:kTFUploadOperationsKey];
-//            //            if(uploadOperations)
-//            //            {
-//            //                for (NSString *token in [uploadOperations allKeys]) {
-//            //                    NSMutableDictionary *entry = [uploadOperations objectForKey:token];
-//            //                    //{objectkey:filepath}
-//            //                    if (entry) {
-//            //                        for (NSString *objectKey in entry) {
-//            //
-//            //                            NSLog(@"%@", objectKey);
-//            //
-//            //                        }
-//            //                    }
-//            //                }
-//            //            }
-//
-//            //不一定有上传失败的图片
-//            NSMutableDictionary *failedOperations = [[TFFileRecorder sharedInstance] get:kTFUploadFailedOperationsKey];
-//            if (failedOperations) {
-//                for (NSString *token in [failedOperations allKeys]) {
-//                    NSMutableDictionary *entry = [failedOperations objectForKey:token];
-//                    //{objectkey:filepath}
-//                    if (entry) {
-//                        for (NSString *objectKey in entry) {
-//                            NSString *filePath = [entry objectForKey:objectKey];
-//                            if ([[NSURL URLWithString:filePath] isFileReferenceURL]) {
-//                                //file path
-//                                [strongSelf putFile:filePath
-//                                                key:objectKey
-//                                              token:token
-//                                           progress:NULL
-//                                         completion:^(TFResponseInfo *info, NSString *key, NSString *token, BOOL success) {
-//                                             if (success) {
-//                                                 @synchronized(strongSelf)
-//                                                 {
-//                                                     [strongSelf removeFailedOperationsByToken:token objectKey:objectKey];
-//                                                 }
-//                                             }
-//                                         }];
-//                            }
-//                            else {
-//                                //PHAsset URL
-//                                PHFetchResult *fetchResult = [PHAsset fetchAssetsWithLocalIdentifiers:@[filePath] options:nil];
-//                                if ([fetchResult count] > 0) {
-//                                    PHAsset *asset = [fetchResult objectAtIndex:0];
-//                                    [strongSelf putPHAsset:asset
-//                                                       key:objectKey
-//                                                     token:token
-//                                                  progress:NULL
-//                                                completion:^(TFResponseInfo *info, NSString *key, NSString *token, BOOL success) {
-//                                                    if (success) {
-//                                                        @synchronized(strongSelf)
-//                                                        {
-//                                                            [strongSelf removeFailedOperationsByToken:token objectKey:objectKey];
-//                                                        }
-//                                                    }
-//                                                }];
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    });
+    __weak __typeof(self)weakSelf = self;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+        __typeof(&*weakSelf) strongSelf = weakSelf;
+        @autoreleasepool {
+            
+            //存在正在上传的图片
+            //            NSMutableDictionary *uploadOperations = [[TFFileRecorder sharedInstance] get:kTFUploadOperationsKey];
+            //            if(uploadOperations)
+            //            {
+            //                for (NSString *token in [uploadOperations allKeys]) {
+            //                    NSMutableDictionary *entry = [uploadOperations objectForKey:token];
+            //                    //{objectkey:filepath}
+            //                    if (entry) {
+            //                        for (NSString *objectKey in entry) {
+            //
+            //                            NSLog(@"%@", objectKey);
+            //
+            //                        }
+            //                    }
+            //                }
+            //            }
+            
+            //不一定有上传失败的图片
+            NSMutableDictionary *failedOperations = [[TFFileRecorder sharedInstance] get:kTFUploadFailedOperationsKey];
+            if (failedOperations) {
+                for (NSString *token in [failedOperations allKeys]) {
+                    NSMutableDictionary *entry = [failedOperations objectForKey:token];
+                    //{objectkey:filepath}
+                    if (entry) {
+                        for (NSString *objectKey in entry) {
+                            NSString *filePath = [entry objectForKey:objectKey];
+                            if ([[NSURL URLWithString:filePath] isFileReferenceURL]) {
+                                //file path
+                                [strongSelf putFile:filePath
+                                                key:objectKey
+                                              token:token
+                                           progress:NULL
+                                         completion:^(TFResponseInfo *info, NSString *key, NSString *token, BOOL success) {
+                                             if (success) {
+                                                 @synchronized(strongSelf)
+                                                 {
+                                                     [strongSelf removeFailedOperationsByToken:token objectKey:objectKey];
+                                                 }
+                                             }
+                                         }];
+                            }
+                            else {
+                                //PHAsset URL
+                                PHFetchResult *fetchResult = [PHAsset fetchAssetsWithLocalIdentifiers:@[filePath] options:nil];
+                                if ([fetchResult count] > 0) {
+                                    PHAsset *asset = [fetchResult objectAtIndex:0];
+                                    [strongSelf putPHAsset:asset
+                                                       key:objectKey
+                                                     token:token
+                                                  progress:NULL
+                                                completion:^(TFResponseInfo *info, NSString *key, NSString *token, BOOL success) {
+                                                    if (success) {
+                                                        @synchronized(strongSelf)
+                                                        {
+                                                            [strongSelf removeFailedOperationsByToken:token objectKey:objectKey];
+                                                        }
+                                                    }
+                                                }];
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
 }
 
 #pragma mark - 初始化阿里云服务
 
 - (void)initOSSService {
     id<OSSCredentialProvider> credential = [[OSSFederationCredentialProvider alloc] initWithFederationTokenGetter:^OSSFederationToken * {
-        NSURL * url = [NSURL URLWithString:self->_configuration.aliAuthSTS];
+        NSURL * url = [NSURL URLWithString:_configuration.aliAuthSTS];
         NSURLRequest * request = [NSURLRequest requestWithURL:url];
         OSSTaskCompletionSource * tcs = [OSSTaskCompletionSource taskCompletionSource];
         NSURLSessionConfiguration  *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -633,4 +634,3 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 }
 
 @end
-

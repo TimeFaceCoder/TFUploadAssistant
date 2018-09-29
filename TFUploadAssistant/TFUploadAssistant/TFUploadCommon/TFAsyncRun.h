@@ -8,6 +8,6 @@
 
 typedef void (^TFRun)(void);
 
-//void TFAsyncRun(TFRun run);
+void TFAsyncRun(TFRun run);
 
 void TFAsyncRunInMain(TFRun run);

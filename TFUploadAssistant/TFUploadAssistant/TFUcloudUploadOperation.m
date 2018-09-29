@@ -85,41 +85,41 @@
 {
     [self objectExist:_key completionBlock:^(BOOL result) {
         if (result) {
-            self->_progressHandler(self->_key,self->_token,1);
-            self->_completionHandler(nil,self->_key,self->_token,YES);
-            NSLog(@"object :%@ exist",self->_key);
+            _progressHandler(_key,_token,1);
+            _completionHandler(nil,_key,_token,YES);
+            NSLog(@"object :%@ exist",_key);
             return;
         }else{
     
-            NSString* url = [NSString stringWithFormat:@"%@://%@", self->_config.ucloudScheme, self->_config.ucloudBucketHostId];
+            NSString* url = [NSString stringWithFormat:@"%@://%@", _config.ucloudScheme, _config.ucloudBucketHostId];
 
-            UFileAPI* uFileAPI = [[UFileAPI alloc] initWithBucket:self->_config.ucloudBucketName url:url];
+            UFileAPI* uFileAPI = [[UFileAPI alloc] initWithBucket:_config.ucloudBucketName url:url];
             
-            NSString* itMd5 = [UFileAPIUtils calcMD5ForData:self->_data];
+            NSString* itMd5 = [UFileAPIUtils calcMD5ForData:_data];
             NSDictionary* option = @{kUFileSDKOptionMD5: itMd5, kUFileSDKOptionFileType: @"image/jpeg"};
             NSString* authorization = [self.uFileSDK calcKey:@"POST"
-                                                         key:self->_key
+                                                         key:_key
                                                   contentMd5:itMd5
                                                  contentType:@"image/jpeg"];
             
             NSLog(@"%@", authorization);
             
-            [uFileAPI putFile:self->_key
+            [uFileAPI putFile:_key
                 authorization:authorization
                        option:option
-                         data:self->_data
+                         data:_data
                      progress:^(NSProgress * process){
-                         self->_progressHandler(self->_key, self->_token, (float)process.fractionCompleted);
+                         _progressHandler(_key, _token, (float)process.fractionCompleted);
                       }
                       success:^(NSDictionary* _Nonnull response){
                           
                           NSLog(@"%@", response);
                           
-                          self->_completionHandler(nil,self->_key,self->_token,YES);
+                          _completionHandler(nil,_key,_token,YES);
                       }
                       failure:^(NSError * _Nonnull error){
                           
-                          self->_completionHandler(nil,self->_key,self->_token, NO);
+                          _completionHandler(nil,_key,_token, NO);
                       }];
         }
      }];

@@ -97,7 +97,7 @@
         __strong __typeof__(weakSelf) strongSelf = weakSelf;
         
         if (!task.error) {
-            
+ 
             [self _uploadImage];
         }
         else
@@ -120,11 +120,10 @@
     put.bucketName = _config.aliBucket;
     put.objectKey = _key;
     put.uploadingData = _data;
-    NSLog(@"%@", @(_data.length));
     put.contentMd5 = [OSSUtil base64Md5ForData:put.uploadingData];
     put.uploadProgress = ^(int64_t bytesSent, int64_t totalByteSent, int64_t totalBytesExpectedToSend) {
         float progress = (float)totalByteSent/(float)totalBytesExpectedToSend;
-        self->_progressHandler(self->_key,self->_token,progress);
+        _progressHandler(_key,_token,progress);
     };
     
     OSSClient *client = [[TFUploadAssistant sharedInstanceWithConfiguration:_config] client];
@@ -156,8 +155,8 @@
         }
         else
         {
-            if (self->_completionHandler) {
-                self->_completionHandler(info,self->_key,self->_token,NO);
+            if (_completionHandler) {
+                _completionHandler(info,_key,_token,NO);
             }
         }
         TFULogDebug(@"Result - requestId: %@ ",result.requestId);
@@ -192,7 +191,7 @@
                 }
                 else
                 {
-                    if(![strongSelf.correctImageKeyArray containsObject:self->_key])
+                    if(![strongSelf.correctImageKeyArray containsObject:_key])
                     {
                         [strongSelf _checkDataError];
                     }
@@ -236,8 +235,8 @@
 - (BOOL)isMedia
 {
     return [_key containsString:@"mov"] || [_key containsString:@"mp4"] || [_key containsString:@"m4r"] ||
-    [_key containsString:@"m4a"] || [_key containsString:@"AAC"] || [_key containsString:@"mp3"] ||
-    [_key containsString:@"wav"];
+           [_key containsString:@"m4a"] || [_key containsString:@"AAC"] || [_key containsString:@"mp3"] ||
+           [_key containsString:@"wav"];
 }
 
 - (void)_checkDataError
@@ -264,8 +263,8 @@
                 NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
                 if(dict)
                 {
-                    self->_progressHandler(self->_key,self->_token,1);
-                    self->_completionHandler(nil,self->_key,self->_token,YES);
+                    _progressHandler(_key,_token,1);
+                    _completionHandler(nil,_key,_token,YES);
                 }
                 else
                 {

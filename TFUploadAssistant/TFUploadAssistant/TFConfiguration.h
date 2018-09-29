@@ -11,7 +11,7 @@
 typedef NS_ENUM(NSUInteger, TFUploadType) {
     
     TFUploadTypeAliyun = 0,
-    
+   
     TFUploadTypeUCloud = 1,
     
     TFUploadTypeAmazon = 2

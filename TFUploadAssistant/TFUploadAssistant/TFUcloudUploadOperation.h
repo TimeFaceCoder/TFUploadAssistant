@@ -7,9 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-#import "TFUCloudFileSDK.h"
-
+#import "UFileAPI.h"
 #import "TFConfiguration.h"
 #import "TFUploadOperationProtocol.h"
 
